@@ -32,7 +32,7 @@ public class PublishAdUnit extends BuildTask {
 	
 	@Override
 	protected void doTask() throws Exception {
-		String destPath = "winterwell@heppner.soda.sh:/home/winterwell/ads.good-loop.com/web/"; 
+		String destPath = "winterwell@heppner.soda.sh:/home/winterwell/as.good-loop.com/web/"; 
 		File localDir = new File(FileUtils.getWinterwellDir(), "adunit");
 		RSyncTask rsync = new RSyncTask(localDir+"/", destPath, true);
 		rsync.run();
