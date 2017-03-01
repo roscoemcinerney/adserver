@@ -1,7 +1,8 @@
-package com.goodloop.adserver;
+package com.goodloop.portal;
 
 import java.io.File;
 
+import com.goodloop.adserver.AdServerMain;
 import com.winterwell.datalog.server.DataLogServer;
 import com.winterwell.datalog.server.DataLogSettings;
 import com.winterwell.datalog.server.MasterHttpServlet;
@@ -16,25 +17,19 @@ import com.winterwell.web.app.JettyLauncher;
  * @author daniel
  *
  */
-public class AdServerMain {
+public class PortalMain {
 
 	private static JettyLauncher jl;
 		
-	public static LogFile logFile = new LogFile(new File("adserver.log"))
+	public static LogFile logFile = new LogFile(new File("portal.log"))
 									.setLogRotation(TUnit.DAY.dt, 14);
 
-	public static AdServerSettings settings;
-
 	public static void main(String[] args) {
-		settings = ArgsParser.getConfig(new AdServerSettings(), args, new File("config/adserver.properties"), null);
-
-		logFile = new LogFile(DataLogServer.settings.logFile)
-					// keep 8 weeks of 1 week log files ??revise this??
-					.setLogRotation(TUnit.WEEK.dt, 8);
+		PortalConfig pc = AdServerMain.getConfig(new PortalConfig(), args);
 
 		Log.i("Go!");
 		assert jl==null;
-		jl = new JettyLauncher(new File("web"), settings.port);
+		jl = new JettyLauncher(new File("web"), pc.port);
 		jl.setup();
 		jl.addServlet("/*", new MasterHttpServlet());
 		Log.i("web", "...Launching Jetty web server on port "+jl.getPort());

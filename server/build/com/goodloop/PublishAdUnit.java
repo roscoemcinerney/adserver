@@ -1,4 +1,4 @@
-package com.goodloop.ads;
+package com.goodloop;
 
 
 import java.io.File;
