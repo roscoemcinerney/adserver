@@ -2,10 +2,10 @@
 server {
 	listen   80; ## listen for ipv4; this line is default and implied
 
-	root /home/daniel/winterwell/adserver/web;
+	root /home/daniel/winterwell/adserver/web-portal;
 	index index.html;
 
-	server_name local.sogive.org;
+	server_name localportal.good-loop.com;
 
 	location / {
 			try_files $uri $uri/ @backend;
