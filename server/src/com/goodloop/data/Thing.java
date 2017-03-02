@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 public class Thing {
 
-	String name;
-	String url;
+	public String name;
+	public String url;
+	public String id;
 	
 }

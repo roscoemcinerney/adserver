@@ -9,6 +9,7 @@ import org.eclipse.jetty.util.ajax.JSON;
 
 import com.winterwell.es.client.ESHttpClient;
 import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Warning;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.web.app.WebRequest;
 
@@ -36,6 +37,9 @@ public class MyCharities {
 		Map<String, Object> cs = es.get(config.publisherIndex, "charities", id);
 		if (cs==null) {
 			cs = es.get(config.publisherIndex, "charities", "charities_default");
+			if (cs==null) {
+				throw new Warning("No publisher/charities/charities_default defined!");
+			}
 		}
 		charities = (List<Map>) cs.get("charities");		
 	}

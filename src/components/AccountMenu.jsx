@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Nav, NavItem } from 'react-bootstrap';
 
 import C from '../C';
-import { showLoginMenu, logout } from './genericActions';
 // import {XId,yessy,uid} from '../js/util/orla-utils.js';
 
 import Misc from './Misc';
@@ -44,17 +42,5 @@ const AccountMenu = ({user, pending, active, doLogout, showLogin}) => {
 	);
 };
 
-const mapStateToProps = (state, ownProps) => ({
-	...ownProps,
-	...state.login,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-	doLogout: () => dispatch(logout(dispatch)),
-	showLogin: () => dispatch(showLoginMenu(true)),
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(AccountMenu);
+export default AccountMenu;

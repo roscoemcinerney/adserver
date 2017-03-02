@@ -1,50 +1,52 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Login from 'hooru';
 import { assert } from 'sjtest';
 import { getUrlVars } from 'wwutils';
 
+// Plumbing
+import DataStore from '../../plumbing/DataStore';
 
 // Templates
 import MessageBar from '../MessageBar';
-import SoGiveNavBar from '../SoGiveNavBar/SoGiveNavBar';
+import NavBar from '../NavBar/NavBar';
 import LoginWidget from '../LoginWidget/LoginWidget';
 // Pages
 import DashboardPage from '../DashboardPage';
-import SearchPage from '../SearchPage';
-import Account from '../Account';
-import DonateToCampaignPage from '../DonateToCampaignPage';
-import CharityPage from '../CharityPage';
+import PublisherPage from '../PublisherPage';
+import AdvertiserPage from '../AdvertiserPage';
+import AccountPage from '../AccountPage';
 
 // Actions
-import { loginChanged } from '../genericActions';
-
 
 const PAGES = {
-	search: SearchPage,
+	advertiser: AdvertiserPage,
 	dashboard: DashboardPage,
-	account: Account,
-	charity: CharityPage,
-	campaign: DonateToCampaignPage
+	account: AccountPage,
+	publisher: PublisherPage,	
 };
 
-const DEFAULT_PAGE = 'search';
+const DEFAULT_PAGE = 'publisher';
 
 
 /**
-		Top-level: SoGive tabs
+		Top-level: tabs
 */
 class MainDiv extends Component {
 	constructor(props) {
 		super(props);
 		this.state = this.decodeHash(window.location.href);
+	}
+
+	componentWillMount() {		
+		DataStore.addListener((mystate) => this.setState(mystate));
 
 		// Set up login watcher here, at the highest level
 		Login.change(() => {
-			this.props.dispatch(loginChanged(false));
+			this.setState({});
 		});
-		// And trigger it to make sure we're up to date.
-		Login.change();
+
+		// trigger change to make sure we're up to date. ??
+		// Login.change();
 	}
 
 	componentDidMount() {
@@ -77,7 +79,7 @@ class MainDiv extends Component {
 
 		return (
 			<div>
-				<SoGiveNavBar page={page} />
+				<NavBar page={page} />
 				<div className="container avoid-navbar">
 					<MessageBar />
 					<div id={page}>
@@ -90,7 +92,4 @@ class MainDiv extends Component {
 	}
 }
 
-/* connect() with no second argument (normally mapDispatchToProps)
- * makes dispatch itself available as a prop of MainDiv
- */
-export default connect()(MainDiv);
+export default MainDiv;

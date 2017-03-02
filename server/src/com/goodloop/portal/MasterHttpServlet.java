@@ -59,15 +59,13 @@ import com.winterwell.web.ajax.JsonResponse;
 public class MasterHttpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private String unitjs;
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
 	
 	public MasterHttpServlet() {
-		unitjs = FileUtils.read(new File("web/base.unit.js"));
+		
 	}
 	
 	@Override
@@ -75,25 +73,18 @@ public class MasterHttpServlet extends HttpServlet {
 		try {
 			WebRequest request = new WebRequest(null, req, resp);
 			Log.d("servlet", request);
-			doServeUnitJs(request);
-//			String path = request.getRequestPath();
-//			if (path.startsWith("/foo")) {
+			String path = request.getRequestPath();
+			
+			if (path.startsWith("/publisher")) {
+				PublisherServlet servlet = new PublisherServlet();
+				servlet.process(request);
+			}
+			
 		} catch(Throwable ex) {
 			ex.printStackTrace();
 			Log.e("error", ex);
 			WebUtils2.sendError(500, "Server Error: "+ex, resp);
 		}
-	}
-
-	private void doServeUnitJs(WebRequest state) throws IOException {
-		String js = unitjs;
-		// CORS? Assuming you've done security elsewhere
-		WebUtils2.CORS(state, true);		
-		// Respond
-		state.getResponse().setContentType(WebUtils2.MIME_TYPE_JAVASCRIPT);
-		BufferedWriter out = FileUtils.getWriter(state.getResponse().getOutputStream());
-		out.write(js);
-		FileUtils.close(out);
 	}
 
 }

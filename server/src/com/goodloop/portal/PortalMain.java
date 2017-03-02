@@ -3,10 +3,6 @@ package com.goodloop.portal;
 import java.io.File;
 
 import com.goodloop.adserver.AdServerMain;
-import com.winterwell.datalog.server.DataLogServer;
-import com.winterwell.datalog.server.DataLogSettings;
-import com.winterwell.datalog.server.MasterHttpServlet;
-import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.log.Log;
 import com.winterwell.utils.log.LogFile;
 import com.winterwell.utils.time.TUnit;
@@ -29,7 +25,7 @@ public class PortalMain {
 
 		Log.i("Go!");
 		assert jl==null;
-		jl = new JettyLauncher(new File("web"), pc.port);
+		jl = new JettyLauncher(new File("web-portal"), pc.port);
 		jl.setup();
 		jl.addServlet("/*", new MasterHttpServlet());
 		Log.i("web", "...Launching Jetty web server on port "+jl.getPort());

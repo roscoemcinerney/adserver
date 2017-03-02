@@ -52,7 +52,7 @@ import com.winterwell.web.WebPage;
 import com.winterwell.web.ajax.JsonResponse;
 
 /**
- * 
+ * Serve the adunit
  */
 public class UnitHttpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -65,7 +65,7 @@ public class UnitHttpServlet extends HttpServlet {
 	}
 	
 	public UnitHttpServlet() {
-		unitjs = FileUtils.read(new File("web/base.unit.js"));
+		unitjs = FileUtils.read(new File("adunit/unit.js"));
 	}
 	
 	@Override
@@ -88,7 +88,13 @@ public class UnitHttpServlet extends HttpServlet {
 		String charityJson = mc.getJson();		
 		String charityMap = "var goodloop.charities="+charityJson+";";
 		
-		String js = unitjs+charityMap;
+		PickAdvert pa = new PickAdvert(state);
+		pa.run();
+		String advertJson = pa.getJson();
+		String charityVar = "var goodloop.advert="+advertJson+";";
+		
+		String js = unitjs+charityMap+advertJson;
+		
 		// CORS? Assuming you've done security elsewhere
 		WebUtils2.CORS(state, true);		
 		// Respond

@@ -1,5 +1,5 @@
 {
-  "name": "Good-Loop AdServer",
+  "name": "GoodLoopAdServer",
   "version": "0.0.1",
   "description": "AdServer",
   "author": "Daniel Winterstein",
@@ -16,7 +16,6 @@
     "react-dom": "^15.4.0",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "sjtest": "^0.3.8",
     "webpack": "^1.14.0",
     "wwutils": "^0.6.3",
     "lodash": "^4.17.2",
@@ -25,9 +24,7 @@
     "chart.js": "^2.4.0",
     "hooru": "^0.2.1",
     "sjtest": "^0.4.3",
-    "react-chartjs2": "^1.1.1",
     "d3-queue": "^3.0.3",
-    "react-bootstrap": "^0.30.7",
     "react-stripe-checkout": "^2.2.5",
     "react-helmet": "^4.0.0",
 	"easyi18n": "^1.0.0"

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import $ from 'jquery';
 import {SJTest, assert, assMatch} from 'sjtest';
 import C from '../C.js';
-
+import DataStore from './DataStore';
 import Login from 'hooru';
 
 const ServerIO = {};
@@ -14,10 +14,21 @@ export default ServerIO;
 
 // for debug
 window.ServerIO = ServerIO;
+const BURL = '/';
 
-ServerIO.getPublisher = function(charityId) {
-	assMatch(charityId, String);
-	return ServerIO.load('/charity/'+charityId+'.json');
+ServerIO.getPublisher = function(id) {
+	assMatch(id, String);
+	return ServerIO.load('/publisher/'+id+'.json');
+};
+ServerIO.savePublisher = function(publisher) {
+	let params = {
+		method: 'POST',
+		data: {
+			action: 'save',			
+			publisher: JSON.stringify(publisher)
+		}
+	};
+	return ServerIO.load('/publisher/'+publisher.id+'.json', params);
 };
 
 

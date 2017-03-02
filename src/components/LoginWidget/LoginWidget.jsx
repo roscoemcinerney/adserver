@@ -1,13 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { assert } from 'sjtest';
 import Login from 'hooru';
 import { XId, uid } from 'wwutils';
 import Cookies from 'js-cookie';
 
 import Misc from '../Misc';
-import { updateField, showLoginMenu } from '../genericActions';
-import { emailLogin, emailRegister, socialLogin } from './LoginWidget-actions';
 
 /**
 	TODO:
@@ -35,8 +32,8 @@ const SocialSignin = () => {
 					<Misc.Logo size='small' service='instagram' /> { verb } with Instagram
 				</button>
 			</div>
-			<p><small>SoGive will never share your data, and will never act without your consent.
-				You can read our <a href='http://sogive.org/privacy-policy.html' target="_new">privacy policy</a> for more information.
+			<p><small>Good-Loop will never share your data, and will never post to  social media without your consent.
+				You can read our <a href='https://good-loop.com/privacy-policy.html' target="_new">privacy policy</a> for more information.
 			</small></p>
 		</div>
 	);
@@ -149,9 +146,9 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 				<div className="row">
 					<div className="col-sm-6 col-center">
 						<div className="panel panel-default" onClick={(event) => event.stopPropagation()}>
-							<div className="panel-heading">Welcome (back) to SoGive</div>
+							<div className="panel-heading">Welcome (back) to the Good-Loop Portal</div>
 							<div className="panel-body">
-								<Misc.Logo service="sogive" size='large' transparent={false} />
+								<Misc.Logo service="goodloop" size='large' transparent={false} />
 								<h3>{heading}</h3>
 								<EmailSignin
 									verb={verb}
@@ -187,20 +184,4 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 }; // ./LoginWidget
 
 
-const mapStateToProps = (state, ownProps) => ({
-	...ownProps,
-	...state.login,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-	closeMenu: () => dispatch(showLoginMenu(false)),
-	doEmailLogin: (email, password) => dispatch(emailLogin(dispatch, email, password)),
-	doEmailRegister: (email, password) => dispatch(emailRegister(dispatch, email, password)),
-	doSocialLogin: (service) => dispatch(socialLogin(dispatch, service)),
-	handleChange: (field, value) => dispatch(updateField('LOGIN_DIALOG_UPDATE_FIELD', field, value)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginWidget);
+export default LoginWidget;

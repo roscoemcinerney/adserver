@@ -7,9 +7,7 @@ import com.google.gson.FlexiGsonBuilder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.KLoopPolicy;
-import com.winterwell.datalog.server.DataLogServer;
-import com.winterwell.datalog.server.DataLogSettings;
-import com.winterwell.datalog.server.MasterHttpServlet;
+
 import com.winterwell.es.XIdTypeAdapter;
 import com.winterwell.es.client.ESConfig;
 import com.winterwell.es.client.ESHttpClient;
@@ -43,9 +41,9 @@ public class AdServerMain {
 
 		Log.i("Go!");
 		assert jl==null;
-		jl = new JettyLauncher(new File("web"), settings.port);
+		jl = new JettyLauncher(new File("web-as"), settings.port);
 		jl.setup();
-		jl.addServlet("/*", new MasterHttpServlet());
+		jl.addServlet("/unit.js", new UnitHttpServlet());
 		Log.i("web", "...Launching Jetty web server on port "+jl.getPort());
 		jl.run();
 
@@ -66,8 +64,7 @@ public class AdServerMain {
 
 	private static void init() {
 		// gson
-		GsonBuilder gb;
-		Gson gson = new FlexiGsonBuilder()
+		Gson gson = new GsonBuilder()
 		.setLenientReader(true)
 		.registerTypeAdapter(Time.class, new StandardAdapters.TimeTypeAdapter())
 		.registerTypeAdapter(XId.class, new XIdTypeAdapter())

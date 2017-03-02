@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
 import AccountMenu from '../AccountMenu';
 
 const NavBar = ({page}) => {
 	console.log('NavBar', page);
-	let pageLinks = _.map([], p => <li className={page === p? 'active' : ''}><a className="nav-item nav-link" href={'#'+p}>{p}</a></li>);
+	let pageLinks = _.map(['dashboard', 'publisher', 'advertiser'], 
+		p => <li key={'li_'+p} className={page === p? 'active' : ''}><a className="nav-item nav-link" href={'#'+p}>{p}</a></li>);
 	return (
 		<nav className="navbar navbar-fixed-top navbar-inverse">
 			<div className="container">
@@ -23,7 +25,7 @@ const NavBar = ({page}) => {
 						<span className="icon-bar" />
 					</button>
 					<a className="" href="#dashboard">
-						<img alt="SoGive logo" style={{maxWidth:'100px',maxHeight:'50px'}} src="img/logo.png" />
+						<img alt="Good-Loop logo" style={{maxWidth:'100px',maxHeight:'50px'}} src="img/logo.png" />
 					</a>
 				</div>
 				<div id="navbar" className="navbar-collapse collapse">
@@ -40,8 +42,8 @@ const NavBar = ({page}) => {
 };
 // ./NavBar
 
-SoGiveNavBar.propTypes = {
+NavBar.propTypes = {
 	page: PropTypes.string.isRequired,
 };
 
-export default SoGiveNavBar;
+export default NavBar;

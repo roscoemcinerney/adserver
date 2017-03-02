@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { assert } from 'sjtest';
 import _ from 'lodash';
 import { XId } from 'wwutils';
@@ -7,7 +6,6 @@ import { XId } from 'wwutils';
 import printer from '../utils/printer';
 // import C from '../C';
 import ServerIO from '../plumbing/ServerIO';
-import { showLoginMenu } from './genericActions';
 // import ChartWidget from './ChartWidget';
 import Misc from './Misc';
 
@@ -45,10 +43,10 @@ class DashboardPage extends Component {
 			<div className="page DashboardPage">
 				<h2>My Dashboard</h2>
 				<h3>In development...</h3>
-				<p>Thank you for joining SoGive at this early stage.
+				<p>Thank you for joining Good-Loop at this early stage.
 					This is our first release, and there's still lots of work to do.
 					By the way, we release all our code as open-source. If you would
-					like to contribute to building SoGive, please get in touch.
+					like to contribute to building Good-Loop, please get in touch.
 				</p>
 				{ content }
 			</div>
@@ -123,18 +121,4 @@ DashTitleIcon.propTypes = {
 	iconClass: PropTypes.string,
 };
 
-
-const mapStateToProps = (state, ownProps) => ({
-	...ownProps,
-	user: state.login.user,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-	openLogin: () => dispatch(showLoginMenu(true, 'login')),
-	openRegister: () => dispatch(showLoginMenu(true, 'register')),
-});
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(DashboardPage);
+export default DashboardPage;

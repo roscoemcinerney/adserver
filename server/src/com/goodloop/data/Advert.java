@@ -17,11 +17,11 @@ import lombok.Data;
 @Data
 public class Advert {
 
-	String campaign;
-	String name;
-	String video;
-	String mobileVideo;
-	String url;
-	String poster;
+	public String campaign;
+	public String name;
+	public String video;
+	public String mobileVideo;
+	public String url;
+	public String poster;
 	
 }

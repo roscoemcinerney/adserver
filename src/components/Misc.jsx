@@ -56,9 +56,9 @@ Misc.Logo = ({service, size, transparent}) => {
 	if (size) klass += "-"+size;
 	let file = '/img/'+service+'-logo.svg';
 	if (service === 'instagram') file = '/img/'+service+'-logo.png';
-	if (service === 'sogive') {
+	if (service === 'goodloop') {
 		file = '/img/logo.png';
-		if (transparent === false) file = '/img/SoGive-Light-70px.png';
+		// if (transparent === false) file = '/img/SoGive-Light-70px.png';
 	}
 	return (
 		<img alt={service} data-pin-nopin="true" className={klass} src={file} />

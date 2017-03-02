@@ -1,7 +1,7 @@
 server {
 	listen   80; ## listen for ipv4; this line is default and implied
  
-	root /home/daniel/winterwell/adunit; ## Edit your username into this line!
+	root /home/daniel/winterwell/adserver/web-as; ## Edit this line!!
 	index index.html;
  
 	server_name localas.good-loop.com;
