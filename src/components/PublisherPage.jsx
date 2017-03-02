@@ -47,8 +47,9 @@ const EditPublisherForm = ({publisher}) => {
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
 		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
-		Website <input value={pub.website} onChange={e => ActionMan.setDataValue(_.concat(path, 'website'), e)} /> <br/>
+		Website <input value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Owner <input value={pub.owner} onChange={e => ActionMan.setDataValue(_.concat(path, 'owner'), e)} /> <br/>
+		Keywords <input value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
 		Charities (direct entry for now)	
 		<Grid fluid><Row>
 			<Col sm={4}><CharityForm publisher={pub} i={0} charity={pub.charity0} /></Col>

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Publisher extends Thing {
 
+
 	String domain;
 	String owner;
 	String keywords;
