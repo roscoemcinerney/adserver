@@ -8,6 +8,7 @@ import {SJTest, assert, assMatch} from 'sjtest';
 import C from '../C.js';
 import DataStore from './DataStore';
 import Login from 'hooru';
+import {XId} from 'wwutils';
 
 const ServerIO = {};
 export default ServerIO;
@@ -30,7 +31,26 @@ ServerIO.savePublisher = function(publisher) {
 	};
 	return ServerIO.load('/publisher/'+publisher.id+'.json', params);
 };
+ServerIO.saveAdvert = function(publisher) {
+	let params = {
+		method: 'POST',
+		data: {
+			action: 'save',			
+			publisher: JSON.stringify(publisher)
+		}
+	};
+	return ServerIO.load('/advert/'+publisher.id+'.json', params);
+};
 
+ServerIO.search = function(type, filter) {
+	assert(C.TYPES.has(type), type);
+	let url = '/'+type.toLowerCase()+'/list.json';
+	let params = {
+		data: {}
+	};
+	if (filter) params.data.filter = JSON.stringify(filter);	
+	return ServerIO.load(url, params);
+};
 
 /**
  * Submits an AJAX request. This is the key base method

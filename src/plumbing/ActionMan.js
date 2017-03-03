@@ -3,17 +3,21 @@ import DataStore from './DataStore';
 import ServerIO from './ServerIO';
 import _ from 'lodash';
 import {assert, assMatch} from 'sjtest';
+import C from '../C.js';
 
 const ActionMan = {};
 
 ActionMan.setFocus = (prop, id) => {
 	let newFocus = {};
+	assert(C.TYPES.has(prop), prop);
 	newFocus[prop] = id;
 	DataStore.update({focus: newFocus});
 };
 
 ActionMan.setDataValue = (path, valueOrEvent) => {
 	let value = valueOrEvent.target? valueOrEvent.target.value : valueOrEvent;	
+	assert(_.isArray(path), path);
+	assert(C.TYPES.has(path[0]), path);
 	// console.log('ActionMan.setValue', path, value);
 
 	let newState = {};
@@ -34,14 +38,29 @@ ActionMan.setDataValue = (path, valueOrEvent) => {
 	DataStore.update({data: newState});
 };
 
+ActionMan.showLogin = () => {
+	DataStore.setShow('LoginWidget', true);
+};
+
 ActionMan.savePublisher = (pubId) => {
 	assMatch(pubId, String);
-	let publisher = DataStore.getData('publisher', pubId);
+	let publisher = DataStore.getData(C.TYPES.Publisher, pubId);
 	if ( ! publisher.id) {
 		assert(pubId==='new');
 		publisher.id = pubId;
 	}
 	ServerIO.savePublisher(publisher)
+	.then(DataStore.updateFromServer);
+};
+
+ActionMan.saveAdvert = (pubId) => {
+	assMatch(pubId, String);
+	let publisher = DataStore.getData(C.TYPES.Advert, pubId);
+	if ( ! publisher.id) {
+		assert(pubId==='new');
+		publisher.id = pubId;
+	}
+	ServerIO.saveAdvert(publisher)
 	.then(DataStore.updateFromServer);
 };
 

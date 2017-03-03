@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import Login from 'hooru';
 import AccountMenu from '../AccountMenu';
 
 const NavBar = ({page}) => {
-	console.log('NavBar', page);
 	let pageLinks = _.map(['dashboard', 'publisher', 'advertiser'], 
 		p => <li key={'li_'+p} className={page === p? 'active' : ''}><a className="nav-item nav-link" href={'#'+p}>{p}</a></li>);
 	return (
@@ -33,7 +33,7 @@ const NavBar = ({page}) => {
 						{pageLinks}
 					</ul>
 					<div>
-						<AccountMenu active={page === 'account'} />
+						<AccountMenu user={Login.getUser()} active={page === 'account'} />
 					</div>
 				</div>
 			</div>

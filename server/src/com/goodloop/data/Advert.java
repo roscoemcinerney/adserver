@@ -15,13 +15,12 @@ import lombok.Data;
 //};
 
 @Data
-public class Advert {
+public class Advert extends Thing {
 
 	public String campaign;
-	public String name;
 	public String video;
 	public String mobileVideo;
-	public String url;
 	public String poster;
+	
 	
 }

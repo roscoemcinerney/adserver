@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import org.eclipse.jetty.util.ajax.JSON;
 import com.winterwell.utils.log.Log;
 import com.winterwell.utils.time.Time;
 import com.winterwell.utils.BestOne;
+import com.winterwell.utils.Dependency;
 import com.winterwell.utils.IBuildStrings;
 import com.winterwell.utils.Key;
 import com.winterwell.utils.Printer;
@@ -30,7 +32,10 @@ import com.winterwell.web.fields.AField;
 import com.winterwell.web.fields.Checkbox;
 import com.winterwell.web.fields.JsonField;
 import com.winterwell.web.fields.SField;
-
+import com.goodloop.data.DB;
+import com.goodloop.data.Publisher;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.gson.Gson;
 import com.winterwell.datalog.DataLog;
 import com.winterwell.datascience.Experiment;
 import com.winterwell.depot.Desc;
@@ -83,10 +88,11 @@ public class UnitHttpServlet extends HttpServlet {
 		}
 	}
 
-	private void doServeUnitJs(WebRequest state) throws IOException {
-		MyCharities mc = new MyCharities(state);
-		String charityJson = mc.getJson();		
-		String charityMap = "var goodloop.charities="+charityJson+";";
+	private void doServeUnitJs(WebRequest state) throws Exception {
+		Publisher adunit = DB.getAdUnit(state).get();
+		String json = Dependency.get(Gson.class).toJson(adunit);
+//		String charityJson = mc.getJson();		
+		String charityMap = "var goodloop.adunit="+json+";";
 		
 		PickAdvert pa = new PickAdvert(state);
 		pa.run();

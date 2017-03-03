@@ -1,7 +1,7 @@
 /** Data model functions for the NGO data-type. */
 
 import _ from 'lodash';
-import {isa} from '../DataClass';
+import {isa} from './DataClass';
 
 const NGO = {};
 export default NGO;

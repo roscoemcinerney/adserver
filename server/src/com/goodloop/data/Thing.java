@@ -14,4 +14,7 @@ public class Thing {
 	public String url;
 	public String id;
 	
+
+	public void validate() {		
+	}
 }

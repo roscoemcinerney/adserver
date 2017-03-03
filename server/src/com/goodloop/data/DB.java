@@ -7,17 +7,27 @@ import java.util.logging.Level;
 
 import com.winterwell.utils.io.SqlUtils;
 import com.goodloop.adserver.GLBaseConfig;
+import com.goodloop.portal.PortalConfig;
+import com.google.common.base.Function;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.gson.Gson;
 import com.winterwell.es.ESType;
 import com.winterwell.es.client.ESHttpClient;
+import com.winterwell.es.client.ESHttpResponse;
+import com.winterwell.es.client.GetRequestBuilder;
 import com.winterwell.es.client.IESResponse;
 import com.winterwell.es.client.IndexRequestBuilder;
 import com.winterwell.es.client.admin.CreateIndexRequest;
 import com.winterwell.es.client.admin.PutMappingRequestBuilder;
 import com.winterwell.utils.Dependency;
+import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.io.DBUtils.DBOptions;
 import com.winterwell.utils.log.Log;
+import com.winterwell.web.app.WebRequest;
 import com.winterwell.web.data.XId;
 
 /**
@@ -33,10 +43,12 @@ public class DB {
 
 	public static void init() {
 		ESHttpClient es = Dependency.get(ESHttpClient.class);
-		GLBaseConfig config = Dependency.get(GLBaseConfig.class);
+		config = Dependency.get(GLBaseConfig.class);		
 		
-		CreateIndexRequest pi = es.admin().indices().prepareCreate(config.publisherIndex);
-		IESResponse r = pi.get();
+		for(String index : new String[]{config.publisherIndex, config.advertIndex}) {
+			CreateIndexRequest pi = es.admin().indices().prepareCreate(index);
+			IESResponse r = pi.get();
+		}				
 		
 //		PutMappingRequestBuilder pm = es.admin().indices().preparePutMapping(config.publisherIndex, "website");
 //		ESType dtype = new ESType();
@@ -75,5 +87,19 @@ public class DB {
 		ESHttpClient es = Dependency.get(ESHttpClient.class);
 		Map<String, Object> person = es.get("sogive", "user", id.toString());
 		return (Person) person;
+	}
+
+	static GLBaseConfig config;
+	
+	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
+		ESHttpClient es = Dependency.get(ESHttpClient.class);		
+		String id = StrUtils.toCanonical(state.getDomain());
+		GetRequestBuilder gr = new GetRequestBuilder(es);
+		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
+		gr.setSourceOnly(true);
+		Gson gson = Dependency.get(Gson.class);
+		ListenableFuture<ESHttpResponse> f = gr.execute();
+		ListenableFuture<Publisher> f2 = Futures.transform(f, res -> gson.fromJson(res.getSourceAsString()));		
+		return f2;
 	}
 }

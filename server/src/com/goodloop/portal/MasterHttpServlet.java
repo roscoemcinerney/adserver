@@ -79,6 +79,10 @@ public class MasterHttpServlet extends HttpServlet {
 				PublisherServlet servlet = new PublisherServlet();
 				servlet.process(request);
 			}
+			if (path.startsWith("/advert")) {
+				AdvertServlet servlet = new AdvertServlet();
+				servlet.process(request);
+			}
 			
 		} catch(Throwable ex) {
 			ex.printStackTrace();

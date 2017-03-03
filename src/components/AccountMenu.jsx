@@ -5,19 +5,19 @@ import C from '../C';
 // import {XId,yessy,uid} from '../js/util/orla-utils.js';
 
 import Misc from './Misc';
-
+import ActionMan from '../plumbing/ActionMan';
 
 /*
 The top-right menu
 */
-const AccountMenu = ({user, pending, active, doLogout, showLogin}) => {
+const AccountMenu = ({user, pending, active, doLogout}) => {
 	if (pending) return <Misc.Loading />;
 
-	if (!user) {
+	if ( ! user) {
 		return (
 			<ul id='top-right-menu' className="nav navbar-nav navbar-right">
 				<li>
-					<a href='#' onClick={showLogin}>
+					<a href='#' onClick={ActionMan.showLogin}>
 						Login or Register
 					</a>
 				</li>

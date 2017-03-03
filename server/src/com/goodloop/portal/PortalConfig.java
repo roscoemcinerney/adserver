@@ -7,4 +7,5 @@ public class PortalConfig extends GLBaseConfig {
 
 	@Option
 	public int port = 8686;
+	
 }

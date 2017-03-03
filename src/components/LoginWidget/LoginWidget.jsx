@@ -124,10 +124,11 @@ const LoginError = function() {
 
 */
 const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailRegister, closeMenu, handleChange}) => {
-	if (!showDialog) {
+	if (! showDialog) {
 		return <div />;
 	}
-
+	if ( ! verb) verb = 'login';
+	
 	const heading = {
 		login: 'Log In',
 		register: 'Register',

@@ -76,7 +76,7 @@ class MainDiv extends Component {
 		assert(page, this.props);
 		const Page = PAGES[page];
 		assert(Page, (page, PAGES));
-
+		let showLogin = DataStore.appstate.show && DataStore.appstate.show.LoginWidget;
 		return (
 			<div>
 				<NavBar page={page} />
@@ -86,7 +86,7 @@ class MainDiv extends Component {
 						<Page {...pageProps} />
 					</div>
 				</div>
-				<LoginWidget />
+				<LoginWidget showDialog={showLogin} />
 			</div>
 		);
 	}
