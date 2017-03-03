@@ -21,6 +21,6 @@ public class Advert extends Thing {
 	public String video;
 	public String mobileVideo;
 	public String poster;
-	
+	public String keywords;	
 	
 }

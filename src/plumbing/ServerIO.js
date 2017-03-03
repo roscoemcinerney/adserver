@@ -36,15 +36,23 @@ ServerIO.saveAdvert = function(publisher) {
 		method: 'POST',
 		data: {
 			action: 'save',			
-			publisher: JSON.stringify(publisher)
+			vert: JSON.stringify(publisher)
 		}
 	};
-	return ServerIO.load('/advert/'+publisher.id+'.json', params);
+	// "advert"" can fall foul of adblocker!
+	return ServerIO.load('/vert/'+publisher.id+'.json', params);
+};
+
+const getServlet = (type) => {
+	type = type.toLowerCase();
+	if (type==='advert') return 'vert';
+	return type;
 };
 
 ServerIO.search = function(type, filter) {
 	assert(C.TYPES.has(type), type);
-	let url = '/'+type.toLowerCase()+'/list.json';
+	let servlet = getServlet(type);
+	let url = '/'+servlet+'/list.json';
 	let params = {
 		data: {}
 	};

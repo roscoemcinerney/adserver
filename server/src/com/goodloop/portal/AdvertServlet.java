@@ -78,7 +78,7 @@ public class AdvertServlet extends AServlet {
 	}
 
 	private void doSave(WebRequest state) {
-		String json = state.get("advert");
+		String json = state.get("vert");
 		String id = state.getSlugBits(1);
 //		if (id.endsWith(".json")) id = id.substring(0, id.length()-5); not needed - done in slug??
 		Gson gson = Dependency.get(Gson.class);
