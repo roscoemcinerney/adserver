@@ -26,6 +26,7 @@ import com.winterwell.utils.TodoException;
 import com.winterwell.utils.Utils;
 import com.winterwell.utils.containers.Range;
 import com.winterwell.utils.io.FileUtils;
+import com.winterwell.utils.io.UpToDateTextFile;
 import com.winterwell.web.app.FileServlet;
 import com.winterwell.web.app.WebRequest;
 import com.winterwell.web.fields.AField;
@@ -64,7 +65,7 @@ import com.winterwell.web.ajax.JsonResponse;
 public class UnitHttpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private String unitjs;
+	private UpToDateTextFile unitjs;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -72,7 +73,7 @@ public class UnitHttpServlet extends HttpServlet {
 	}
 	
 	public UnitHttpServlet() {
-		unitjs = FileUtils.read(new File("adunit/unit.js"));
+		unitjs = new UpToDateTextFile(new File("adunit/original.unit.js"));
 	}
 	
 	@Override
@@ -106,14 +107,14 @@ public class UnitHttpServlet extends HttpServlet {
 		}
 		String json = Dependency.get(Gson.class).toJson(adunit);
 //		String charityJson = mc.getJson();		
-		String charityMap = "var goodloop.adunit="+json+";";
+		String charityMap = "\ngoodloop.unit="+json+";";
 		
 		PickAdvert pa = new PickAdvert(state);
 		pa.run();
 		String advertJson = pa.getJson();
-		String charityVar = "var goodloop.advert="+advertJson+";";
+		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
-		String js = unitjs+charityMap+advertJson;
+		String js = "if ( ! window.goodloop) window.goodloop={}; "+charityMap+charityVar+unitjs;
 		
 		// CORS? Assuming you've done security elsewhere
 		WebUtils2.CORS(state, true);		
