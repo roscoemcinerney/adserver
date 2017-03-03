@@ -5,7 +5,7 @@ import SJTest, {assert} from 'sjtest';
 import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
-import {FormGroup,FormControl,HelpBlock,ControlLabel,Grid,Row,Col} from 'react-bootstrap';
+import {FormGroup,FormControl,HelpBlock,ControlLabel,Grid,Row,Col,Checkbox} from 'react-bootstrap';
 import DataStore from '../plumbing/DataStore';
 import ActionMan from '../plumbing/ActionMan';
 import ServerIO from '../plumbing/ServerIO';
@@ -52,6 +52,7 @@ const EditPublisherForm = ({publisher}) => {
 	let path = [C.TYPES.Publisher, publisher.id];
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
+		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e)} /> <br/>
 		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Website <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Owner <FormControl value={pub.owner} onChange={e => ActionMan.setDataValue(_.concat(path, 'owner'), e)} /> <br/>

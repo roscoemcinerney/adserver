@@ -7,7 +7,7 @@ import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
 
-console.warn("TODO use i18n", i18n);
+// console.warn("TODO use i18n", i18n);
 
 const Misc = {};
 
