@@ -44,11 +44,21 @@ public class DB {
 	public static void init() {
 		ESHttpClient es = Dependency.get(ESHttpClient.class);
 		config = Dependency.get(GLBaseConfig.class);		
+		Gson gson = Dependency.get(Gson.class);
 		
 		for(String index : new String[]{config.publisherIndex, config.advertIndex}) {
 			CreateIndexRequest pi = es.admin().indices().prepareCreate(index);
 			IESResponse r = pi.get();
 		}				
+		
+		Publisher dpub = es.get(config.publisherIndex, config.publisherType, Publisher.DEFAULT_ID, Publisher.class);
+		if (dpub==null) {
+			dpub = new Publisher();
+			dpub.id = Publisher.DEFAULT_ID;
+			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, Publisher.DEFAULT_ID);
+			pi.setSource(gson.toJson(dpub));
+			pi.execute();
+		}
 		
 //		PutMappingRequestBuilder pm = es.admin().indices().preparePutMapping(config.publisherIndex, "website");
 //		ESType dtype = new ESType();
@@ -93,7 +103,7 @@ public class DB {
 	
 	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
 		ESHttpClient es = Dependency.get(ESHttpClient.class);		
-		String id = StrUtils.toCanonical(state.getDomain());
+		String id = Publisher.idFromDomain(state.getDomain());
 		GetRequestBuilder gr = new GetRequestBuilder(es);
 		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
 		gr.setSourceOnly(true);

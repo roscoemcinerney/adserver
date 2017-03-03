@@ -92,7 +92,7 @@ public class PublisherServlet extends AServlet {
 				throw new WebEx.E400("No domain for publisher?! "+json);
 			}
 			// make an id - just use the domain
-			id = StrUtils.toCanonical(publisher.domain.trim());
+			id = Publisher.idFromDomain(publisher.domain);
 			publisher.id = id;			
 			json = gson.toJson(publisher);
 			IndexRequestBuilder pu = es.prepareIndex(config.publisherIndex, config.publisherType, id);

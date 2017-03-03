@@ -42,6 +42,8 @@ import com.winterwell.depot.Desc;
 import com.winterwell.es.client.DeleteByQueryRequestBuilder;
 import com.winterwell.es.client.DeleteRequestBuilder;
 import com.winterwell.es.client.ESHttpClient;
+import com.winterwell.es.client.GetRequestBuilder;
+import com.winterwell.es.client.GetResponse;
 import com.winterwell.es.client.IESResponse;
 import com.winterwell.es.client.IndexRequestBuilder;
 import com.winterwell.es.client.SearchRequestBuilder;
@@ -88,8 +90,20 @@ public class UnitHttpServlet extends HttpServlet {
 		}
 	}
 
+	
+	
 	private void doServeUnitJs(WebRequest state) throws Exception {
 		Publisher adunit = DB.getAdUnit(state).get();
+		if (adunit==null) {
+			AdServerConfig config = Dependency.get(AdServerConfig.class);
+			ESHttpClient es = Dependency.get(ESHttpClient.class);
+			GetRequestBuilder gr = new GetRequestBuilder(es);
+			gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(Publisher.DEFAULT_ID);
+			gr.setSourceOnly(true);
+			GetResponse r = gr.get();
+			Gson gson = Dependency.get(Gson.class);
+			adunit = gson.fromJson(r.getSourceAsString());
+		}
 		String json = Dependency.get(Gson.class).toJson(adunit);
 //		String charityJson = mc.getJson();		
 		String charityMap = "var goodloop.adunit="+json+";";

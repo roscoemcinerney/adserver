@@ -6,6 +6,10 @@ import com.winterwell.utils.web.WebUtils2;
 
 public class Publisher extends Thing {
 
+	public static final String DEFAULT_ID = "default_publisher";
+
+	boolean active;
+	
 	/**
 	 * e.g. bbc.co.uk 
 	 */
@@ -30,6 +34,11 @@ public class Publisher extends Thing {
 			this.domain = WebUtils2.getDomain(domain);
 			this.host = WebUtils2.getHost(domain);
 		}
+	}
+
+
+	public static String idFromDomain(String domain) {
+		return domain;
 	}
 	
 }

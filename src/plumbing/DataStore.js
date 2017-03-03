@@ -73,17 +73,7 @@ if (typeof(window) !== 'undefined') window.DataStore = DataStore;
  */
 DataStore.update({
 	data: {
-		Publisher: {
-			default_publisher: {
-				name: 'default',
-				id: 'default_publisher',
-				charities: [
-					{},
-					{},
-					{}
-				]
-			}
-		},
+		Publisher: {},			
 		Charity: {},
 		Advert: {},
 		Advertiser: {},
@@ -96,6 +86,5 @@ DataStore.update({
 		Person: null,
 	},
 	show: {
-		login: false
 	}
 });
