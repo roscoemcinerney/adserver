@@ -69,7 +69,7 @@ public class PublishPortal extends BuildTask {
 			
 	public PublishPortal() throws Exception {
 		this.remoteUser = "winterwell";
-		this.remoteWebAppDir = "/home/winterwell/sogive-app??";
+		this.remoteWebAppDir = "/home/winterwell/??"; ??
 		// local
 		this.localWebAppDir = FileUtils.getWorkingDirectory();
 	}
@@ -202,7 +202,7 @@ public class PublishPortal extends BuildTask {
 			}			
 			
 			// This jar
-			JarTask jarTask = new JarTask(new File(localLib, "sogive.jar"), new File(localWebAppDir, "bin"));
+			JarTask jarTask = new JarTask(new File(localLib, "portal.jar"), new File(localWebAppDir, "bin"));
 			jarTask.run();
 			jarTask.close();
 			

@@ -69,7 +69,7 @@ public class PublishAdserver extends BuildTask {
 			
 	public PublishAdserver() throws Exception {
 		this.remoteUser = "winterwell";
-		this.remoteWebAppDir = "/home/winterwell/sogive-app??";
+		this.remoteWebAppDir = "/home/winterwell/sogive-app??"; ?
 		// local
 		this.localWebAppDir = FileUtils.getWorkingDirectory();
 	}
@@ -202,7 +202,7 @@ public class PublishAdserver extends BuildTask {
 			}			
 			
 			// This jar
-			JarTask jarTask = new JarTask(new File(localLib, "sogive.jar"), new File(localWebAppDir, "bin"));
+			JarTask jarTask = new JarTask(new File(localLib, "adserver.jar"), new File(localWebAppDir, "bin"));
 			jarTask.run();
 			jarTask.close();
 			
