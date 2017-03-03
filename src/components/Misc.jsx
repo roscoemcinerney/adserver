@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import {assert} from 'sjtest';
 import _ from 'lodash';
-import i18n from 'easyi18n';
 
 import printer from '../utils/printer.js';
 import C from '../C.js';
