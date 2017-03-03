@@ -27,6 +27,7 @@ import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.io.DBUtils.DBOptions;
 import com.winterwell.utils.log.Log;
+import com.winterwell.utils.web.WebUtils2;
 import com.winterwell.web.app.WebRequest;
 import com.winterwell.web.data.XId;
 
@@ -103,7 +104,7 @@ public class DB {
 	
 	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
 		ESHttpClient es = Dependency.get(ESHttpClient.class);		
-		String id = Publisher.idFromDomain(state.getDomain());
+		String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 		GetRequestBuilder gr = new GetRequestBuilder(es);
 		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
 		gr.setSourceOnly(true);

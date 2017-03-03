@@ -39,6 +39,8 @@ public class AdServerMain {
 	public static void main(String[] args) {
 		settings = getConfig(new AdServerConfig(), args);
 
+		init();
+		
 		Log.i("Go!");
 		assert jl==null;
 		jl = new JettyLauncher(new File("web-as"), settings.port);
@@ -73,9 +75,8 @@ public class AdServerMain {
 		.setClassProperty(null).setLoopPolicy(KLoopPolicy.QUIET_NULL)
 		.create();
 		// config
-		ESConfig value = new ESConfig();
-		value.gson = gson;
-		Dependency.set(ESConfig.class, value);
+		ESConfig value = Dependency.get(ESConfig.class);
+		value.gson = gson;		
 		// client
 		Dependency.setSupplier(ESHttpClient.class, true, 
 				() -> new ESHttpClient(Dependency.get(ESConfig.class))
