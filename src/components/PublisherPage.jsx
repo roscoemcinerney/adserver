@@ -25,7 +25,7 @@ class PublisherPage extends React.Component {
         return (
             <div className=''>
                 <h2>PublisherPage</h2>
-				{publisherId? null : <RegisterNewPublisher />}
+                <p>Publishers are automatically created when they add our tag to their page.</p>
 				<EditPublisher publisher={publisher} />
 				<ListPublishers />				
             </div>

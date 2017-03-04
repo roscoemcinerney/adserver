@@ -8,7 +8,7 @@ public class Publisher extends Thing {
 
 	public static final String DEFAULT_ID = "default_publisher";
 
-	boolean active;
+	public boolean active;
 	
 	/**
 	 * e.g. bbc.co.uk 

@@ -96,15 +96,28 @@ public class UnitHttpServlet extends HttpServlet {
 	private void doServeUnitJs(WebRequest state) throws Exception {
 		Publisher adunit = DB.getAdUnit(state).get();
 		if (adunit==null) {
+			// make a new publisher
+			adunit = new Publisher();
+			adunit.domain = state.getDomain();
+			adunit.validate();
 			AdServerConfig config = Dependency.get(AdServerConfig.class);
 			ESHttpClient es = Dependency.get(ESHttpClient.class);
-			GetRequestBuilder gr = new GetRequestBuilder(es);
-			gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(Publisher.DEFAULT_ID);
-			gr.setSourceOnly(true);
-			GetResponse r = gr.get();
-			Gson gson = Dependency.get(Gson.class);
-			adunit = gson.fromJson(r.getSourceAsString());
+			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
+			adunit.id = id;			
+			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
+			pi.execute();
 		}
+		
+		// on or off?
+		if ( ! adunit.active) {
+			if (state.getReferer() == null || ! state.getReferer().contains("goodloop=")) {
+				// off
+				Log.d("unit.off", "Not active "+state.getReferer()+" "+adunit.id);
+				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site - Please contact Good-Loop to activate it.", state.getResponse());
+				return;
+			}			
+		}
+		
 		String json = Dependency.get(Gson.class).toJson(adunit);
 //		String charityJson = mc.getJson();		
 		String charityMap = "\ngoodloop.unit="+json+";";
