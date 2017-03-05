@@ -8,8 +8,8 @@ Insert into the file in production.
 (TODO use webpack to automate this)
 */
 
-var BURL = '//localas.good-loop.com/';
-var LBURL = '//lg.good-loop.com';
+// var BURL = '//localas.good-loop.com/'; set by Java from config
+//var LBURL = '//lg.good-loop.com'; set by Java from config
 
 // TODO avoid sub-domains
 var publisher = window.location.hostname;
@@ -94,7 +94,7 @@ var expires = 1.0 / (24*60);
 	 */
 	const track = function(){
 		// if ($('img#goodlooppixel').length !== 0) return; // dont add twice. ACtually, the browser will only load an image once anyway
-		$('body').append('<img src="'+LBURL+'/pxl" style="z-index:-1;position:absolute;top:0px;left:0px;width:1;height:1;opacity:0.1;"/>')
+		$('body').append('<img src="'+goodloop.LBURL+'/pxl" style="z-index:-1;position:absolute;top:0px;left:0px;width:1;height:1;opacity:0.1;"/>')
 	}
 
 	const log = function(dataspace, eventTag, eventParams, addTrackingInfo) {
@@ -117,7 +117,7 @@ var expires = 1.0 / (24*60);
 			t: eventTag,
 			p: JSON.stringify(eventParams)
 		};
-		return apost(LBURL+'/lg', data);
+		return apost(goodloop.LBURL+'/lg', data);
 	}
 
 	/**
@@ -335,7 +335,7 @@ function pick(charitydiv) {
 		$thankYou.append($('<div style="margin:10px;"><a href="#" onclick="goodloop.skip();">Return to page</a></div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="'+advert.url+'" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + advert.name + '</a></div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="' + curl + '" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + cname + '</a></div>'));
-		$thankYou.append($('<div style="margin:10px; font-size:75%;"><a href="http://www.good-loop.com/" target="_blank" onclick="goodloop.clickthru(this);">Find out more about Good-Loop</a></div>'));
+		$thankYou.append($('<div style="margin:10px; font-size:75%;"><a href="https://www.good-loop.com/" target="_blank" onclick="goodloop.clickthru(this);">Find out more about Good-Loop</a></div>'));
 		$adcontents.append($thankYou);
 	}.bind(this));
 
@@ -460,7 +460,7 @@ function adSideRectangle(w, h, adunitid) {
 	'			<div title="' + charity.name + '" data-charity="' + charity.name + '" data-charity-url="' + charity.url + '" onclick="goodloop.pick(this);" class="goodloop-play">' +
 	'				<center style="margin:0px;padding:0px;max-height:43px;">' +
 	'					<img src="' + charity.logo + '" class="goodloop-charitylogowide" style="">' +
-	'					<img src="' + BURL + 'play-overlay.png" class="goodloop-playoverlay">' +
+	'					<img src="' + goodloop.BURL + 'play-overlay.png" class="goodloop-playoverlay">' +
 	'				</center>' +
 	'			</div>' +
 	'		</div>';

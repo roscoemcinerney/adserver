@@ -1,7 +1,18 @@
 package com.goodloop.adserver;
 
+import com.winterwell.utils.io.Option;
+
 public class GLBaseConfig {
 
+	@Option
+	public String adserverDomain = "localas.good-loop.com";
+	@Option 
+	public String datalogDomain = "lg.good-loop.com";
+
+	public String adserverUrl() { return "http://"+adserverDomain+"/"; }
+	
+	public String advertBaseUrl() { return adserverUrl()+"advert"; }
+	
 	public String publisherIndex = "publisher";
 	public String publisherType = "Publisher";
 

@@ -13,6 +13,8 @@ import com.winterwell.es.client.ESConfig;
 import com.winterwell.es.client.ESHttpClient;
 import com.winterwell.gson.StandardAdapters;
 import com.winterwell.utils.Dependency;
+import com.winterwell.utils.containers.ArrayMap;
+import com.winterwell.utils.containers.Containers;
 import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.log.Log;
 import com.winterwell.utils.log.LogFile;
@@ -39,7 +41,7 @@ public class AdServerMain {
 	public static void main(String[] args) {
 		settings = getConfig(new AdServerConfig(), args);
 
-		init();
+		init(settings);
 		
 		Log.i("Go!");
 		assert jl==null;
@@ -58,13 +60,27 @@ public class AdServerMain {
 		config = ArgsParser.getConfig(config, args, new File("config/adserver.properties"), null);
 		String thingy = config.getClass().getSimpleName().toLowerCase().replace("config", "");
 		config = ArgsParser.getConfig(config, args, new File("config/"+thingy+".properties"), null);
-		config = ArgsParser.getConfig(config, args, new File("config/"+WebUtils2.hostname()+".properties"), null);
+		// live, local, test?
+		String machine = WebUtils2.hostname();
+		String serverType = new ArrayMap<String,String>(
+				"aardvark", "localserver",
+				"stross", "localserver",
+				"hugh", "testserver",
+				"heppner", "liveserver"
+				).get(machine);
+		if (serverType == null) {
+			Log.e("init", "Unknown machine: "+machine+" - defaulting to localserver!");
+			serverType = "localserver";
+		}
+		config = ArgsParser.getConfig(config, args, new File("config/"+serverType+".properties"), null);
+		// this computer specific
+		config = ArgsParser.getConfig(config, args, new File("config/"+machine+".properties"), null);
 		Dependency.set((Class)config.getClass(), config);
 		assert config != null;
 		return config;
 	}
 
-	private static void init() {
+	private static void init(GLBaseConfig config) {
 		// gson
 		Gson gson = new GsonBuilder()
 		.setLenientReader(true)
@@ -82,7 +98,7 @@ public class AdServerMain {
 				() -> new ESHttpClient(Dependency.get(ESConfig.class))
 				);
 		// mappings
-		DB.init();
+		DB.init(config);
 	}
 
 

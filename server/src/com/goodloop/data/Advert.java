@@ -22,5 +22,10 @@ public class Advert extends Thing {
 	public String mobileVideo;
 	public String poster;
 	public String keywords;	
+	/**
+	 * The maximum bid for a spot that matches the keywords (but without other info)
+	 */
+	MonetaryAmount maxBid;
+	public boolean active;
 	
 }

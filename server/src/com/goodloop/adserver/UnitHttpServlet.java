@@ -94,13 +94,14 @@ public class UnitHttpServlet extends HttpServlet {
 	
 	
 	private void doServeUnitJs(WebRequest state) throws Exception {
-		Publisher adunit = DB.getAdUnit(state).get();
+		AdServerConfig config = Dependency.get(AdServerConfig.class);
+		ListenableFuture<Publisher> fpub = DB.getAdUnit(state);
+		Publisher adunit = fpub.get();
 		if (adunit==null) {
 			// make a new publisher
 			adunit = new Publisher();
 			adunit.domain = state.getDomain();
 			adunit.validate();
-			AdServerConfig config = Dependency.get(AdServerConfig.class);
 			ESHttpClient es = Dependency.get(ESHttpClient.class);
 			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 			adunit.id = id;			
@@ -122,12 +123,14 @@ public class UnitHttpServlet extends HttpServlet {
 //		String charityJson = mc.getJson();		
 		String charityMap = "\ngoodloop.unit="+json+";";
 		
-		PickAdvert pa = new PickAdvert(state);
+		PickAdvert pa = new PickAdvert(state, fpub);
 		pa.run();
 		String advertJson = pa.getJson();
 		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
-		String js = "if ( ! window.goodloop) window.goodloop={}; "+charityMap+charityVar+unitjs;
+		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL=//"
+				+config.adserverDomain+"/; goodloop.LBURL=//"+config.datalogDomain+"; ";
+		String js = initjs+charityMap+charityVar+unitjs;
 		
 		// CORS? Assuming you've done security elsewhere
 		WebUtils2.CORS(state, true);		
