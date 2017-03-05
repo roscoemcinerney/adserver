@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.jetty.util.ajax.JSON;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -84,6 +85,7 @@ public class PublisherServlet extends AServlet {
 //		if (id.endsWith(".json")) id = id.substring(0, id.length()-5); not needed - done in slug??
 		Gson gson = Dependency.get(Gson.class);
 		publisher = gson.fromJson(json, Publisher.class);
+		JSON.parse(json);
 		publisher.validate();
 		assert true;
 		// new

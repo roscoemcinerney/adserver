@@ -54,6 +54,7 @@ const EditAdvertForm = ({advert}) => {
 	let path = [C.TYPES.Advert, advert.id];
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
+		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
 		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Target url <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>

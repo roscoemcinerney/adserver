@@ -44,6 +44,7 @@ public class PickAdvert {
 		Best<Advert> bestAd = new Best<>();
 		for (Map ad : ads) {
 			// key words match
+			Map admap = (Map) ad.get("_source");
 			System.out.println(ad);
 		}
 		advert = bestAd.getBest();
