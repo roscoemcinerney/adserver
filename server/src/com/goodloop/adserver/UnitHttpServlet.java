@@ -99,13 +99,17 @@ public class UnitHttpServlet extends HttpServlet {
 		Publisher adunit = fpub.get();
 		if (adunit==null) {
 			// make a new publisher
-			adunit = new Publisher();
-			adunit.domain = state.getDomain();
+			adunit = new Publisher();			
+			String ref = state.getReferer();
+			adunit.domain = WebUtils2.getDomain(ref);
 			adunit.validate();
 			ESHttpClient es = Dependency.get(ESHttpClient.class);
 			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 			adunit.id = id;			
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
+			Gson gson = Dependency.get(Gson.class);
+			String json = gson.toJson(adunit);
+			pi.setSource(json);
 			pi.execute();
 		}
 		

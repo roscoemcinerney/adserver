@@ -52,7 +52,7 @@ const EditPublisherForm = ({publisher}) => {
 	let path = [C.TYPES.Publisher, publisher.id];
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
-		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e)} /> <br/>
+		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
 		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Website <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Owner <FormControl value={pub.owner} onChange={e => ActionMan.setDataValue(_.concat(path, 'owner'), e)} /> <br/>
