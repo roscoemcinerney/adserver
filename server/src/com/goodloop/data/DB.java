@@ -44,7 +44,8 @@ import com.winterwell.web.data.XId;
  */
 public class DB {
 
-	public static void init(GLBaseConfig config) {
+	public static void init(GLBaseConfig _config) {
+		config = _config;
 		ESHttpClient es = Dependency.get(ESHttpClient.class);
 		Gson gson = Dependency.get(Gson.class);
 		
