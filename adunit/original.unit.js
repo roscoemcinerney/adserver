@@ -288,7 +288,7 @@ function pick(charitydiv) {
 
 	$adcontents.css('margin-top', mt);
 	var closeButton = $('<div style="margin:10pt;cursor:pointer;padding:0px;float:right;font-size:18pt;color:#ccc;" onclick="goodloop.skip();">&times;</div>');
-	var $header = $('<div style="font-size:20pt;"">'+advert.name+' will fund your donation to '+cname+'</div>');
+	var $header = $('<div style="font-size:20pt;"">'+goodloop.vert.name+' will fund your donation to '+cname+'</div>');
 	$adcontents.empty().append($header);
 	$adcontents.prepend(closeButton);
 	$(document).on('keyup.goodloop', function(event) {
@@ -312,10 +312,11 @@ function pick(charitydiv) {
 	var mw = Math.min($(window).width(), 1280);
 	var mh = Math.min($(window).height() * 0.8, 720);
 	var mt = Math.round(Math.max(0, ($(window).height() - $vidbox.height()) / 2));
-	var vidurl = isMobile()? advert.mobileVideo : advert.video;
-	var $video = $('<a href="'+advert.url+'" target="_blank" rel="nofollow"><video autoplay onclick="goodloop.clickthru();" style="max-width:'+mw+'px;max-height:'+mh+'px;" preload="metadata" src="'+vidurl+'"></video></a>');
-	$header.after($video);
-
+	var vidurl = isMobile()? goodloop.vert.mobileVideo : goodloop.vert.video;
+	var $video = $('<video autoplay style="max-width:'+mw+'px;max-height:'+mh+'px;" preload="metadata" src="'+vidurl+'"></video>');
+	var $avid = $('<a href="'+goodloop.vert.url+'" onclick="goodloop.clickthru();" target="_blank" rel="nofollow"></a>');
+	$avid.append($video);
+	$header.after($avid);
 	$vidbox.css('visibility', 'visible');
 
 	$video[0].addEventListener('ended', function(event) {
@@ -333,7 +334,7 @@ function pick(charitydiv) {
 		var $thankYou = $('<div style="display:inline-block; font-size:20pt; margin:20px; vertical-align:top;"></div>');
 		$thankYou.append($('<div style="margin:10px;">Thanks for your donation!</div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="#" onclick="goodloop.skip();">Return to page</a></div>'));
-		$thankYou.append($('<div style="margin:10px;"><a href="'+advert.url+'" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + advert.name + '</a></div>'));
+		$thankYou.append($('<div style="margin:10px;"><a href="'+goodloop.vert.url+'" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + goodloop.vert.name + '</a></div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="' + curl + '" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + cname + '</a></div>'));
 		$thankYou.append($('<div style="margin:10px; font-size:75%;"><a href="https://www.good-loop.com/" target="_blank" onclick="goodloop.clickthru(this);">Find out more about Good-Loop</a></div>'));
 		$adcontents.append($thankYou);
@@ -361,7 +362,7 @@ function viewed() {
 	// log with base
 	var dataspace = 'goodloop';
 	datalog.log(dataspace, 'adview', {
-			campaign: advert.campaign,
+			campaign: goodloop.vert.campaign,
 			publisher: publisher,
 			charity: pickedCharity,
 			variant: variant,
@@ -373,7 +374,7 @@ function viewed() {
 
 function clickthru(el) {
 	// default
-	var url = advert.url;
+	var url = goodloop.vert.url;
 	// click came from a link?
 	const href = $(el).attr('href');
 	if (href) url = href;
@@ -395,7 +396,7 @@ function skip() {
 	// log it
 	datalog.log('goodloop', 'skip', {
 		publisher: publisher,
-		campaign: advert.campaign, 
+		campaign: goodloop.vert.campaign, 
 		viewtime: viewtime,
 		variant: variant
 	}, true);
@@ -503,9 +504,10 @@ function adFixedBottom(w, h, adunitid) {
 
 
 function tqSideRectangle(uparams) {
+	var charities = [goodloop.unit.charity0, goodloop.unit.charity1, goodloop.unit.charity2];
 	var c;
 	for(var ci = 0; ci < charities.length; ci++) {
-		if (charities[ci].name === uparams.charity) {
+		if (charities[ci] && charities[ci].name === uparams.charity) {
 			c = charities[ci];
 			break;
 		}

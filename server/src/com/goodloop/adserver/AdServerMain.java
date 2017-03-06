@@ -12,7 +12,7 @@ import com.winterwell.es.XIdTypeAdapter;
 import com.winterwell.es.client.ESConfig;
 import com.winterwell.es.client.ESHttpClient;
 import com.winterwell.gson.StandardAdapters;
-import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Dep;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.containers.Containers;
 import com.winterwell.utils.io.ArgsParser;
@@ -75,7 +75,7 @@ public class AdServerMain {
 		config = ArgsParser.getConfig(config, args, new File("config/"+serverType+".properties"), null);
 		// this computer specific
 		config = ArgsParser.getConfig(config, args, new File("config/"+machine+".properties"), null);
-		Dependency.set((Class)config.getClass(), config);
+		Dep.set((Class)config.getClass(), config);
 		assert config != null;
 		return config;
 	}
@@ -88,14 +88,16 @@ public class AdServerMain {
 		.registerTypeAdapter(XId.class, new XIdTypeAdapter())
 		.serializeSpecialFloatingPointValues()
 		.setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-		.setClassProperty(null).setLoopPolicy(KLoopPolicy.QUIET_NULL)
+//		.setClassProperty(null)
+		.setLoopPolicy(KLoopPolicy.QUIET_NULL)
 		.create();
+		Dep.set(Gson.class, gson);
 		// config
-		ESConfig value = Dependency.get(ESConfig.class);
-		value.gson = gson;		
+		ESConfig value = new ESConfig(); // from file??
+		Dep.set(ESConfig.class, value);
 		// client
-		Dependency.setSupplier(ESHttpClient.class, true, 
-				() -> new ESHttpClient(Dependency.get(ESConfig.class))
+		Dep.setSupplier(ESHttpClient.class, true, 
+				() -> new ESHttpClient(Dep.get(ESConfig.class))
 				);
 		// mappings
 		DB.init(config);

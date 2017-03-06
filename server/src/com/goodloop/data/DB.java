@@ -23,7 +23,7 @@ import com.winterwell.es.client.SearchRequestBuilder;
 import com.winterwell.es.client.SearchResponse;
 import com.winterwell.es.client.admin.CreateIndexRequest;
 import com.winterwell.es.client.admin.PutMappingRequestBuilder;
-import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Dep;
 import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.io.ArgsParser;
@@ -46,8 +46,8 @@ public class DB {
 
 	public static void init(GLBaseConfig _config) {
 		config = _config;
-		ESHttpClient es = Dependency.get(ESHttpClient.class);
-		Gson gson = Dependency.get(Gson.class);
+		ESHttpClient es = Dep.get(ESHttpClient.class);
+		Gson gson = Dep.get(Gson.class);
 		
 		for(String index : new String[]{config.publisherIndex, config.advertIndex}) {
 			CreateIndexRequest pi = es.admin().indices().prepareCreate(index);
@@ -112,7 +112,7 @@ public class DB {
 	}
 
 	public static Person getUser(XId id) {
-		ESHttpClient es = Dependency.get(ESHttpClient.class);
+		ESHttpClient es = Dep.get(ESHttpClient.class);
 		Map<String, Object> person = es.get("sogive", "user", id.toString());
 		return (Person) person;
 	}
@@ -120,14 +120,14 @@ public class DB {
 	static GLBaseConfig config;
 	
 	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
-		ESHttpClient es = Dependency.get(ESHttpClient.class);		
+		ESHttpClient es = Dep.get(ESHttpClient.class);		
 		String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 		GetRequestBuilder gr = new GetRequestBuilder(es);
 		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
 		gr.setSourceOnly(true);
-		Gson gson = Dependency.get(Gson.class);
+		Gson gson = Dep.get(Gson.class);
 		ListenableFuture<ESHttpResponse> f = gr.execute();
-		ListenableFuture<Publisher> f2 = Futures.transform(f, res -> gson.fromJson(res.getSourceAsString()));		
+		ListenableFuture<Publisher> f2 = Futures.transform(f, res -> gson.fromJson(res.getSourceAsString(), Publisher.class));		
 		return f2;
 	}
 }

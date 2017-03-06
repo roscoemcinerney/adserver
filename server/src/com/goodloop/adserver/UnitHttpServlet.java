@@ -17,7 +17,7 @@ import org.eclipse.jetty.util.ajax.JSON;
 import com.winterwell.utils.log.Log;
 import com.winterwell.utils.time.Time;
 import com.winterwell.utils.BestOne;
-import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Dep;
 import com.winterwell.utils.IBuildStrings;
 import com.winterwell.utils.Key;
 import com.winterwell.utils.Printer;
@@ -94,7 +94,7 @@ public class UnitHttpServlet extends HttpServlet {
 	
 	
 	private void doServeUnitJs(WebRequest state) throws Exception {
-		AdServerConfig config = Dependency.get(AdServerConfig.class);
+		AdServerConfig config = Dep.get(AdServerConfig.class);
 		ListenableFuture<Publisher> fpub = DB.getAdUnit(state);
 		Publisher adunit = fpub.get();
 		if (adunit==null) {
@@ -103,11 +103,11 @@ public class UnitHttpServlet extends HttpServlet {
 			String ref = state.getReferer();
 			adunit.domain = WebUtils2.getDomain(ref);
 			adunit.validate();
-			ESHttpClient es = Dependency.get(ESHttpClient.class);
+			ESHttpClient es = Dep.get(ESHttpClient.class);
 			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 			adunit.id = id;			
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
-			Gson gson = Dependency.get(Gson.class);
+			Gson gson = Dep.get(Gson.class);
 			String json = gson.toJson(adunit);
 			pi.setBodyJson(json);
 			pi.execute();
@@ -123,7 +123,7 @@ public class UnitHttpServlet extends HttpServlet {
 			}			
 		}
 		
-		String json = Dependency.get(Gson.class).toJson(adunit);
+		String json = Dep.get(Gson.class).toJson(adunit);
 //		String charityJson = mc.getJson();		
 		String charityMap = "\ngoodloop.unit="+json+";";
 		

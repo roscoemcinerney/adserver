@@ -1,7 +1,7 @@
 package com.goodloop.portal;
 
 import com.winterwell.es.client.ESHttpClient;
-import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Dep;
 
 public class AServlet {
 
@@ -9,8 +9,8 @@ public class AServlet {
 	PortalConfig config;
 
 	public AServlet() {
-		es = Dependency.get(ESHttpClient.class);
-		config = Dependency.get(PortalConfig.class);
+		es = Dep.get(ESHttpClient.class);
+		config = Dep.get(PortalConfig.class);
 	}
 	
 }
