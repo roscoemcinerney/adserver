@@ -5,6 +5,12 @@ import java.util.List;
 import com.winterwell.utils.web.WebUtils2;
 
 public class Publisher extends Thing {
+	
+	@Override
+	public String toString() {
+		return "Publisher [keywords=" + keywords + ", name=" + name + ", url=" + url + ", id=" + id + "]";
+	}
+
 
 	public static final String DEFAULT_ID = "default_publisher";
 
@@ -19,7 +25,7 @@ public class Publisher extends Thing {
 	 */
 	public String host;
 	String owner;
-	String keywords;
+	public String keywords;
 	
 	NGO charity0;
 	NGO charity1;

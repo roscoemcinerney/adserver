@@ -17,7 +17,11 @@ import lombok.Data;
 @Data
 public class Advert extends Thing {
 
-	
+	@Override
+	public String toString() {
+		return "Advert [keywords=" + keywords + ", maxBid=" + maxBid + ", active=" + active + ", name=" + name
+				+ ", url=" + url + ", id=" + id + "]";
+	}
 	public String campaign;
 	public String video;
 	public String mobileVideo;
@@ -26,7 +30,7 @@ public class Advert extends Thing {
 	/**
 	 * The maximum bid for a spot that matches the keywords (but without other info)
 	 */
-	MonetaryAmount maxBid;
+	public MonetaryAmount maxBid;
 	public boolean active;
 	
 }

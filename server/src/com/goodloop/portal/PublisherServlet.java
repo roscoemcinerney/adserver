@@ -17,7 +17,7 @@ import com.winterwell.es.client.IndexRequestBuilder;
 import com.winterwell.es.client.SearchRequestBuilder;
 import com.winterwell.es.client.SearchResponse;
 import com.winterwell.es.client.UpdateRequestBuilder;
-import com.winterwell.utils.Dependency;
+import com.winterwell.utils.Dep;
 import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.Utils;
 import com.winterwell.utils.containers.ArrayMap;
@@ -43,7 +43,7 @@ public class PublisherServlet extends AServlet {
 		}
 		// return json?
 		if (publisher != null) {
-			Gson gson = Dependency.get(Gson.class);
+			Gson gson = Dep.get(Gson.class);
 			String json = gson.toJson(publisher);
 			JsonResponse output = new JsonResponse(state).setCargoJson(json);
 			WebUtils2.sendJson(output, state);
@@ -70,7 +70,7 @@ public class PublisherServlet extends AServlet {
 		List<Map> hits = sr.getHits();
 		List hits2 = Containers.apply(hits, h -> h.get("_source"));
 		long total = sr.getTotal();
-		String json = Dependency.get(Gson.class).toJson(
+		String json = Dep.get(Gson.class).toJson(
 				new ArrayMap(
 					"hits", hits2, 
 					"total", total
@@ -83,7 +83,7 @@ public class PublisherServlet extends AServlet {
 		String json = state.get("publisher");
 		String id = state.getSlugBits(1);
 //		if (id.endsWith(".json")) id = id.substring(0, id.length()-5); not needed - done in slug??
-		Gson gson = Dependency.get(Gson.class);
+		Gson gson = Dep.get(Gson.class);
 		publisher = gson.fromJson(json, Publisher.class);
 		JSON.parse(json);
 		publisher.validate();

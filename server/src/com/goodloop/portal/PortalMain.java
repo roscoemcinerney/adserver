@@ -23,6 +23,7 @@ public class PortalMain {
 
 	public static void main(String[] args) {		
 		PortalConfig pc = AdServerMain.getConfig(new PortalConfig(), args);
+		AdServerMain.init(pc);
 		DB.init(pc);
 		
 		Log.i("Go!");

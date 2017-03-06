@@ -64,7 +64,7 @@ const EditPublisherForm = ({publisher}) => {
 			<Col sm={4}><CharityForm publisher={pub} i={2} charity={pub.charity2} /></Col>
 		</Row></Grid>
 
-		<button onClick={() => ActionMan.savePublisher(publisher.id)}>Save</button>
+		<button className='btn btn-primary' onClick={() => ActionMan.savePublisher(publisher.id)}>Save</button>
 	</div>);
 };
 
