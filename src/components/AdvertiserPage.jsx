@@ -5,7 +5,7 @@ import SJTest, {assert} from 'sjtest';
 import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
-import {Button,FormGroup,FormControl,HelpBlock,ControlLabel,Grid,Row,Col} from 'react-bootstrap';
+import {Button,FormGroup,FormControl,Checkbox,HelpBlock,ControlLabel,Grid,Row,Col} from 'react-bootstrap';
 import DataStore from '../plumbing/DataStore';
 import ActionMan from '../plumbing/ActionMan';
 import ServerIO from '../plumbing/ServerIO';
@@ -60,7 +60,7 @@ const EditAdvertForm = ({advert}) => {
 		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>
 		Keywords (all must match) <FormControl value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
 
-		<Button onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>
+		<Button className='btn btn-primary' onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>
 	</div>);
 };
 
