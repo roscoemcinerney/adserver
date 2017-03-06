@@ -98,7 +98,7 @@ public class PublisherServlet extends AServlet {
 			publisher.id = id;			
 			json = gson.toJson(publisher);
 			IndexRequestBuilder pu = es.prepareIndex(config.publisherIndex, config.publisherType, id);
-			pu.setSource(json);		
+			pu.setBodyJson(json);		
 			IESResponse r = pu.get().check();
 			System.out.println(r.getJson());
 			return;

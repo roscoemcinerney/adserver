@@ -92,7 +92,7 @@ public class AdvertServlet extends AServlet {
 			advert.id = id;			
 			json = gson.toJson(advert);
 			IndexRequestBuilder pu = es.prepareIndex(config.advertIndex, config.advertType, id);
-			pu.setSource(json);		
+			pu.setBodyJson(json);		
 			IESResponse r = pu.get().check();
 			System.out.println(r.getJson());
 			return;

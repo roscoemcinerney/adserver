@@ -109,7 +109,7 @@ public class UnitHttpServlet extends HttpServlet {
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
 			Gson gson = Dependency.get(Gson.class);
 			String json = gson.toJson(adunit);
-			pi.setSource(json);
+			pi.setBodyJson(json);
 			pi.execute();
 		}
 		

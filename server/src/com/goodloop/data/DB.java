@@ -60,7 +60,7 @@ public class DB {
 			dpub = new Publisher();
 			dpub.id = Publisher.DEFAULT_ID;
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, Publisher.DEFAULT_ID);
-			pi.setSource(gson.toJson(dpub));
+			pi.setBodyJson(gson.toJson(dpub));
 			pi.execute();
 		}
 		// default advert
