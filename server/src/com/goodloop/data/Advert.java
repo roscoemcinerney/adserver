@@ -17,6 +17,7 @@ import lombok.Data;
 @Data
 public class Advert extends Thing {
 
+	
 	public String campaign;
 	public String video;
 	public String mobileVideo;

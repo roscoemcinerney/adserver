@@ -32,8 +32,9 @@ public class Publisher extends Thing {
 		}
 		if (this.domain!=null) {
 			this.domain = WebUtils2.getDomain(domain);
-			this.host = WebUtils2.getHost(domain);
+			this.host = WebUtils2.getHost(domain);			
 		}
+		if (name==null) name = host;
 	}
 
 
