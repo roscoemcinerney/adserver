@@ -25,7 +25,7 @@ public class PickAdvert {
 	
 	private WebRequest state;
 	
-	private Advert advert;
+	Advert advert;
 
 	private ListenableFuture<Publisher> fpub;
 

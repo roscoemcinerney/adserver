@@ -129,6 +129,12 @@ public class UnitHttpServlet extends HttpServlet {
 		
 		PickAdvert pa = new PickAdvert(state, fpub);
 		pa.run();
+		
+		if (pa.advert==null) {
+			// TODO fallback url if provided
+			// send http 503 error
+		}
+		
 		String advertJson = pa.getJson();
 		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
