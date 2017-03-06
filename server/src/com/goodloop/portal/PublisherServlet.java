@@ -68,7 +68,7 @@ public class PublisherServlet extends AServlet {
 		SearchResponse sr = s.get();
 		Map<String, Object> jobj = sr.getParsedJson();
 		List<Map> hits = sr.getHits();
-		List hits2 = Containers.apply(h -> h.get("_source"), hits);
+		List hits2 = Containers.apply(hits, h -> h.get("_source"));
 		long total = sr.getTotal();
 		String json = Dependency.get(Gson.class).toJson(
 				new ArrayMap(
