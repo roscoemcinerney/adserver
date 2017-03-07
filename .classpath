@@ -13,5 +13,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/elasticsearch-java-client"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/flexi-gson"/>
 	<classpathentry kind="lib" path="/middleware/lombok/lombok.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/elasticsearch"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

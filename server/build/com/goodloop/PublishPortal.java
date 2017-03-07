@@ -69,7 +69,7 @@ public class PublishPortal extends BuildTask {
 			
 	public PublishPortal() throws Exception {
 		this.remoteUser = "winterwell";
-		this.remoteWebAppDir = "/home/winterwell/??"; ??
+		this.remoteWebAppDir = "/home/winterwell/as.good-loop.com";
 		// local
 		this.localWebAppDir = FileUtils.getWorkingDirectory();
 	}
@@ -206,7 +206,7 @@ public class PublishPortal extends BuildTask {
 			jarTask.run();
 			jarTask.close();
 			
-			if (true) return;
+//			if (true) return;
 			
 			// Do the rsync!
 			String from = localLib.getAbsolutePath();
@@ -220,8 +220,8 @@ public class PublishPortal extends BuildTask {
 			// Rsync code with delete=true, so we get rid of old html templates
 			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
 			RSyncTask rsyncCode = new RSyncTask(
-					new File(localWebAppDir,"web").getAbsolutePath(),
-					rsyncDest("web"), true);
+					new File(localWebAppDir,"web-portal").getAbsolutePath(),
+					rsyncDest("web-portal"), true);
 			rsyncCode.setDirToDir();
 			rsyncCode.run();
 			String out = rsyncCode.getOutput();
