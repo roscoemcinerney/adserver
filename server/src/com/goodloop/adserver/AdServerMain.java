@@ -80,7 +80,7 @@ public class AdServerMain {
 		return config;
 	}
 
-	private static void init(GLBaseConfig config) {
+	public static void init(GLBaseConfig config) {
 		// gson
 		Gson gson = new GsonBuilder()
 		.setLenientReader(true)

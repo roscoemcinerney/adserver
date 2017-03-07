@@ -7,6 +7,9 @@ import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
 
+import {FormControl} from 'react-bootstrap';
+import ActionMan from '../plumbing/ActionMan';
+
 // console.warn("TODO use i18n", i18n);
 
 const Misc = {};
@@ -71,5 +74,8 @@ Misc.Checkbox = ({on, label, onChange}) => (
 		</label>
 	</div>
 );
+
+Misc.PropControl = ({prop,path,item}) => 
+	<FormControl name={prop} value={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
 
 export default Misc;

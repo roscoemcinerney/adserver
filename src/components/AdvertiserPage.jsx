@@ -10,6 +10,7 @@ import DataStore from '../plumbing/DataStore';
 import ActionMan from '../plumbing/ActionMan';
 import ServerIO from '../plumbing/ServerIO';
 import NGO from '../data/NGO';
+import Misc from './Misc.jsx';
 
 // TODO Advertiser support as opposed to Advert
 
@@ -55,9 +56,11 @@ const EditAdvertForm = ({advert}) => {
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
-		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
-		Target url <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
+		Name <FormControl name='name' value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
+		Target url <FormControl name='url' value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>
+		Video <Misc.PropControl prop='video' path={path} item={pub} /> <br/>
+		Mobile Video <FormControl name='mobileVideo' value={pub.mobileVideo} onChange={e => ActionMan.setDataValue(_.concat(path, 'mobileVideo'), e)} /> <br/>
 		Keywords (all must match) <FormControl value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
 
 		<Button className='btn btn-primary' onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>

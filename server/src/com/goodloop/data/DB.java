@@ -14,6 +14,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
 import com.winterwell.es.ESType;
+import com.winterwell.es.client.ESConfig;
 import com.winterwell.es.client.ESHttpClient;
 import com.winterwell.es.client.ESHttpResponse;
 import com.winterwell.es.client.GetRequestBuilder;
@@ -46,6 +47,12 @@ public class DB {
 
 	public static void init(GLBaseConfig _config) {
 		config = _config;
+		if ( ! Dep.has(ESConfig.class)) {
+			Dep.set(ESConfig.class, new ESConfig());
+		}
+		if ( ! Dep.has(ESHttpClient.class)) {
+			Dep.setSupplier(ESHttpClient.class, false, () -> new ESHttpClient(Dep.get(ESConfig.class)));
+		}
 		ESHttpClient es = Dep.get(ESHttpClient.class);
 		Gson gson = Dep.get(Gson.class);
 		
