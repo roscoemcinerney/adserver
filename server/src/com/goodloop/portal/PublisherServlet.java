@@ -10,13 +10,13 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
 import com.goodloop.data.Publisher;
-import com.google.gson.Gson;
 import com.winterwell.es.client.ESHttpClient;
 import com.winterwell.es.client.IESResponse;
 import com.winterwell.es.client.IndexRequestBuilder;
 import com.winterwell.es.client.SearchRequestBuilder;
 import com.winterwell.es.client.SearchResponse;
 import com.winterwell.es.client.UpdateRequestBuilder;
+import com.winterwell.gson.Gson;
 import com.winterwell.utils.Dep;
 import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.Utils;

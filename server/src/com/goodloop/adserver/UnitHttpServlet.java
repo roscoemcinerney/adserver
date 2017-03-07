@@ -36,7 +36,6 @@ import com.winterwell.web.fields.SField;
 import com.goodloop.data.DB;
 import com.goodloop.data.Publisher;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.gson.Gson;
 import com.winterwell.datalog.DataLog;
 import com.winterwell.datascience.Experiment;
 import com.winterwell.depot.Desc;
@@ -50,6 +49,7 @@ import com.winterwell.es.client.IndexRequestBuilder;
 import com.winterwell.es.client.SearchRequestBuilder;
 import com.winterwell.es.client.SearchResponse;
 import com.winterwell.es.client.UpdateRequestBuilder;
+import com.winterwell.gson.Gson;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.containers.ListMap;
 import com.winterwell.utils.web.SimpleJson;
@@ -105,6 +105,7 @@ public class UnitHttpServlet extends HttpServlet {
 			adunit.domain = WebUtils2.getDomain(ref);
 			adunit.validate();
 			ESHttpClient es = Dep.get(ESHttpClient.class);
+			es.debug = true;
 			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 			adunit.id = id;			
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
@@ -112,6 +113,7 @@ public class UnitHttpServlet extends HttpServlet {
 			String json = gson.toJson(adunit);
 			pi.setBodyJson(json);
 			pi.execute();
+			Log.d("unit", "create Publisher: "+json);
 		}
 		Log.d("unit", "Publisher: "+adunit);
 		
