@@ -8,32 +8,10 @@ Insert into the file in production.
 (TODO use webpack to automate this)
 */
 
-// var BURL = '//localas.good-loop.com/'; set by Java from config
-//var LBURL = '//lg.good-loop.com'; set by Java from config
+// goodloop .BURL .LBURL are set by Java from config
 
 // TODO avoid sub-domains
 var publisher = window.location.hostname;
-//
-//// TODO the adserver pre-pends this to the file
-//var charities = [
-//	{id:'Battersea Dogs & Cats Home', name:'Battersea Dogs & Cats Home', url:'https://www.battersea.org.uk/', logo: BURL+"mock-server/battersea-square-logo.png"},
-//	{id:'Meningitis Foundation', name:'Meningitis Foundation', url:'http://www.meningitis.org', logo: BURL+"mock-server/meningitis_foundation_wider.png"},
-//	{id:'Alzheimers Research UK', name:'Alzheimers Research UK', url:'http://www.alzheimersresearchuk.org/', logo:BURL+"mock-server/alzheimers_research_square.png"},
-//	// {id:'batterseadogs', name:'Cancer Research UK', logo:BURL+"mock-server/Cancer_Research_UK.svg"},
-//	// Battersea Cats & Dogs, Meningitis Research Foundation and probably Alzheimer's Research UK.
-//];
-//
-//// TODO pick mobile/desktop video
-//// TODO adserver prepends this
-//// TODO use VAST format
-//var advert = {
-//	campaign:'campaign1',
-//	name: "Kerb",
-//	video: BURL+"mock-server/kerb-720p.m4v",
-//	mobileVideo: BURL+"mock-server/kerb-360p.m4v",	
-//	url: 'http://www.kerbfood.com/markets/camden/',
-//	poster: 'http://www.kerbfood.com/wp-content/themes/kerb/images/logo.svg',
-//};
 
 var variant = {
 	adsecs: 9, // TODO explore the effect of 5-15 seconds
