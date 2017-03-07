@@ -85,6 +85,7 @@ public class AdServerMain {
 			Log.e("init", "Unknown machine: "+machine+" - defaulting to localserver!");
 			serverType = "localserver";
 		}
+		Log.d("init", "serverType: "+serverType+" machine: "+machine);
 		config = ArgsParser.getConfig(config, args, new File("config/"+serverType+".properties"), null);
 		// this computer specific
 		config = ArgsParser.getConfig(config, args, new File("config/"+machine+".properties"), null);
