@@ -78,7 +78,7 @@ public class AdServerMain {
 		String serverType = new ArrayMap<String,String>(
 				"aardvark", "localserver",
 				"stross", "localserver",
-				"hugh", "testserver",
+				"mail.soda.sh", "testserver",
 				"heppner", "liveserver"
 				).get(machine);
 		if (serverType == null) {

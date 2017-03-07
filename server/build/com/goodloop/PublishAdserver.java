@@ -148,9 +148,9 @@ public class PublishAdserver extends BuildTask {
 	protected void doTask() throws Exception {
 		// Setup file paths
 		// Check that we are running from a plausible dir:
-		if (! localWebAppDir.exists() || ! new File(localWebAppDir, "bin").isDirectory()
-			|| !new File(localWebAppDir,"web").exists()) {
-			throw new IOException("Not in the expected directory! dir="+FileUtils.getWorkingDirectory());
+		if (! localWebAppDir.exists() 
+			|| !new File(localWebAppDir,"web-as").exists()) {
+			throw new IOException("Not in the expected directory! dir="+FileUtils.getWorkingDirectory()+" but no "+localWebAppDir);
 		}
 		Log.i("publish", "Publishing to "+server+":"+ remoteWebAppDir);
 		// What's going on?
