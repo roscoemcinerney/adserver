@@ -1,5 +1,7 @@
 package com.goodloop.adserver;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,11 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.winterwell.bob.tasks.GitTask;
 import com.winterwell.utils.Dep;
 import com.winterwell.utils.Printer;
+import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.containers.Containers;
 import com.winterwell.utils.containers.Trio;
+import com.winterwell.utils.io.FileUtils;
+import com.winterwell.utils.log.Log;
 import com.winterwell.utils.time.Time;
 import com.winterwell.utils.time.TimeUtils;
 import com.winterwell.utils.web.WebUtils2;
@@ -24,10 +30,63 @@ import com.winterwell.utils.web.XStreamUtils;
 import com.winterwell.web.ajax.JsonResponse;
 import com.winterwell.web.app.WebRequest;
 
+
 public class ManifestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+
+	public static final String PROPERTY_GIT_BRANCH = "branch";
+	public static final String PROPERTY_GIT_COMMIT_ID = "lastCommitId";
+	public static final String PROPERTY_GIT_COMMIT_INFO = "lastCommitInfo";
+	public static final String PROPERTY_PUBLISH_DATE = "publishDate";
+	
+	public static void saveVersionProperties() {
+		try {
+		File creolePropertiesForSite = new File("config", "version.properties");
+		Properties props = creolePropertiesForSite.exists()? FileUtils.loadProperties(creolePropertiesForSite) : new Properties();
+		// set the publish time
+		props.setProperty(PROPERTY_PUBLISH_DATE, ""+System.currentTimeMillis());
+		// set info on the git branch
+		String branch = GitTask.getGitBranch(null);
+		props.setProperty(PROPERTY_GIT_BRANCH, branch);
+		// ...and commit IDs
+		for(String repo : new String[]{"open-code"}) {
+			File repodir = new File(FileUtils.getWinterwellDir(), repo);
+			try {
+				Map<String, Object> info = GitTask.getLastCommitInfo(repodir);
+				props.setProperty(PROPERTY_GIT_COMMIT_ID+"."+repo, (String)info.get("hash"));
+				props.setProperty(PROPERTY_GIT_COMMIT_INFO+"."+repo, StrUtils.compactWhitespace(XStreamUtils.serialiseToXml(info)));
+//				TODO props.setProperty(Creole.PROPERTY_GIT_BRANCH+"."+repo, (String)info.get("branch"));
+			} catch(Exception ex) {
+				// oh well;
+				Log.d("git.info", ex);
+			}
+			try {
+				String rbranch = GitTask.getGitBranch(repodir);
+				props.setProperty(PROPERTY_GIT_BRANCH+"."+repo, rbranch);
+			} catch(Throwable ex) {
+				// oh well
+				Log.d("git.info", ex);
+			}
+		}
+
+		// Who did the push?
+		try {
+			props.setProperty("origin", WebUtils2.hostname());
+		} catch(Exception ex) {
+			// oh well
+		}
+
+		// save
+		BufferedWriter w = FileUtils.getWriter(creolePropertiesForSite);
+		props.store(w, null);
+		FileUtils.close(w);
+		} catch (Throwable ex) {
+			Log.e("debug", ex);
+		}
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebRequest state = new WebRequest(null, req, resp);

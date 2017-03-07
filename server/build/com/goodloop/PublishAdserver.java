@@ -20,6 +20,7 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import org.junit.Test;
 
+import com.goodloop.adserver.ManifestServlet;
 import com.winterwell.bob.BobSettings;
 import com.winterwell.bob.BuildTask;
 import com.winterwell.bob.tasks.EclipseClasspath;
@@ -88,8 +89,9 @@ public class PublishAdserver extends BuildTask {
 	}
 
 	private void doUploadProperties(Object timestampCode) throws IOException {
-		// Copy up creole.properties and version.properties
+		// Copy up creole.properties and version.properties		
 		Log.report("publish","Uploading .properties...", Level.INFO);
+		ManifestServlet.saveVersionProperties();
 		File localConfigDir = new File(localWebAppDir, "config");
 		{	// create the version properties
 			File creolePropertiesForSite = new File(localConfigDir, "version.properties");
