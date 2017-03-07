@@ -1,11 +1,12 @@
 import React from 'react';
 import { assert } from 'sjtest';
 import Login from 'hooru';
+import {Modal} from 'react-bootstrap';
 import { XId, uid } from 'wwutils';
 import Cookies from 'js-cookie';
-
+import DataStore from '../../plumbing/DataStore';
 import Misc from '../Misc';
-
+import C from '../../C';
 /**
 	TODO:
 	- doEmailLogin(email, password) and doSocialLogin(service) are available as props now
@@ -124,9 +125,6 @@ const LoginError = function() {
 
 */
 const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailRegister, closeMenu, handleChange}) => {
-	if (! showDialog) {
-		return <div />;
-	}
 	if ( ! verb) verb = 'login';
 	
 	const heading = {
@@ -142,8 +140,12 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 	}[verb];
 
 	return (
-		<div className="login-modal" onClick={closeMenu}>
-			<div className="container">
+		<Modal show={showDialog} className="login-modal" onHide={() => DataStore.setShow(C.show.LoginWidget, false)}>
+			<Modal.Header>
+				Login Widget :)
+			</Modal.Header>
+			<Modal.Body>
+				<div className="container">
 				<div className="row">
 					<div className="col-sm-6 col-center">
 						<div className="panel panel-default" onClick={(event) => event.stopPropagation()}>
@@ -180,7 +182,10 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 					</div>
 				</div>
 			</div>
-		</div>
+			</Modal.Body>
+			<Modal.Footer>
+			</Modal.Footer>
+		</Modal>
 	);
 }; // ./LoginWidget
 

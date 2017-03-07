@@ -39,7 +39,7 @@ ActionMan.setDataValue = (path, valueOrEvent) => {
 };
 
 ActionMan.showLogin = () => {
-	DataStore.setShow('LoginWidget', true);
+	DataStore.setShow(C.show.LoginWidget, true);
 };
 
 ActionMan.savePublisher = (pubId) => {
