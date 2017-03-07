@@ -105,6 +105,7 @@ public class UnitHttpServlet extends HttpServlet {
 			adunit.domain = WebUtils2.getDomain(ref);
 			adunit.validate();
 			ESHttpClient es = Dep.get(ESHttpClient.class);
+			es.debug = true;
 			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
 			adunit.id = id;			
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
@@ -112,6 +113,7 @@ public class UnitHttpServlet extends HttpServlet {
 			String json = gson.toJson(adunit);
 			pi.setBodyJson(json);
 			pi.execute();
+			Log.d("unit", "create Publisher: "+json);
 		}
 		Log.d("unit", "Publisher: "+adunit);
 		
