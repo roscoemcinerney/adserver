@@ -1,9 +1,15 @@
 package com.goodloop.adserver;
 
+import com.google.gson.FlexiGson;
 import com.winterwell.utils.io.Option;
 
 public class GLBaseConfig {
 
+	@Override
+	public String toString() {
+		return getClass().getSimpleName()+FlexiGson.toJSON(this);
+	}
+	
 	@Option
 	public String adserverDomain = "localas.good-loop.com";
 	@Option 

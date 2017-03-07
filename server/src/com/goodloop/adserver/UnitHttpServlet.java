@@ -94,6 +94,7 @@ public class UnitHttpServlet extends HttpServlet {
 	
 	
 	private void doServeUnitJs(WebRequest state) throws Exception {
+		Log.d("unit", state);
 		AdServerConfig config = Dep.get(AdServerConfig.class);
 		ListenableFuture<Publisher> fpub = DB.getAdUnit(state);
 		Publisher adunit = fpub.get();
@@ -112,6 +113,7 @@ public class UnitHttpServlet extends HttpServlet {
 			pi.setBodyJson(json);
 			pi.execute();
 		}
+		Log.d("unit", "Publisher: "+adunit);
 		
 		// on or off?
 		if ( ! adunit.active) {
@@ -134,12 +136,15 @@ public class UnitHttpServlet extends HttpServlet {
 			// TODO fallback url if provided
 			// send http 503 error
 		}
+		Log.d("unit", "Advert: "+pa.advert);
 		
 		String advertJson = pa.getJson();
 		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
 		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL=//"
 				+config.adserverDomain+"/; goodloop.LBURL=//"+config.datalogDomain+"; ";
+		Log.d("unit", "config: "+config);
+		Log.d("unit", "vars: "+initjs);
 		String js = initjs+charityMap+charityVar+unitjs;
 		
 		// CORS? Assuming you've done security elsewhere

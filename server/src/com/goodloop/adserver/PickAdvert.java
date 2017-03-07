@@ -59,8 +59,9 @@ public class PickAdvert {
 			if (ok) {
 				bestAd.maybeSet(ad, score);
 			}
-		}
+		}		
 		advert = bestAd.getBest();
+		Log.d("PickAdvert", "Winner: "+advert+" from "+ads);
 	}
 
 	public String getJson() {
