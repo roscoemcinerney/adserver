@@ -69,7 +69,7 @@ public class PublishAdserver extends BuildTask {
 			
 	public PublishAdserver() throws Exception {
 		this.remoteUser = "winterwell";
-		this.remoteWebAppDir = "/home/winterwell/sogive-app??"; ?
+		this.remoteWebAppDir = "/home/winterwell/as.good-loop.com";
 		// local
 		this.localWebAppDir = FileUtils.getWorkingDirectory();
 	}
@@ -206,12 +206,12 @@ public class PublishAdserver extends BuildTask {
 			jarTask.run();
 			jarTask.close();
 			
-			if (true) return;
+//			if (true) return;
 			
 			// Do the rsync!
 			String from = localLib.getAbsolutePath();
 			String dest = rsyncDest("lib");			
-			RSyncTask task = new RSyncTask(from, dest, true).setDirToDir();
+			RSyncTask task = new RSyncTask(from, dest, false).setDirToDir();
 			task.run();
 			task.close();
 			System.out.println(task.getOutput());
@@ -220,13 +220,16 @@ public class PublishAdserver extends BuildTask {
 			// Rsync code with delete=true, so we get rid of old html templates
 			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
 			RSyncTask rsyncCode = new RSyncTask(
-					new File(localWebAppDir,"web").getAbsolutePath(),
-					rsyncDest("web"), true);
+					new File(localWebAppDir,"web-as").getAbsolutePath(),
+					rsyncDest("web-as"), true);
 			rsyncCode.setDirToDir();
 			rsyncCode.run();
 			String out = rsyncCode.getOutput();
 			rsyncCode.close();
 		}
+		
+		RemoteTask reboot = new RemoteTask("winterwell@"+server, "service adservermain restart");
+		reboot.run();
 	}
 
 	private String rsyncDest(String dir) {
