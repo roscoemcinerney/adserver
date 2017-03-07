@@ -58,14 +58,20 @@ const EditAdvertForm = ({advert}) => {
 		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
 		Name <FormControl name='name' value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Target url <FormControl name='url' value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
+		<SiteThumbnail url={pub.url} />
 		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>
 		Video <Misc.PropControl prop='video' path={path} item={pub} /> <br/>
+		<VideoThumbnail url={pub.video} />
 		Mobile Video <FormControl name='mobileVideo' value={pub.mobileVideo} onChange={e => ActionMan.setDataValue(_.concat(path, 'mobileVideo'), e)} /> <br/>
 		Keywords (all must match) <FormControl value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
 
 		<Button className='btn btn-primary' onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>
 	</div>);
 };
+
+const SiteThumbnail = ({url}) => url? <iframe style={{width:'200px',height:'150px;'}} src={url} /> : null;
+
+const VideoThumbnail = ({url}) => url? <video width={200} height={150} src={url} controls /> : null;
 
 const ListAdverts = ({}) => {
 	let pubs = _.map(_.values(DataStore.appstate.data.Advert), pub => <ListAdvertItem key={pub.id} advert={pub} /> );
