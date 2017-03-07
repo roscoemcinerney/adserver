@@ -4,14 +4,13 @@ import java.io.File;
 import java.util.Properties;
 
 import com.goodloop.data.DB;
-import com.google.gson.FlexiGsonBuilder;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.KLoopPolicy;
-
 import com.winterwell.es.XIdTypeAdapter;
 import com.winterwell.es.client.ESConfig;
 import com.winterwell.es.client.ESHttpClient;
+import com.winterwell.gson.FlexiGsonBuilder;
+import com.winterwell.gson.Gson;
+import com.winterwell.gson.GsonBuilder;
+import com.winterwell.gson.KLoopPolicy;
 import com.winterwell.gson.StandardAdapters;
 import com.winterwell.utils.Dep;
 import com.winterwell.utils.containers.ArrayMap;
@@ -42,29 +41,33 @@ public class AdServerMain {
 	public static AdServerConfig settings;
 
 	public static void main(String[] args) {
-		settings = getConfig(new AdServerConfig(), args);
 		try {
-			Properties props = getConfig(new Properties(), args);
-			if (new File("config/version.properties").isFile()) {
-				new ArgsParser(props).set(new File("config/version.properties"));
+			settings = getConfig(new AdServerConfig(), args);
+			try {
+				Properties props = getConfig(new Properties(), args);
+				if (new File("config/version.properties").isFile()) {
+					new ArgsParser(props).set(new File("config/version.properties"));
+				}
+				System.out.println(props);
+			} catch(Throwable ex) {
+				Log.w("init", ex);
 			}
-			System.out.println(props);
-		} catch(Throwable ex) {
-			Log.w("init", ex);
+			
+			init(settings);
+			
+			Log.i("Go!");
+			assert jl==null;
+			jl = new JettyLauncher(new File("web-as"), settings.port);
+			jl.setup();
+			jl.addServlet("/unit.js", new UnitHttpServlet());
+			jl.addServlet("/manifest", new ManifestServlet());
+			Log.i("web", "...Launching Jetty web server on port "+jl.getPort());
+			jl.run();
+	
+			Log.i("Running...");
+		} catch (Throwable ex) {
+			Log.e("init", ex);
 		}
-		
-		init(settings);
-		
-		Log.i("Go!");
-		assert jl==null;
-		jl = new JettyLauncher(new File("web-as"), settings.port);
-		jl.setup();
-		jl.addServlet("/unit.js", new UnitHttpServlet());
-		jl.addServlet("/manifest", new ManifestServlet());
-		Log.i("web", "...Launching Jetty web server on port "+jl.getPort());
-		jl.run();
-
-		Log.i("Running...");
 	}
 
 	

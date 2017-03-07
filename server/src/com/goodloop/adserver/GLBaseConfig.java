@@ -1,6 +1,6 @@
 package com.goodloop.adserver;
 
-import com.google.gson.FlexiGson;
+import com.winterwell.gson.FlexiGson;
 import com.winterwell.utils.io.Option;
 
 public class GLBaseConfig {
