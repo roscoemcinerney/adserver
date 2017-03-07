@@ -1,6 +1,7 @@
 package com.goodloop.adserver;
 
 import java.io.File;
+import java.util.Properties;
 
 import com.goodloop.data.DB;
 import com.google.gson.FlexiGsonBuilder;
@@ -31,6 +32,8 @@ import com.winterwell.web.data.XId;
  */
 public class AdServerMain {
 
+	public static final Time startTime = new Time();
+
 	private static JettyLauncher jl;
 		
 	public static LogFile logFile = new LogFile(new File("adserver.log"))
@@ -40,7 +43,16 @@ public class AdServerMain {
 
 	public static void main(String[] args) {
 		settings = getConfig(new AdServerConfig(), args);
-
+		try {
+			Properties props = getConfig(new Properties(), args);
+			if (new File("config/version.properties").isFile()) {
+				new ArgsParser(props).set(new File("config/version.properties"));
+			}
+			System.out.println(props);
+		} catch(Throwable ex) {
+			Log.w("init", ex);
+		}
+		
 		init(settings);
 		
 		Log.i("Go!");
@@ -48,6 +60,7 @@ public class AdServerMain {
 		jl = new JettyLauncher(new File("web-as"), settings.port);
 		jl.setup();
 		jl.addServlet("/unit.js", new UnitHttpServlet());
+		jl.addServlet("/manifest", new ManifestServlet());
 		Log.i("web", "...Launching Jetty web server on port "+jl.getPort());
 		jl.run();
 

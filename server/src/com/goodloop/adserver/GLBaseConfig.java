@@ -11,7 +11,8 @@ public class GLBaseConfig {
 	}
 	
 	@Option
-	public String adserverDomain = "localas.good-loop.com";
+	public String adserverDomain;
+	
 	@Option 
 	public String datalogDomain = "lg.good-loop.com";
 
