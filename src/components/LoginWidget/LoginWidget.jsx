@@ -142,7 +142,7 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 	return (
 		<Modal show={showDialog} className="login-modal" onHide={() => DataStore.setShow(C.show.LoginWidget, false)}>
 			<Modal.Header>
-				Login Widget :)
+				<Modal.Title>Login Widget :)</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<div className="container">
