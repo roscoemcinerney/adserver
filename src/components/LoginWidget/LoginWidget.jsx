@@ -5,6 +5,7 @@ import {Modal} from 'react-bootstrap';
 import { XId, uid } from 'wwutils';
 import Cookies from 'js-cookie';
 import DataStore from '../../plumbing/DataStore';
+import ActionMan from '../../plumbing/ActionMan';
 import Misc from '../Misc';
 import C from '../../C';
 /**
@@ -14,22 +15,21 @@ import C from '../../C';
 */
 
 
-const SocialSignin = () => {
-	const verb = this.props.verb;
+const SocialSignin = ({verb, socialLogin}) => {
 	return (
 		<div className="social-signin">
 			<div className="form-group">
-				<button onClick={ this.socialLogin.bind(null, 'twitter') } className="btn btn-default form-control">
+				<button onClick={() => ActionMan.socialLogin('twitter')} className="btn btn-default form-control">
 					<Misc.Logo size='small' service='twitter' /> { verb } with Twitter
 				</button>
 			</div>
 			<div className="form-group">
-				<button onClick={ this.socialLogin.bind(null, 'facebook') } className="btn btn-default form-control">
+				<button onClick={() => ActionMan.socialLogin('facebook')} className="btn btn-default form-control">
 					<Misc.Logo size="small" service="facebook" /> { verb } with Facebook
 				</button>
 			</div>
 			<div className="form-group hidden">
-				<button onClick={ this.socialLogin.bind(null, 'instagram') } className="btn btn-default form-control">
+				<button onClick={() => ActionMan.socialLogin('instagram')} className="btn btn-default form-control">
 					<Misc.Logo size='small' service='instagram' /> { verb } with Instagram
 				</button>
 			</div>
@@ -124,7 +124,8 @@ const LoginError = function() {
 		See SigninScriptlet
 
 */
-const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailRegister, closeMenu, handleChange}) => {
+const LoginWidget = ({showDialog}) => {
+	let verb = DataStore.appstate.widget && DataStore.appstate.widget.LoginWidget && DataStore.appstate.widget.LoginWidget.verb;
 	if ( ! verb) verb = 'login';
 	
 	const heading = {
@@ -142,48 +143,41 @@ const LoginWidget = ({showDialog, verb, person, password, doEmailLogin, doEmailR
 	return (
 		<Modal show={showDialog} className="login-modal" onHide={() => DataStore.setShow(C.show.LoginWidget, false)}>
 			<Modal.Header>
-				<Modal.Title>Login Widget :)</Modal.Title>
+				<Modal.Title>
+					<Misc.Logo service="goodloop" size='large' transparent={false} />
+					Welcome (back) to the Good-Loop Portal
+				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<div className="container">
 				<div className="row">
 					<div className="col-sm-6 col-center">
-						<div className="panel panel-default" onClick={(event) => event.stopPropagation()}>
-							<div className="panel-heading">Welcome (back) to the Good-Loop Portal</div>
-							<div className="panel-body">
-								<Misc.Logo service="goodloop" size='large' transparent={false} />
-								<h3>{heading}</h3>
-								<EmailSignin
-									verb={verb}
-									person={person}
-									password={password}
-									handleChange={handleChange}
-									doItFn={() => doItFn(person, password)}
-								/>
-								{/*
-									// Reinstate this later - put the row/column back inside the panel & restore the vertical line
-									<div className="col-sm-6">
-										<SocialSignin verb={verb} services={null} />
-									</div>
-								*/}
-								{
-									verb === 'register' ?
-										<div>
-											Already have an account?
-											&nbsp;<a href='#' onClick={() => handleChange('verb', 'login')}>Login</a>
-										</div> :
-										<div>
-											Don&#39;t yet have an account?
-											&nbsp;<a href='#' onClick={() => handleChange('verb', 'register')}>Register</a>
-										</div>
-								}
-							</div> {/* ./panel-body */}
+						<EmailSignin
+							verb={verb}
+							person={person}
+							password={password}
+							handleChange={handleChange}
+							doItFn={() => doItFn(person, password)}
+						/>
+						<div className="col-sm-6">
+							<SocialSignin verb={verb} services={null} />
 						</div>
 					</div>
 				</div>
-			</div>
+				</div>
 			</Modal.Body>
 			<Modal.Footer>
+			{
+				verb === 'register' ?
+					<div>
+						Already have an account?
+						&nbsp;<a href='#' onClick={() => handleChange('verb', 'login')}>Login</a>
+					</div> :
+					<div>
+						Don&#39;t yet have an account?
+						&nbsp;<a href='#' onClick={() => handleChange('verb', 'register')}>Register</a>
+					</div>
+			}
 			</Modal.Footer>
 		</Modal>
 	);

@@ -55,7 +55,7 @@ Misc.Time = ({time}) => {
 Misc.Logo = ({service, size, transparent}) => {
 	assert(service);
 	let klass = "img-rounded logo";
-	if (size) klass += "-"+size;
+	if (size) klass += " logo-"+size;
 	let file = '/img/'+service+'-logo.svg';
 	if (service === 'instagram') file = '/img/'+service+'-logo.png';
 	if (service === 'goodloop') {

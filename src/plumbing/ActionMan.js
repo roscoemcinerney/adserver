@@ -4,6 +4,7 @@ import ServerIO from './ServerIO';
 import _ from 'lodash';
 import {assert, assMatch} from 'sjtest';
 import C from '../C.js';
+import Login from 'hooru';
 
 const ActionMan = {};
 
@@ -40,6 +41,11 @@ ActionMan.setDataValue = (path, valueOrEvent) => {
 
 ActionMan.showLogin = () => {
 	DataStore.setShow(C.show.LoginWidget, true);
+};
+
+ActionMan.socialLogin = (service) => {
+	assMatch(service, String);
+	Login.auth(service);
 };
 
 ActionMan.savePublisher = (pubId) => {

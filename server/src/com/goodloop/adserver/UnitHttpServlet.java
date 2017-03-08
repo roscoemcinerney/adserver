@@ -143,8 +143,8 @@ public class UnitHttpServlet extends HttpServlet {
 		String advertJson = pa.getJson();
 		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
-		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL=//"
-				+config.adserverDomain+"/; goodloop.LBURL=//"+config.datalogDomain+"; ";
+		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL='//"
+				+config.adserverDomain+"/'; goodloop.LBURL='//"+config.datalogDomain+"'; ";
 		Log.d("unit", "config: "+config);
 		Log.d("unit", "vars: "+initjs);
 		String js = initjs+charityMap+charityVar+unitjs;
