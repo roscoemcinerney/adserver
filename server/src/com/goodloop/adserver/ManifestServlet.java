@@ -93,6 +93,8 @@ public class ManifestServlet extends HttpServlet {
 		Properties props = Dep.get(Properties.class);
 		
 		ArrayMap cargo = new ArrayMap();
+		// what did we load from?
+		cargo.put("configFiles", AdServerMain.configFiles);
 		// 
 //		String pd = props.getProperty(Creole.PROPERTY_PUBLISH_DATE);
 //		cargo.put(DB2Json.pubDate, pd);

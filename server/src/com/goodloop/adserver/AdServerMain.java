@@ -1,6 +1,8 @@
 package com.goodloop.adserver;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.goodloop.data.DB;
@@ -14,6 +16,7 @@ import com.winterwell.gson.KLoopPolicy;
 import com.winterwell.gson.StandardAdapters;
 import com.winterwell.utils.Dep;
 import com.winterwell.utils.containers.ArrayMap;
+import com.winterwell.utils.containers.ArraySet;
 import com.winterwell.utils.containers.Containers;
 import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.log.Log;
@@ -40,13 +43,17 @@ public class AdServerMain {
 
 	public static AdServerConfig settings;
 
+	static ArraySet<File> configFiles = new ArraySet();
+	
 	public static void main(String[] args) {
 		try {
 			settings = getConfig(new AdServerConfig(), args);
 			try {
 				Properties props = getConfig(new Properties(), args);
-				if (new File("config/version.properties").isFile()) {
-					new ArgsParser(props).set(new File("config/version.properties"));
+				File f = new File("config/version.properties");
+				if (f.isFile()) {
+					configFiles.add(f);
+					new ArgsParser(props).set(f);
 				}
 				System.out.println(props);
 			} catch(Throwable ex) {
@@ -73,9 +80,11 @@ public class AdServerMain {
 	
 
 	public static <X> X getConfig(X config, String[] args) {
-		config = ArgsParser.getConfig(config, args, new File("config/adserver.properties"), null);
+		// check several config files
+		List<File> files = new ArrayList();
+		files.add(new File("config/adserver.properties"));
 		String thingy = config.getClass().getSimpleName().toLowerCase().replace("config", "");
-		config = ArgsParser.getConfig(config, args, new File("config/"+thingy+".properties"), null);
+		files.add(new File("config/"+thingy+".properties"));
 		// live, local, test?
 		String machine = WebUtils2.hostname();
 		String serverType = new ArrayMap<String,String>(
@@ -89,9 +98,17 @@ public class AdServerMain {
 			serverType = "localserver";
 		}
 		Log.d("init", "serverType: "+serverType+" machine: "+machine);
-		config = ArgsParser.getConfig(config, args, new File("config/"+serverType+".properties"), null);
+		files.add(new File("config/"+serverType+".properties"));
 		// this computer specific
-		config = ArgsParser.getConfig(config, args, new File("config/"+machine+".properties"), null);
+		files.add(new File("config/"+machine+".properties"));		
+		// read them in
+		for (File file : files) {
+			if (file.exists()) {
+				config = ArgsParser.getConfig(config, args, file, null);
+				configFiles.add(file);
+			}
+		}
+		// dep.set
 		Dep.set((Class)config.getClass(), config);
 		assert config != null;
 		return config;
@@ -118,6 +135,7 @@ public class AdServerMain {
 				);
 		// mappings
 		DB.init(config);
+		Log.d("init", "Config files: "+configFiles);
 	}
 
 
