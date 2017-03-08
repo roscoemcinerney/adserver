@@ -135,8 +135,8 @@ const LoginWidget = ({showDialog}) => {
 	}[verb];
 
 	const doItFn = {
-		login: doEmailLogin,
-		register: doEmailRegister,
+		login: ActionMan.doEmailLogin,
+		register: ActionMan.doEmailRegister,
 		reset: null,
 	}[verb];
 
@@ -154,10 +154,6 @@ const LoginWidget = ({showDialog}) => {
 					<div className="col-sm-6 col-center">
 						<EmailSignin
 							verb={verb}
-							person={person}
-							password={password}
-							handleChange={handleChange}
-							doItFn={() => doItFn(person, password)}
 						/>
 						<div className="col-sm-6">
 							<SocialSignin verb={verb} services={null} />
@@ -171,11 +167,11 @@ const LoginWidget = ({showDialog}) => {
 				verb === 'register' ?
 					<div>
 						Already have an account?
-						&nbsp;<a href='#' onClick={() => handleChange('verb', 'login')}>Login</a>
+						&nbsp;<a href='#' onClick={() => ActionMan.setDataValue(['widget','LoginWidget','verb'], 'login')} >Login</a>
 					</div> :
 					<div>
 						Don&#39;t yet have an account?
-						&nbsp;<a href='#' onClick={() => handleChange('verb', 'register')}>Register</a>
+						&nbsp;<a href='#' onClick={() => ActionMan.setDataValue(['widget','LoginWidget','verb'], 'register')} >Register</a>
 					</div>
 			}
 			</Modal.Footer>

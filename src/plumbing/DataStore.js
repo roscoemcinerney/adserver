@@ -43,19 +43,24 @@ class Store {
 		if ( ! hits) return;
 		let itemstate = {data:{}};
 		hits.forEach(item => {
-			let type = getType(item);
-			if ( ! type) {
-				// skip
-				return;
+			try {
+				let type = getType(item);
+				if ( ! type) {
+					// skip
+					return;
+				}
+				assert(C.TYPES.has(type), item);
+				let typemap = itemstate.data[type];
+				if ( ! typemap) {
+					typemap = {};
+					itemstate.data[type] = typemap;
+				}
+				assert(item.id, item);
+				typemap[item.id] = item;
+			} catch(err) {
+				// swallow and carry on
+				console.error(err);
 			}
-			assert(C.TYPES.has(type), item);
-			let typemap = itemstate.data[type];
-			if ( ! typemap) {
-				typemap = {};
-				itemstate.data[type] = typemap;
-			}
-			assert(item.id, item);
-			typemap[item.id] = item;
 		});
 		this.update(itemstate);
 		return res;

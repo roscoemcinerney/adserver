@@ -55,9 +55,10 @@ const EditAdvertForm = ({advert}) => {
 	let path = [C.TYPES.Advert, advert.id];
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
-		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
+		On? <Misc.PropControl prop='active' type='Checkbox' path={path} item={pub} /> <br/>
 		Name <FormControl name='name' value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Target url <FormControl name='url' value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
+		Max Bid <Misc.PropControl type='MonetaryAmount' prop='maxBid' path={path} item={pub} /> <br/>
 		<SiteThumbnail url={pub.url} />
 		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>
 		Video <Misc.PropControl prop='video' path={path} item={pub} /> <br/>
@@ -69,7 +70,7 @@ const EditAdvertForm = ({advert}) => {
 	</div>);
 };
 
-const SiteThumbnail = ({url}) => url? <iframe style={{width:'200px',height:'150px;'}} src={url} /> : null;
+const SiteThumbnail = ({url}) => url? <iframe style={{width:'200px',height:'150px'}} src={url} /> : null;
 
 const VideoThumbnail = ({url}) => url? <video width={200} height={150} src={url} controls /> : null;
 
@@ -83,8 +84,8 @@ const ListAdverts = ({}) => {
 const ListAdvertItem = ({advert}) => {
 	return (
 		<div className='well'>
-			<button className='btn btn-default' onClick={() => ActionMan.setFocus(C.TYPES.Advert, advert.id)} >
-				{advert.id} {advert.name}
+			<button className={advert.active? 'btn btn-success' : 'btn btn-warning'} onClick={() => ActionMan.setFocus(C.TYPES.Advert, advert.id)} >
+				ID: {advert.id} Name: {advert.name} Active: {advert.active? 'Yes' : 'No'}
 			</button>
 		</div>
 	);

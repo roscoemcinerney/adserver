@@ -10,6 +10,7 @@ import DataStore from '../plumbing/DataStore';
 import ActionMan from '../plumbing/ActionMan';
 import ServerIO from '../plumbing/ServerIO';
 import NGO from '../data/NGO';
+import Misc from './Misc.jsx';
 
 class PublisherPage extends React.Component {
 
@@ -52,7 +53,7 @@ const EditPublisherForm = ({publisher}) => {
 	let path = [C.TYPES.Publisher, publisher.id];
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
-		On? <Checkbox checked={pub.active} onChange={e => ActionMan.setDataValue(_.concat(path, 'active'), e.target.value && true)} /> <br/>
+		On? <Misc.PropControl type='Checkbox' item={pub} prop='active' path={path} /> <br/>
 		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
 		Website <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
 		Owner <FormControl value={pub.owner} onChange={e => ActionMan.setDataValue(_.concat(path, 'owner'), e)} /> <br/>
@@ -96,8 +97,8 @@ const ListPublishers = ({}) => {
 const ListPublisherItem = ({publisher}) => {
 	return (
 		<div className='well'>
-			<button className='btn btn-default' onClick={() => ActionMan.setFocus(C.TYPES.Publisher, publisher.id)} >
-				{publisher.id} {publisher.name}
+			<button className={publisher.active? 'btn btn-success' : 'btn btn-warning'} onClick={() => ActionMan.setFocus(C.TYPES.Publisher, publisher.id)} >
+				<code>{publisher.id}</code> {publisher.name}
 			</button>
 		</div>
 	);

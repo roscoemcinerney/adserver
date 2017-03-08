@@ -314,7 +314,7 @@ function pick(charitydiv) {
 		$thankYou.append($('<div style="margin:10px;"><a href="#" onclick="goodloop.skip();">Return to page</a></div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="'+goodloop.vert.url+'" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + goodloop.vert.name + '</a></div>'));
 		$thankYou.append($('<div style="margin:10px;"><a href="' + curl + '" target="_blank" rel="nofollow" onclick="goodloop.clickthru(this);">Go to ' + cname + '</a></div>'));
-		$thankYou.append($('<div style="margin:10px; font-size:75%;"><a href="https://www.good-loop.com/" target="_blank" onclick="goodloop.clickthru(this);">Find out more about Good-Loop</a></div>'));
+		$thankYou.append($('<div style="margin:10px; font-size:75%;"><a href="http://www.good-loop.com/" target="_blank" onclick="goodloop.clickthru(this);">Find out more about Good-Loop</a></div>'));
 		$adcontents.append($thankYou);
 	}.bind(this));
 

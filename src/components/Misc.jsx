@@ -7,7 +7,7 @@ import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
 
-import {FormControl} from 'react-bootstrap';
+import {FormControl,Checkbox} from 'react-bootstrap';
 import ActionMan from '../plumbing/ActionMan';
 
 // console.warn("TODO use i18n", i18n);
@@ -67,15 +67,16 @@ Misc.Logo = ({service, size, transparent}) => {
 	);
 }; // ./Logo
 
-Misc.Checkbox = ({on, label, onChange}) => (
-	<div className="checkbox">
-		<label>
-			<input onChange={onChange} type="checkbox" checked={on || false} /> {label}
-		</label>
-	</div>
-);
-
-Misc.PropControl = ({prop,path,item}) => 
-	<FormControl name={prop} value={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
+Misc.PropControl = ({prop,path,item, type}) => {
+	if (type==='Checkbox') {
+		return <Checkbox checked={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e.target.checked)} />;
+	}
+	if (type==='MonetaryAmount') {
+		let v100 = (item[prop] && item[prop].value100) || 0;
+		let path2 = path.slice().concat([prop, 'value100']);
+		return <FormControl name={prop} value={v100} onChange={e => ActionMan.setDataValue(path2, e)} />;
+	}
+	return <FormControl name={prop} value={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
+}
 
 export default Misc;
