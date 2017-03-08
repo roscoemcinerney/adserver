@@ -455,6 +455,7 @@ function adSideRectangle(w, h, adunitid) {
 }
 
 function adFixedBottom(w, h, adunitid) {
+	var charities = [goodloop.unit.charity0, goodloop.unit.charity1, goodloop.unit.charity2];
 	var headline = variant.mobilectaheadline.replace('{variant.adsecs}', variant.adsecs);
 	var myunit =
 	'<div class="goodloop-adunit mobile" style="width:' + w + 'px;height:' + h + 'px;" data-adunit="' + adunitid + '">' +
