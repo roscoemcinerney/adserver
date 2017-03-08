@@ -197,11 +197,6 @@ if ($('.good-loop-adblock').length !== 0) {
 	return; 
 }
 
-// // HACK demo only
-if ((""+window.location).indexOf("good-loop") == -1 && (""+window.location).indexOf("local") == -1 && (""+window.location).indexOf("soki") == -1) {
-	return;
-}
-
 // Tracking Pixel
 datalog.track();
 // datalog.log('goodloop', 'view-page', {publisher: publisher});
