@@ -63,7 +63,7 @@ import jobs.BuildWinterwellProject;
  */
 public class PublishAdserver extends BuildTask {
 
-	String server = "testas.good-loop.com"; // datalog.soda.sh
+	String server = "as.good-loop.com"; // datalog.soda.sh
 	String remoteUser;
 	private String remoteWebAppDir;
 	private File localWebAppDir;

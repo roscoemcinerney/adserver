@@ -62,7 +62,7 @@ import jobs.BuildWinterwellProject;
  */
 public class PublishPortal extends BuildTask {
 
-	String server = "testas.good-loop.com"; // datalog.soda.sh
+	String server = "as.good-loop.com"; // datalog.soda.sh
 	String remoteUser;
 	private String remoteWebAppDir;
 	private File localWebAppDir;
@@ -148,7 +148,7 @@ public class PublishPortal extends BuildTask {
 		// Check that we are running from a plausible dir:
 		if (! localWebAppDir.exists() || ! new File(localWebAppDir, "bin").isDirectory()
 			|| !new File(localWebAppDir,"web").exists()) {
-			throw new IOException("Not in the expected directory! dir="+FileUtils.getWorkingDirectory());
+			throw new IOException("Not in the expected directory! dir="+FileUtils.getWorkingDirectory()+" but no "+localWebAppDir);
 		}
 		Log.i("publish", "Publishing to "+server+":"+ remoteWebAppDir);
 		// What's going on?
