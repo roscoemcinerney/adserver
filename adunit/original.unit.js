@@ -420,8 +420,8 @@ function adSideRectangle(w, h, adunitid) {
 	var charities = [goodloop.unit.charity0, goodloop.unit.charity1, goodloop.unit.charity2];
 	var headline = variant.ctaheadline.replace('{variant.adsecs}', variant.adsecs);
 	var myunit =
-	'<div class="goodloop-adunit" style="width:' + w + 'px;height:' + h + 'px;" data-adunit="' + adunitid + '">' +
-	'	<div style="text-align:center;font-size:18px;line-height:20px;height:41px;font-weight:bold;margin:0px;padding:0px;">' + headline + '</div>' +
+	'<div class="goodloop-adunit" style="width:' + w + 'px;height:' + h + 'px;border-radius:4px;background-color:rgba(128,128,128,0.62);" data-adunit="' + adunitid + '">' +
+	'	<div style="text-align:center;font-family:sans-serif;font-size:18px;line-height:20px;height:41px;font-weight:bold;margin:0px;padding:0px;">' + headline + '</div>' +
 	'	<div style="margin:4px auto;width:260px;padding:0px;">';
 	for(var ci=0; ci<charities.length; ci++) {
 		var charity = charities[ci];
@@ -430,8 +430,8 @@ function adSideRectangle(w, h, adunitid) {
 			continue;
 		}
 		myunit +=
-	'		<div class="" style="width:100%;margin:0px;padding:0px;position:relative;">' +
-	'			<div title="' + charity.name + '" data-charity="' + charity.name + '" data-charity-url="' + charity.url + '" onclick="goodloop.pick(this);" class="goodloop-play">' +
+	'		<div class="" style="background-color:#E4E4E4;width:100%;margin:0px;padding:0px;position:relative;">' +
+	'			<div style="border:none;" title="' + charity.name + '" data-charity="' + charity.name + '" data-charity-url="' + charity.url + '" onclick="goodloop.pick(this);" class="goodloop-play">' +
 	'				<center style="margin:0px;padding:0px;max-height:43px;">' +
 	'					<img src="' + charity.logo + '" class="goodloop-charitylogowide" style="">' +
 	'					<img src="' + goodloop.BURL + 'play-overlay.png" class="goodloop-playoverlay">' +
@@ -441,8 +441,8 @@ function adSideRectangle(w, h, adunitid) {
 	}
 	myunit +=
 	'	</div>' +
-	'	<div style="clear:both;font-size:14px;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
-	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
+	'	<div style="clear:both;font-family:sans-serif;font-size:14px;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
+	'	<div style="margin:0;font-family:sans-serif;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
 	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
 	'	</div>' +
 	'</div>';
