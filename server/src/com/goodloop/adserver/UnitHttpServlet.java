@@ -135,12 +135,15 @@ public class UnitHttpServlet extends HttpServlet {
 		pa.run();
 		
 		if (pa.advert==null) {
-			// TODO fallback url if provided
+			// TODO fallback tag or url if provided
 			// send http 503 error
+			WebUtils2.sendError(503, "Sorry we dont have an advert for you today.", state.getResponse());
+			return;
 		}
 		Log.d("unit", "Advert: "+pa.advert);
 		
 		String advertJson = pa.getJson();
+		Log.d("unit", "Advert-json: "+advertJson);
 		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
 		
 		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL='//"
