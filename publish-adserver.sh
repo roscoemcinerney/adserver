@@ -36,22 +36,22 @@ for server in ${TARGETSERVERS[*]}; do
 	ssh winterwell@$server.soda.sh 'service portalmain stop'
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/lib/*.jar'
 	echo "Jar files on $server cleared, putting in new jars..."
-	rsync -hP tmp-lib/*.jar winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/lib/
+	rsync -rhP tmp-lib/*.jar winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/lib/
 	echo "New jars have been synced.  Now syncing configs, JS, and everything else"
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/adunit/*'
-	rsync -hP adunit/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/adunit/
+	rsync -rhP adunit/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/adunit/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/config/*'
-	rsync -hP config/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/config/
+	rsync -rhP config/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/config/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/server/*'
-	rsync -hP server/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/server/
+	rsync -rhP server/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/server/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/src/*'
-	rsync -hP src/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/src/
+	rsync -rhP src/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/src/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/test/*'
-	rsync -hP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
+	rsync -rhP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
-	rsync -hP web-as/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-as/
+	rsync -rhP web-as/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-as/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-portal/*'
-	rsync -hP web-portal/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-portal/
+	rsync -rhP web-portal/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-portal/
 	echo "All files synced"
 	echo "Satisfying all NPM dependencies"
 	ssh winterwell@$server.soda.sh 'cd /home/winterwell/as.good-loop.com/ && npm i'
