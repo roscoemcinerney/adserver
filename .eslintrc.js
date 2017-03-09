@@ -8,6 +8,7 @@ module.exports = {
 	"rules": {
 		/* off because we dont agree with AirBnB's settings */
 		"arrow-body-style": "off",
+		"no-confusing-arrow": "off",
 		"arrow-parens": "off",
 		"brace-style": "warn",
 		"camelcase": "off", // we use camelCase, but we also break it in places, e.g. myFn2_subFn()

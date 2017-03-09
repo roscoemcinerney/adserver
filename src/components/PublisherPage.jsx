@@ -54,10 +54,10 @@ const EditPublisherForm = ({publisher}) => {
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Misc.PropControl type='Checkbox' item={pub} prop='active' path={path} /> <br/>
-		Name <FormControl value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
-		Website <FormControl value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
-		Owner <FormControl value={pub.owner} onChange={e => ActionMan.setDataValue(_.concat(path, 'owner'), e)} /> <br/>
-		Keywords <FormControl value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
+		Name <Misc.PropControl item={pub} path={path} prop='name' /> <br/>
+		Website <Misc.PropControl item={pub} path={path} prop='url' /> <br/>
+		Owner <Misc.PropControl item={pub} path={path} prop='owner' /> <br/>
+		Keywords <Misc.PropControl item={pub} path={path} prop='keywords' /> <br/>
 		Charities (direct entry for now)	
 		<Grid fluid><Row>
 			<Col sm={4}><CharityForm publisher={pub} i={0} charity={pub.charity0} /></Col>
@@ -78,10 +78,10 @@ const CharityForm = ({publisher, i, charity}) => {
 	return (
 		<div className='well'>
 			<h4>Charity {i}</h4>
-			ID: <input value={charity.id} onChange={e => ActionMan.setDataValue(_.concat(path, 'id'), e)} /> <br/>
-			name: <input value={charity.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
-			url: <input value={charity.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
-			Logo: <input value={charity.logo} onChange={e => ActionMan.setDataValue(_.concat(path, 'logo'), e)} />
+			ID: <Misc.PropControl item={charity} path={path} prop='id' /> <br/>
+			name: <Misc.PropControl item={charity} path={path} prop='name' /> <br/>
+			url: <Misc.PropControl item={charity} path={path} prop='url' /> <br/>
+			Logo: <Misc.PropControl item={charity} path={path} prop='logo' /> />
 			{logo}
 		</div>
 	);

@@ -76,7 +76,7 @@ Misc.PropControl = ({prop,path,item, type}) => {
 		let path2 = path.slice().concat([prop, 'value100']);
 		return <FormControl name={prop} value={v100} onChange={e => ActionMan.setDataValue(path2, e)} />;
 	}
-	return <FormControl name={prop} value={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
+	return <FormControl name={prop} value={item[prop]===undefined? '' : item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
 }
 
 export default Misc;

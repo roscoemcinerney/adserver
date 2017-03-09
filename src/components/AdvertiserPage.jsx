@@ -5,7 +5,7 @@ import SJTest, {assert} from 'sjtest';
 import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
-import {Button,FormGroup,FormControl,Checkbox,HelpBlock,ControlLabel,Grid,Row,Col} from 'react-bootstrap';
+import {Button,FormGroup,HelpBlock,ControlLabel,Grid,Row,Col} from 'react-bootstrap';
 import DataStore from '../plumbing/DataStore';
 import ActionMan from '../plumbing/ActionMan';
 import ServerIO from '../plumbing/ServerIO';
@@ -36,7 +36,7 @@ class AdvertiserPage extends React.Component {
     }
 }
 
-const RegisterNewAdvert = ({}) => {
+const RegisterNewAdvert = () => {
 	let blank = {id: C.newId, charities:[{},{},{}]};
 	return (<div><h3>RegisterNewAdvert</h3>
 			<EditAdvertForm advert={blank} />
@@ -56,15 +56,15 @@ const EditAdvertForm = ({advert}) => {
 	return (<div className='form'>
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Misc.PropControl prop='active' type='Checkbox' path={path} item={pub} /> <br/>
-		Name <FormControl name='name' value={pub.name} onChange={e => ActionMan.setDataValue(_.concat(path, 'name'), e)} /> <br/>
-		Target url <FormControl name='url' value={pub.url} onChange={e => ActionMan.setDataValue(_.concat(path, 'url'), e)} /> <br/>
+		Name <Misc.PropControl item={pub} path={path} prop='name' /> <br/>
+		Target url <Misc.PropControl item={pub} path={path} prop='url' /> <br/>
 		Max Bid <Misc.PropControl type='MonetaryAmount' prop='maxBid' path={path} item={pub} /> <br/>
 		<SiteThumbnail url={pub.url} />
-		Campaign <FormControl value={pub.campaign} onChange={e => ActionMan.setDataValue(_.concat(path, 'campaign'), e)} /> <br/>
+		Campaign <Misc.PropControl item={pub} path={path} prop='campaign' /> <br/>
 		Video <Misc.PropControl prop='video' path={path} item={pub} /> <br/>
 		<VideoThumbnail url={pub.video} />
-		Mobile Video <FormControl name='mobileVideo' value={pub.mobileVideo} onChange={e => ActionMan.setDataValue(_.concat(path, 'mobileVideo'), e)} /> <br/>
-		Keywords (all must match) <FormControl value={pub.keywords} onChange={e => ActionMan.setDataValue(_.concat(path, 'keywords'), e)} /> <br/>
+		Mobile Video <Misc.PropControl path={path} item={pub} prop='mobileVideo' /> <br/>
+		Keywords (all must match) <Misc.PropControl path={path} item={pub} prop='keywords' /> <br/>
 
 		<Button className='btn btn-primary' onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>
 	</div>);
@@ -74,7 +74,7 @@ const SiteThumbnail = ({url}) => url? <iframe style={{width:'200px',height:'150p
 
 const VideoThumbnail = ({url}) => url? <video width={200} height={150} src={url} controls /> : null;
 
-const ListAdverts = ({}) => {
+const ListAdverts = () => {
 	let pubs = _.map(_.values(DataStore.appstate.data.Advert), pub => <ListAdvertItem key={pub.id} advert={pub} /> );
 	return (<div><h3>List Adverts</h3>
 			{pubs}
