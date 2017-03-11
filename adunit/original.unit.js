@@ -125,6 +125,8 @@ var $styles = $(
 '	margin: 0px;' +
 '	padding: 2px;' +
 '	display: inline-block;' +
+'	background-color:rgba(128,128,128,0.62);' +
+'	font-family: sans-serif;' +
 '}' +
 '.goodloop-adunit.mobile {' +
 '	z-index: 7000;' +
@@ -406,13 +408,6 @@ const VIDBOX =
 
 var $vidbox = $(VIDBOX);
 $('body').append($vidbox);
-// add some css rules
-// var css = $('<style type="text/css">.goodloop-play:hover { border:red 2px solid; }</style>');
-// var css = document.createElement("style");
-// css.type = "text/css";
-// css.innerHTML = "strong { color: red }";
-// document.body.appendChild(css);
-// $('body').append(css);
 
 var $adcontents = $('.adcontents');
 
@@ -420,8 +415,8 @@ function adSideRectangle(w, h, adunitid) {
 	var charities = [goodloop.unit.charity0, goodloop.unit.charity1, goodloop.unit.charity2];
 	var headline = variant.ctaheadline.replace('{variant.adsecs}', variant.adsecs);
 	var myunit =
-	'<div class="goodloop-adunit" style="width:' + w + 'px;height:' + h + 'px;border-radius:4px;background-color:rgba(128,128,128,0.62);" data-adunit="' + adunitid + '">' +
-	'	<div style="text-align:center;font-family:sans-serif;font-size:18px;line-height:20px;height:41px;font-weight:bold;margin:0px;padding:0px;">' + headline + '</div>' +
+	'<div class="goodloop-adunit" style="width:' + w + 'px;height:' + h + 'px;border-radius:4px;" data-adunit="' + adunitid + '">' +
+	'	<div style="text-align:center;font-size:18px;line-height:20px;height:41px;font-weight:bold;margin:0px;padding:0px;">' + headline + '</div>' +
 	'	<div style="margin:4px auto;width:260px;padding:0px;">';
 	for(var ci=0; ci<charities.length; ci++) {
 		var charity = charities[ci];
@@ -441,8 +436,8 @@ function adSideRectangle(w, h, adunitid) {
 	}
 	myunit +=
 	'	</div>' +
-	'	<div style="clear:both;font-family:sans-serif;font-size:14px;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
-	'	<div style="margin:0;font-family:sans-serif;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
+	'	<div style="clear:both;font-size:14px;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
+	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
 	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
 	'	</div>' +
 	'</div>';
@@ -488,11 +483,14 @@ function tqSideRectangle(uparams) {
 	}
 
 	var myunit =
-	'<div class="goodlooptq" style="position:relative;overflow:hidden;margin:0px;padding:2px;display:inline-block;width:' + uparams.width + 'px;height:' + uparams.height + 'px;" data-adunit="' + uparams.adunitid + '">' +
+	'<div class="goodloop-adunit goodlooptq" style="position:relative;overflow:hidden;margin:0px;padding:2px;display:inline-block;width:' + uparams.width + 'px;height:' + uparams.height + 'px;" data-adunit="' + uparams.adunitid + '">' +
 	'	<center>' +
 	'		<h2>Thank you</h2><h3>for watching an ad for</h3>' +
 	'		<img src="' + c.logo + '" class="goodloop-charitylogowide">' +
 	'	</center>' +
+	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
+	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
+	'	</div>' +
 	'</div>';
 	return myunit;
 }
