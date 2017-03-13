@@ -33,7 +33,6 @@ esac
 ## Cleaning the target's old JARs
 for server in ${TARGETSERVERS[*]}; do
 	ssh winterwell@$server.soda.sh 'service adservermain stop'
-	ssh winterwell@$server.soda.sh 'service portalmain stop'
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/lib/*.jar'
 	echo "Jar files on $server cleared, putting in new jars..."
 	rsync -rhP tmp-lib/*.jar winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/lib/
@@ -53,13 +52,9 @@ for server in ${TARGETSERVERS[*]}; do
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-portal/*'
 	rsync -rhP web-portal/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-portal/
 	echo "All files synced"
-	echo "Satisfying all NPM dependencies"
-	ssh winterwell@$server.soda.sh 'cd /home/winterwell/as.good-loop.com/ && npm i'
-	echo "Webpacking..."
-	ssh winterwell@$server.soda.sh 'cd /home/winterwell/as.good-loop.com/ && npm run compile'
-	echo "Starting the Adserver and Portal processes"
+	echo ""
+	echo "Starting the Adserver process"
 	ssh winterwell@$server.soda.sh 'service adservermain start'
-	ssh winterwell@$server.soda.sh 'service portalmain start'
 	echo "$server has been updated"
 	echo ''
 	echo ''
