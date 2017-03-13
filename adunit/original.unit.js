@@ -438,8 +438,8 @@ function adSideRectangle(w, h, adunitid) {
 	myunit +=
 	'	</div>' +
 	'	<div class="goodloop-text" style="clear:both;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
-	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
-	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
+	'	<div style="color:#555;margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
+	'		Opt-in ads by <a style="color:#555;" href="http://good-loop.com" target="_blank">Good-Loop</a>' +
 	'	</div>' +
 	'</div>';
 	return myunit;
