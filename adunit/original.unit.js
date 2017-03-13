@@ -125,9 +125,10 @@ var $styles = $(
 '	margin: 0px;' +
 '	padding: 2px;' +
 '	display: inline-block;' +
-'	background-color:rgba(128,128,128,0.62);' +
+'	background-color:rgba(192,192,192,0.62);' +
 '	font-family: sans-serif;' +
 '}' +
+'.goodloop-text {color:#000; font-size:14px;}' +
 '.goodloop-adunit.mobile {' +
 '	z-index: 7000;' +
 '	background-color: white;' +
@@ -436,7 +437,7 @@ function adSideRectangle(w, h, adunitid) {
 	}
 	myunit +=
 	'	</div>' +
-	'	<div style="clear:both;font-size:14px;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
+	'	<div class="goodloop-text" style="clear:both;padding-top:2px;margin:0px;text-align:center">Click on the charity you would like to support.</div>' +
 	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
 	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
 	'	</div>' +
@@ -488,8 +489,8 @@ function tqSideRectangle(uparams) {
 	'		<h2>Thank you</h2><h3>for watching an ad for</h3>' +
 	'		<img src="' + c.logo + '" class="goodloop-charitylogowide">' +
 	'	</center>' +
-	'	<div style="margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
-	'		Opt-in ads by <a href="http://good-loop.com" target="_blank">Good-Loop</a>' +
+	'	<div style="color:#555;margin:0;padding:0;position:absolute;bottom:0px;right:1px;font-size:12px; opacity:0.5;">' +
+	'		Opt-in ads by <a style="color:#555;" href="http://good-loop.com" target="_blank">Good-Loop</a>' +
 	'	</div>' +
 	'</div>';
 	return myunit;
