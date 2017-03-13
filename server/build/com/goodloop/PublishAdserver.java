@@ -208,7 +208,7 @@ public class PublishAdserver extends BuildTask {
 			jarTask.run();
 			jarTask.close();
 			
-//			if (true) return;
+			if (true) return;
 			
 			// Do the rsync!
 			String from = localLib.getAbsolutePath();
