@@ -32,6 +32,7 @@
   "scripts": {
     "test-watch": "webpack --config webpack.config.test.js --progress --colors --watch",
     "compile-watch": "webpack --config webpack.config.dev.js --progress --colors --watch",
+	"compile-watch-as": "webpack --config webpack.config.as.js --progress --colors --watch",
     "compile": "webpack -p",
     "compile-dev": "webpack --config webpack.config.dev.js",
     "compile-mocha": "webpack --config webpack.config.mocha.js",
