@@ -49,8 +49,6 @@ for server in ${TARGETSERVERS[*]}; do
 	rsync -rhP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
 	rsync -rhP web-as/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-as/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-portal/*'
-	rsync -rhP web-portal/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-portal/
 	echo "All files synced"
 	echo ""
 	echo "Starting the Adserver process"
