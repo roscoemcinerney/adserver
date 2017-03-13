@@ -1,6 +1,6 @@
 # !/bin/bash
 
-#Publisher/Updater to the Good-Loop AdServer
+#Publisher/Updater to the Good-Loop Portal
 
 TYPEOFPUSH=$1
 
@@ -32,7 +32,7 @@ esac
 
 ## Cleaning the target's old JARs
 for server in ${TARGETSERVERS[*]}; do
-	ssh winterwell@$server.soda.sh 'service adservermain stop'
+	ssh winterwell@$server.soda.sh 'service portalmain stop'
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/lib/*.jar'
 	echo "Jar files on $server cleared, putting in new jars..."
 	rsync -rhP tmp-lib/*.jar winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/lib/
@@ -47,12 +47,12 @@ for server in ${TARGETSERVERS[*]}; do
 	rsync -rhP src/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/src/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/test/*'
 	rsync -rhP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
-	rsync -rhP web-as/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-as/
+	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-portal/*'
+	rsync -rhP web-portal/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-portal/
 	echo "All files synced"
 	echo ""
-	echo "Starting the Adserver process"
-	ssh winterwell@$server.soda.sh 'service adservermain start'
+	echo "Starting the Portal process"
+	ssh winterwell@$server.soda.sh 'service portalmain start'
 	echo "$server has been updated"
 	echo ''
 	echo ''
