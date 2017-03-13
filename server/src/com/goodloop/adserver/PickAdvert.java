@@ -17,6 +17,7 @@ import com.winterwell.utils.Dep;
 import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.TodoException;
 import com.winterwell.utils.Utils;
+import com.winterwell.utils.containers.Containers;
 import com.winterwell.utils.log.Log;
 import com.winterwell.web.app.WebRequest;
 
@@ -51,7 +52,7 @@ public class PickAdvert {
 			boolean ok = true;
 			for (String kw : keywords) {
 				if (pub.keywords==null || ! StrUtils.containsIgnoreCase(pub.keywords, kw)) {
-					Log.d("PickAdvert", "Skip "+ad+" for "+pub);
+//					Log.d("PickAdvert", "Skip "+ad+" for "+pub);
 					ok = false;
 					break;
 				}				
@@ -61,7 +62,7 @@ public class PickAdvert {
 			}
 		}		
 		advert = bestAd.getBest();
-		Log.d("PickAdvert", "Winner: "+advert+" from "+ads);
+		Log.d("PickAdvert", "Winner: "+advert.id+" from "+Containers.apply(ads, a -> a.id));
 	}
 
 	public String getJson() {
