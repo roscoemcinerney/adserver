@@ -34,7 +34,7 @@ class PublisherPage extends React.Component {
     }
 }
 
-const RegisterNewPublisher = ({}) => {
+const RegisterNewPublisher = () => {
 	let blank = {id: C.newId, charities:[{},{},{}]};
 	return (<div><h3>RegisterNewPublisher</h3>
 			<EditPublisherForm publisher={blank} />
@@ -65,6 +65,19 @@ const EditPublisherForm = ({publisher}) => {
 			<Col sm={4}><CharityForm publisher={pub} i={2} charity={pub.charity2} /></Col>
 		</Row></Grid>
 
+		<FormGroup>
+			Optional Backfill
+			<small>
+				If we don't have an advert, then the backfill code will be inserted. This lets
+				bloggers setup a waterfall of ad-providers. E.g. Good-Loop (high-value, high-quality) can pass control to AdSense (more coverage).
+			</small>
+			<Misc.PropControl type='textarea' item={pub} prop='backfill' path={path} /> <br/>
+		</FormGroup>
+		<FormGroup>
+			Backfill trigger price (backfill if we can't beat this value) - 0 is the default for backfill when we have no advert, -1 will switch backfill off.
+			<Misc.PropControl type='MonetaryAmount' item={pub} prop='backfillPrice' path={path} /> <br/>
+		</FormGroup>
+
 		<button className='btn btn-primary' onClick={() => ActionMan.savePublisher(publisher.id)}>Save</button>
 	</div>);
 };
@@ -87,7 +100,7 @@ const CharityForm = ({publisher, i, charity}) => {
 	);
 };
 
-const ListPublishers = ({}) => {
+const ListPublishers = () => {
 	let pubs = _.map(_.values(DataStore.appstate.data.Publisher), pub => <ListPublisherItem key={pub.id} publisher={pub} /> );
 	return (<div><h3>List Publishers</h3>
 			{pubs}

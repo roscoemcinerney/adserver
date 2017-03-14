@@ -7,7 +7,7 @@ import _ from 'lodash';
 import printer from '../utils/printer.js';
 import C from '../C.js';
 
-import {FormControl,Checkbox} from 'react-bootstrap';
+import {FormControl,Checkbox,Textarea} from 'react-bootstrap';
 import ActionMan from '../plumbing/ActionMan';
 
 // console.warn("TODO use i18n", i18n);
@@ -76,7 +76,12 @@ Misc.PropControl = ({prop,path,item, type}) => {
 		let path2 = path.slice().concat([prop, 'value100']);
 		return <FormControl name={prop} value={v100} onChange={e => ActionMan.setDataValue(path2, e)} />;
 	}
-	return <FormControl name={prop} value={item[prop]===undefined? '' : item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e)} />;
-}
+	const onChange = e => ActionMan.setDataValue(_.concat(path, prop), e);
+	const value = item[prop]===undefined? '' : item[prop];
+	if (type==='textarea') {
+		return <FormControl componentClass="textarea" name={prop} value={value} onChange={onChange} />;
+	}
+	return <FormControl name={prop} value={value} onChange={onChange} />;
+};
 
 export default Misc;
