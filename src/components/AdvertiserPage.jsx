@@ -57,9 +57,8 @@ const EditAdvertForm = ({advert}) => {
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Misc.PropControl prop='active' type='Checkbox' path={path} item={pub} /> <br/>
 		Name <Misc.PropControl item={pub} path={path} prop='name' /> <br/>
-		Target url <Misc.PropControl item={pub} path={path} prop='url' /> <br/>
+		Landing page url <Misc.PropControl type='url' item={pub} path={path} prop='url' /> <br/>
 		Max Bid <Misc.PropControl type='MonetaryAmount' prop='maxBid' path={path} item={pub} /> <br/>
-		<SiteThumbnail url={pub.url} />
 		Campaign <Misc.PropControl item={pub} path={path} prop='campaign' /> <br/>
 		Video <Misc.PropControl prop='video' path={path} item={pub} /> <br/>
 		<VideoThumbnail url={pub.video} />
@@ -69,8 +68,6 @@ const EditAdvertForm = ({advert}) => {
 		<Button className='btn btn-primary' onClick={() => ActionMan.saveAdvert(advert.id)}>Save</Button>
 	</div>);
 };
-
-const SiteThumbnail = ({url}) => url? <iframe style={{width:'200px',height:'150px'}} src={url} /> : null;
 
 const VideoThumbnail = ({url}) => url? <video width={200} height={150} src={url} controls /> : null;
 

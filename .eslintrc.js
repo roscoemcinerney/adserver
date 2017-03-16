@@ -46,6 +46,7 @@ module.exports = {
 		/* broken - seems to cause errors in linting */
 		"no-multi-assign": "off",
 		/* off because the warnings are more noise than signal i.e. we might switch them on sometime*/
+		"react/jsx-no-target-blank": "warn",
 		"comma-spacing": "off",
 		"consistent-return": "warn",
 		"import/extensions": "warn",

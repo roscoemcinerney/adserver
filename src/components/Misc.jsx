@@ -68,6 +68,7 @@ Misc.Logo = ({service, size, transparent}) => {
 }; // ./Logo
 
 Misc.PropControl = ({prop,path,item, type}) => {
+	const value = item[prop]===undefined? '' : item[prop];
 	if (type==='Checkbox') {
 		return <Checkbox checked={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e.target.checked)} />;
 	}
@@ -77,11 +78,21 @@ Misc.PropControl = ({prop,path,item, type}) => {
 		return <FormControl name={prop} value={v100} onChange={e => ActionMan.setDataValue(path2, e)} />;
 	}
 	const onChange = e => ActionMan.setDataValue(_.concat(path, prop), e);
-	const value = item[prop]===undefined? '' : item[prop];
 	if (type==='textarea') {
 		return <FormControl componentClass="textarea" name={prop} value={value} onChange={onChange} />;
 	}
+	if (type==='url') {
+		return (<div>
+			<FormControl type='url' componentClass="textarea" name={prop} value={value} onChange={onChange} />
+			<div className='pull-right'><Misc.SiteThumbnail url={value} /></div>
+			<div className='clearfix' />
+		</div>);
+	}
+	// normal
 	return <FormControl name={prop} value={value} onChange={onChange} />;
 };
+
+Misc.SiteThumbnail = ({url}) => url? <a href={url} target='_blank'><iframe style={{width:'150px',height:'100px'}} src={url} /></a> : null;
+
 
 export default Misc;

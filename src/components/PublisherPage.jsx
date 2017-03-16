@@ -55,7 +55,7 @@ const EditPublisherForm = ({publisher}) => {
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Misc.PropControl type='Checkbox' item={pub} prop='active' path={path} /> <br/>
 		Name <Misc.PropControl item={pub} path={path} prop='name' /> <br/>
-		Website <Misc.PropControl item={pub} path={path} prop='url' /> <br/>
+		Website <Misc.PropControl type='url' item={pub} path={path} prop='url' /> <br/>
 		Owner <Misc.PropControl item={pub} path={path} prop='owner' /> <br/>
 		Keywords <Misc.PropControl item={pub} path={path} prop='keywords' /> <br/>
 		Charities (direct entry for now)	
@@ -77,6 +77,7 @@ const EditPublisherForm = ({publisher}) => {
 			Backfill trigger price (backfill if we can't beat this value) - 0 is the default for backfill when we have no advert, -1 will switch backfill off.
 			<Misc.PropControl type='MonetaryAmount' item={pub} prop='backfillPrice' path={path} /> <br/>
 		</FormGroup>
+		<Misc.PropControl type='url' item={pub} prop='moreInfo' path={path} /> <br/>
 
 		<button className='btn btn-primary' onClick={() => ActionMan.savePublisher(publisher.id)}>Save</button>
 	</div>);
