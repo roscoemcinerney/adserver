@@ -1,0 +1,60 @@
+// This file is actually js, but it holds html templates.
+// 728x90 ad unit (leaderboard)
+
+goodloop.html = {};
+
+goodloop.html.leaderboard = `<div class="gdlpafg leaderboard">
+    <header class="animatable">
+        <span class="adlogo"></span>
+        <h1>Watch an ad with Good Loop.</h1>
+        <h2>Free money goes to charity.</h2>
+        <span class="play"></span>
+    </header>
+
+    <ul class="afg_charities">
+        <li class="shelter"><em></em><span>Shelter</span></li>
+        <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
+        <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
+    </ul>
+</div>`;
+
+
+goodloop.html.thankyou = `
+    <div class="thankyou">
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_company_name">KERB FOOD</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_charity_name">$charity</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_gl_link">Find out more about opt-in ads by Good-Loop.</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_tw">Twitter</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_fb">Facebook</a>
+    </div>`;
+
+
+goodloop.html.videobox = `
+    <div class="gdlpafg video">
+        <button class="close">×</button>
+        <div class="afg_charity_chooser">
+            <h2>Pick the charity you'd like to receive a free donation.</h2>
+            <ul class="afg_video_charities">
+                <li class="azru"><span>Alzheimer's Research UK</span></li>
+                <li class="shelter"><span>Shelter</span></li>
+                <li class="bdh"><span>Battersea Dogs Home</span></li>
+            </ul>
+        </div>
+        <div class="vcontainer">
+            <div><!-- to be centred by flex -->
+                <video src="https://as.good-loop.com/vert/kerb-480p.m4v" controls=""></video>
+                <div class="finished">
+                    <p class="afg_ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="afg_gl">Good-Loop</a> ad!</p>
+                    <p><span class="afg_company_name">KERB FOOD</span> has funded your donation to <span class="afg_charity_name">$charity</span></p>
+                    <p>Double your donation by sharing</p>
+                    <p class="afg_share"><a class="afg_fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="afg_tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
+                </div>
+                <ul class="messages">
+                    <li class="messages_countdown">Your donation will be unlocked in <span class="counter">20</span> seconds</li>
+                    <li class="messages_done"><span class="afg_company_name">KERB FOOD</span> has funded your donation to 
+                    <span class="afg_charity_name">$charity</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+`;
