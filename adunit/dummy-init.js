@@ -4,6 +4,11 @@ goodloop.LBURL= '';
 
 goodloop.publisher = window.location.hostname;
 
+goodloop.vert = {
+	url: '',
+	campaign: '',
+};
+
 goodloop.variant = {
 	adsecs: 9 // TODO explore the effect of 5-15 seconds
 };
