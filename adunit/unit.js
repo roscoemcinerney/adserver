@@ -1,4 +1,5 @@
 
+$(function(){
 // Installed on the page already?
 if (goodloop.installed) return;
 goodloop.installed = true;
@@ -228,3 +229,5 @@ function skipDown(adEnd) {
 		$('#skip').click(skip);
 	}
 }
+
+});
