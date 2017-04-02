@@ -1,9 +1,10 @@
 // This file is actually js, but it holds html templates.
 // 728x90 ad unit (leaderboard)
+{
 
 goodloop.html = {};
 
-goodloop.html.leaderboard = `<div class="gdlpafg leaderboard">
+goodloop.html.leaderboard = () => `<div class="gdlpafg leaderboard" onclick="">
     <header class="animatable">
         <span class="adlogo"></span>
         <h1>Watch an ad with Good Loop.</h1>
@@ -12,12 +13,13 @@ goodloop.html.leaderboard = `<div class="gdlpafg leaderboard">
     </header>
 
     <ul class="afg_charities">
-        <li class="shelter"><em></em><span>Shelter</span></li>
-        <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
-        <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
+		${ldbdcharity(goodloop.charities[0])}
+		${ldbdcharity(goodloop.charities[1])}
+		${ldbdcharity(goodloop.charities[2])}
     </ul>
 </div>`;
 
+let ldbdcharity = (charity) => `<li><span>${charity.name}</span></li>`;
 
 goodloop.html.mediumrectangle = `<div class="gdlpafg mediumrectangle">
     <header class="animatable">
@@ -35,7 +37,7 @@ goodloop.html.mediumrectangle = `<div class="gdlpafg mediumrectangle">
 </div>`;
 
 
-goodloop.html.stickybottom = `<div class="gdlpafg stickybottom">
+goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlpafg stickybottom">
     <header class="animatable">
         <span class="adlogo"></span>
         <h1>Watch an ad with Good Loop.</h1>
@@ -107,3 +109,5 @@ goodloop.html.videobox = `
         </div>
     </div>
 `;
+
+}
