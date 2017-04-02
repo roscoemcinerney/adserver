@@ -62,11 +62,19 @@ function renderUnit(id, $div) {
 }
 
 function pickFormat($div) {
+	var format;
 	if (isMobile()) {
 		format = $div.data('mobile-format');
 		// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
-		if ( ! format) format = 'sticky-bottom';
-		return format;
+		if (format) {
+			return format.toLowerCase().replace(/\W/, '');
+		}
+		return 'sticky-bottom';
+	}
+	format = $div.data('format');
+	// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
+	if (format) {
+		return format.toLowerCase().replace(/\W/, '');
 	}
 	// space?
 	var w = $div.width();
