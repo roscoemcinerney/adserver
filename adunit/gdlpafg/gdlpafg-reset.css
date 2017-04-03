@@ -1,0 +1,43 @@
+.gdlpafg {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    margin: 0;
+    font: 16px/1 sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+.gdlpafg * {
+    margin: 0;
+    padding: 0;
+    display: block;
+    color: black;
+    background: white;
+}
+.gdlpafg li { list-style: none; }
+.gdlpafg h1,h2,h3,h4 {
+    font-size: inherit;
+}
+.gdlpafg a {
+    text-decoration: none;
+}
+.gdlpafg button {
+    overflow: visible;
+    border: 0;
+    font: inherit;
+    -webkit-font-smoothing: inherit;
+    letter-spacing: inherit;
+    background: none;
+    cursor: pointer;
+}
+.gdlpafg ::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.gdlpafg :focus {
+    outline: 0;
+}
+.gdlpafg img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}

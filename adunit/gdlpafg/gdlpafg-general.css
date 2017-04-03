@@ -1,0 +1,34 @@
+.gdlpafg {
+    position: relative;
+}
+
+.gdlpafg .afg_charities li.shelter {
+    background-image: url(image_shelter.jpg);
+}
+.gdlpafg .afg_charities li.azru {
+    background-image: url(image_azru.jpg);
+}
+.gdlpafg .afg_charities li.bdh {
+    background-image: url(image_bdh.jpg);
+}
+
+@media only screen and ( -webkit-min-device-pixel-ratio: 1.3 ),
+       only screen and (    min--moz-device-pixel-ratio: 1.3 ),
+       only screen and (      -o-min-device-pixel-ratio: 2.6/2 ), /* returns 1.3, see Dev.Opera */
+       only screen and (         min-device-pixel-ratio: 1.3 ),
+       only screen and ( min-resolution: 124.8dpi ),
+       only screen and ( min-resolution: 1.3dppx ) {
+
+        .gdlpafg .afg_charities li.shelter span {
+            background-size: 90px 90px;
+        }
+
+        .gdlpafg .afg_charities li.azru span {
+            background-size: 90px 90px;
+        }
+
+        .gdlpafg.mobile .afg_charities li span {
+            background-size: 45px 45px;
+        }
+}
+

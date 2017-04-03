@@ -1,0 +1,43 @@
+.afg {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    margin: 0;
+    font: 16px/1 sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+.afg * {
+    margin: 0;
+    padding: 0;
+    display: block;
+    color: black;
+    background: white;
+}
+.afg li { list-style: none; }
+.afg h1,h2,h3,h4 {
+    font-size: inherit;
+}
+.afg a {
+    text-decoration: none;
+}
+.afg button {
+    overflow: visible;
+    border: 0;
+    font: inherit;
+    -webkit-font-smoothing: inherit;
+    letter-spacing: inherit;
+    background: none;
+    cursor: pointer;
+}
+.afg ::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.afg :focus {
+    outline: 0;
+}
+.afg img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}

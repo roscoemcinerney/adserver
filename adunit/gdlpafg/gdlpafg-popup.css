@@ -1,0 +1,254 @@
+.gdlpafg .video {
+    display: none;
+    outline: 2000px solid rgba(0,0,0,0.8);
+    width: 80vmin;
+    height: 60vmin;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    margin-left: -40vmin;
+    margin-top: -30vmin;
+    z-index: 32765;
+    transform-origin: 0 0;
+    overflow: hidden;
+}
+.gdlpafg .video header {
+    width: 100%;
+    height: 40%;
+    background-color: white;
+}
+.gdlpafg .video .afg_charity_chooser {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 11vw;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 6;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    max-height: 80px;
+}
+.gdlpafg .video .afg_charity_chooser.showing {
+    pointer-events: auto;
+    opacity: 1;
+}
+.gdlpafg .video .afg_charity_chooser h2 {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 270px;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Varela Round", sans-serif;
+    font-weight: normal;
+    background: transparent;
+    transform: translateY(-50%);
+}
+.gdlpafg .video .afg_charity_chooser ul {
+    width: 33vw;
+    width: -moz-calc(30vw + 30px);
+    width: -webkit-calc(30vw + 30px);
+    width: calc(30vw + 30px);
+    margin: 0;
+    background: transparent;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 80px;
+}
+.gdlpafg .video .afg_charity_chooser li {
+    width: 10vw;
+    height: 10vw;
+    max-width: 80px;
+    max-height: 80px;
+    display: block;
+    float: right;
+    position: relative;
+    background: transparent;
+    text-indent: -1000em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 10px;
+}
+.gdlpafg .video .afg_charity_chooser li span { display: none; }
+.gdlpafg .video .afg_charity_chooser li.shelter {
+    background-image: url(logo_shelter_white@2x.png);
+}
+.gdlpafg .video .afg_charity_chooser li.azru {
+    background-image: url(logo_azru_white@2x.png);
+}
+.gdlpafg .video .afg_charity_chooser li.bdh {
+    background-image: url(logo_bdh_white@2x.png);
+}
+
+.gdlpafg .video button.close {
+    width: 40px;
+    height: 40px;
+    background: black;
+    color: white;
+    font-size: 28px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 5;
+}
+.gdlpafg .video .vcontainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 3;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-image: url(gl-head-leaderboard@2x.png);
+    background-position: 10px 10px;
+    background-size: 105px 42px;
+    background-repeat: no-repeat;
+}
+.gdlpafg .video .vcontainer video {
+    max-width: 100%;
+}
+
+.gdlpafg .video .vcontainer > div {
+    background: transparent;
+}
+.gdlpafg .video .vcontainer .finished {
+    display: none;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.gdlpafg .video .vcontainer .finished p {
+    background: transparent;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+}
+.gdlpafg .video .vcontainer .finished p.afg_share, .gdlpafg .video .vcontainer .finished p.afg_visit {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-justify-content: center;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+}
+.gdlpafg .video .vcontainer .finished p.afg_share > *, .gdlpafg .video .vcontainer .finished p.afg_visit > * {
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    background-color: transparent;
+    color: white;
+    margin: 0 1em;
+}
+
+.gdlpafg .video .vcontainer .finished span.afg_charity_name, .gdlpafg .video .vcontainer .finished span.afg_company_name {
+    display: inline;
+    background: transparent;
+    color: white;
+}
+.gdlpafg .video .vcontainer .finished a.afg_gl {
+    display: inline-block;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(gl-head-leaderboard@2x.png);
+    background-size: 104px 43px;
+    height: 43px;
+    width: 104px;
+    text-indent: -1000em;
+    vertical-align: middle;
+}
+.gdlpafg .video .vcontainer .finished .afg_fb {
+    height: 29px;
+    width: 29px;
+    text-indent: -1000em;
+    background: url(facebook_white.png) center center no-repeat;
+    background-size: 29px 29px;
+}
+.gdlpafg .video .vcontainer .finished .afg_tw {
+    height: 29px;
+    width: 35px;
+    text-indent: -1000em;
+    background: url(twitter_white.png) center center no-repeat;
+    background-size: 35px 29px;
+}
+.gdlpafg .video ul.messages {
+    background: transparent;
+    font-family: "Varela Round", sans-serif;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.gdlpafg .video ul.messages li { 
+    display: none; 
+    text-align: right;
+    background: transparent;
+    color: white;
+}
+.gdlpafg .video ul.messages li span {
+    display: inline;
+    background: transparent;
+    color: white;
+}
+.gdlpafg .thankyou { display: none; }
+
+@media (max-width: 600px) {
+    .gdlpafg .video {
+        width: 100vw;
+        height: 80vw;
+        top: 50vh;
+        left: 0;
+        margin-top: -40vw;
+        margin-left: 0;
+    }
+    .gdlpafg .video .vcontainer {
+        background-size: 50px 20px;
+        background-position: 3px 3px;
+    }
+    .gdlpafg .video .afg_charity_chooser {
+        height: 80%;
+    }
+    .gdlpafg .video .afg_charity_chooser h2 {
+        right: 60%;
+        font-size: 12px;
+        width: 40%;
+    }
+    .gdlpafg .video .afg_charity_chooser ul {
+        width: 60%;
+        height: 100%;
+    }
+    .gdlpafg .video .afg_charity_chooser li {
+        width: 30%;
+        margin: 0 2px;
+        height: 100%;
+    }
+    .gdlpafg .video ul.messages {
+        font-size: 12px;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /* IE10/11-specific styles go here */
+    .gdlpafg .video .vcontainer > div, .gdlpafg .video .vcontainer .finished {
+        width: 100%;
+        height: 100%;
+    }
+    .gdlpafg .video .afg_charity_chooser {
+        display: none;
+    }
+    .gdlpafg .video .afg_charity_chooser.showing {
+        opacity: 1;
+        display: block;
+    }
+}
