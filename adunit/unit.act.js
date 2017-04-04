@@ -1,38 +1,91 @@
 /** Change state */
 
+/*	LIFECYLE
+
+1. Advert
+2. startVideo -> openLightbox
+
+3. closeLightbox (covers all forms of exit)
+   -?> exitEarly
+
+
+
+*/
+
 goodloop.act = {};
+
+// Hook in IAB SafeFrame handler
+if (typeof($sf) !== 'undefined') {
+	goodloop.sfHandler = function(status, data) {
+		console.log("#sfHandler", status, data);
+		if (status==='expanded') {			
+			$('#gdlpid .videobox').show();
+		}
+	};
+	$sf.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
+} else {
+	window.$sf = false; // easier tests later
+}
+
+goodloop.act.openLightbox = function() {
+	// in a SafeFrame?
+	if ($sf) {
+		try {
+			var g = $sf.ext.geom(); // the geometry object
+			$sf.ext.expand(g.exp);
+			return; // show on expand
+		} catch (e) {
+			//do not expand :(
+		}
+	}
+	// Open the lightbox
+	goodloop.act.openLightbox2();
+};
+goodloop.act.openLightbox2 = function() {
+	$('#gdlpid .videobox').show();
+	// exit on esc
+	$(document).on('keyup', goodloop.act.keyup);	
+};
+
+goodloop.act.keyup = function(event) {
+	if (event.which === 27) {
+		goodloop.act.closeLightbox();
+	}	
+};
+
+goodloop.act.closeLightbox = function() {	
+	$(document).off('keyup', goodloop.act.keyup);
+	$('#gdlpid .videobox').hide();
+	if ($sf) {
+		$sf.ext.collapse();
+	}
+};
+
 
 /** open lightbox and start the video */
 goodloop.act.startVideo = function() {
+	goodloop.act.openLightbox();
 	goodloop.state.startTime = new Date().getTime();
 	setTimeout(goodloop.act.elapse, 100);
 
-	var vidurl = isMobile()? goodloop.vert.mobileVideo : goodloop.vert.video;
-
-	// exit on esc
-	var KEYCODE_ESC = 27;
-	$(document).on('keyup.goodloop', function(event) {
-		if(event.which === KEYCODE_ESC) {
-			goodloop.act.exitEarly();	
-		}
-	});
 	// on video end
-	$video[0].addEventListener('ended', function(event) {
+	$('#gdlpid video').on('ended', function(event) {
+		goodloop.act.donate();
 	});
 };
 
 goodloop.act.elapse = function() {
-	var s = Math.ceil((adEnd - new Date().getTime()) / 1000.0);
-	if (s > 0) {
-		$('#skip').text("Donation in "+s+"s")
-		if ($vidbox.css('display') !== 'none') {
-			setTimeout(function(){skipDown(adEnd);}, 100);
-		}
-	} else {
-		$('#skip').text("Thanks! Your donation has been made.");
-		viewed();
-		$('#skip').click(skip);
-	}
+	// var s = Math.ceil((adEnd - new Date().getTime()) / 1000.0);
+	// if (s > 0) {
+	// 	$('#skip').text("Donation in "+s+"s")
+	// 	if ($vidbox.css('display') !== 'none') {
+	// 		setTimeout(function(){skipDown(adEnd);}, 100);
+	// 	}
+	// } else {
+	// 	$('#skip').text("Thanks! Your donation has been made.");
+	// 	viewed();
+	// 	$('#skip').click(skip);
+	// }
 };
 
 goodloop.act.pickCharity = function(charityId) {
@@ -48,8 +101,7 @@ goodloop.act.pickCharity = function(charityId) {
 
 
 goodloop.act.exitEarly = function() {
-	$vidbox.css('display','none');
-	$('video', $vidbox).remove();
+	// TODO
 	var viewtime = startTime? (new Date().getTime() - startTime)/1000 : 0;
 	// log it
 	datalog.log('goodloop', 'skip', {
@@ -58,7 +110,7 @@ goodloop.act.exitEarly = function() {
 		viewtime: viewtime,
 		variant: variant
 	}, true);
-	$(document).off('keyup.goodloop');
+	$(document).off('keyup');
 };
 
 
@@ -72,7 +124,7 @@ goodloop.act.pause = function() {
  */
 goodloop.act.viewed = function() {
 	// TODO adunit specific
-	Cookies.set('charity', pickedCharity, { expires: expires });
+	goodloop.act.donate();
 	// log with base
 	var dataspace = 'goodloop';
 	datalog.log(dataspace, 'adview', {
@@ -84,6 +136,10 @@ goodloop.act.viewed = function() {
 		}, true);
 	// replace the adunits with a thank you
 	render();
+};
+
+goodloop.act.donate = function() {
+	console.log("DONATE");
 };
 
 /** log a click-through (does not change location - the original a tag must do this) */
@@ -100,11 +156,10 @@ goodloop.act.click = function() {
 			variant: variant,
 			url: url
 	}, true);
+	// make a donation?
+	if (url === goodloop.vert.url) {
+		goodloop.act.donate();
+	}
 	// window.location = url; this wouldn't open a new tab :(
 	return true;
-}
-
-
-goodloop.act.endVideo = function() {
-
 };

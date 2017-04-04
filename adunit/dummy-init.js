@@ -9,6 +9,8 @@ goodloop.publisher = {
 };
 
 goodloop.vert = {
+	// WTF? SafeFrame makes you declare width & height upfront to get callbacks
+	w: 720, h:90,
 	"campaign":"real campaign :)",
 	"video":"https://as.good-loop.com/vert/kerb-480p.m4v",
 	"mobileVideo":"https://as.good-loop.com/vert/kerb-288p.m4v",
@@ -25,7 +27,8 @@ goodloop.charities = [
 ];
 
 goodloop.variant = {
-	adsecs: 9 // TODO explore the effect of 5-15 seconds
+	adsecs: 9, // TODO explore the effect of 5-15 seconds
+	expln: "Give a donation by watching an advert"
 };
 
 // Thank You (and no repeat) valid across this site for 1 minute TODO 1 day

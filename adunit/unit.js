@@ -44,10 +44,8 @@ function render() {
 }
 render();
 
-// TODO size based instead?
-function isMobile() {
-	return !!(navigator.userAgent.match('/mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry/i'));
-}
+// Size based instead? But SafeFrame would bugger that up.
+goodloop.isMobile = !!(navigator.userAgent.match('/mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry/i'));
 
 
 function renderUnit(id, $div) {
@@ -68,7 +66,7 @@ function renderUnit(id, $div) {
 
 function pickFormat($div) {
 	var format;
-	if (isMobile()) {
+	if (goodloop.isMobile) {
 		format = $div.data('mobile-format');
 		// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
 		if (format) {

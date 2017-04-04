@@ -1,4 +1,4 @@
-.gdlp .video {
+#gdlpid .videobox {
     display: none;
     outline: 2000px solid rgba(0,0,0,0.8);
     width: 80vmin;
@@ -12,12 +12,15 @@
     transform-origin: 0 0;
     overflow: hidden;
 }
-.gdlp .video header {
+#gdlpid .videobox header {
     width: 100%;
     height: 40%;
     background-color: white;
 }
-.gdlp .video .afg_charity_chooser {
+
+
+/* PICK A CHARITY */
+#gdlpid .videobox .charity_chooser {
     position: absolute;
     left: 0%;
     width: 100%;
@@ -30,11 +33,11 @@
     transition: opacity 0.5s ease;
     max-height: 80px;
 }
-.gdlp .video .afg_charity_chooser.showing {
+#gdlpid .videobox .charity_chooser.showing {
     pointer-events: auto;
     opacity: 1;
 }
-.gdlp .video .afg_charity_chooser h2 {
+#gdlpid .videobox .charity_chooser h2 {
     color: white;
     position: absolute;
     top: 50%;
@@ -47,7 +50,7 @@
     background: transparent;
     transform: translateY(-50%);
 }
-.gdlp .video .afg_charity_chooser ul {
+#gdlpid .videobox .charity_chooser ul {
     width: 33vw;
     width: -moz-calc(30vw + 30px);
     width: -webkit-calc(30vw + 30px);
@@ -59,7 +62,7 @@
     right: 0;
     max-height: 80px;
 }
-.gdlp .video .afg_charity_chooser li {
+#gdlpid .videobox .charity_chooser li {
     width: 10vw;
     height: 10vw;
     max-width: 80px;
@@ -74,18 +77,8 @@
     background-position: center center;
     margin-right: 10px;
 }
-.gdlp .video .afg_charity_chooser li span { display: none; }
-.gdlp .video .afg_charity_chooser li.shelter {
-    background-image: url(logo_shelter_white@2x.png);
-}
-.gdlp .video .afg_charity_chooser li.azru {
-    background-image: url(logo_azru_white@2x.png);
-}
-.gdlp .video .afg_charity_chooser li.bdh {
-    background-image: url(logo_bdh_white@2x.png);
-}
 
-.gdlp .video button.close {
+#gdlpid .videobox button.close {
     width: 40px;
     height: 40px;
     background: black;
@@ -96,7 +89,7 @@
     right: 5px;
     z-index: 5;
 }
-.gdlp .video .vcontainer {
+#gdlpid .videobox .vcontainer {
     position: absolute;
     top: 0;
     left: 0;
@@ -112,14 +105,14 @@
     background-size: 105px 42px;
     background-repeat: no-repeat;
 }
-.gdlp .video .vcontainer video {
+#gdlpid .videobox .vcontainer video {
     max-width: 100%;
 }
 
-.gdlp .video .vcontainer > div {
+#gdlpid .videobox .vcontainer > div {
     background: transparent;
 }
-.gdlp .video .vcontainer .finished {
+#gdlpid .videobox .vcontainer .finished {
     display: none;
     background: rgba(0,0,0,0.8);
     color: white;
@@ -127,14 +120,14 @@
     -ms-flex-direction: column;
     flex-direction: column;
 }
-.gdlp .video .vcontainer .finished p {
+#gdlpid .videobox .vcontainer .finished p {
     background: transparent;
     color: white;
     padding: 1em;
     text-align: center;
     font-family: "Varela Round", sans-serif;
 }
-.gdlp .video .vcontainer .finished p.afg_share, .gdlp .video .vcontainer .finished p.afg_visit {
+#gdlpid .videobox .vcontainer .finished p.share, #gdlpid .videobox .vcontainer .finished p.visit {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
@@ -144,7 +137,7 @@
     -ms-align-items: center;
     align-items: center;
 }
-.gdlp .video .vcontainer .finished p.afg_share > *, .gdlp .video .vcontainer .finished p.afg_visit > * {
+#gdlpid .videobox .vcontainer .finished p.share > *, #gdlpid .videobox .vcontainer .finished p.visit > * {
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     background-color: transparent;
@@ -152,12 +145,12 @@
     margin: 0 1em;
 }
 
-.gdlp .video .vcontainer .finished span.afg_charity_name, .gdlp .video .vcontainer .finished span.afg_company_name {
+#gdlpid .videobox .vcontainer .finished span.charity_name, #gdlpid .videobox .vcontainer .finished span.company_name {
     display: inline;
     background: transparent;
     color: white;
 }
-.gdlp .video .vcontainer .finished a.afg_gl {
+#gdlpid .videobox .vcontainer .finished a.gl {
     display: inline-block;
     background-color: transparent;
     background-position: center center;
@@ -169,42 +162,42 @@
     text-indent: -1000em;
     vertical-align: middle;
 }
-.gdlp .video .vcontainer .finished .afg_fb {
+#gdlpid .videobox .vcontainer .finished .fb {
     height: 29px;
     width: 29px;
     text-indent: -1000em;
     background: url(facebook_white.png) center center no-repeat;
     background-size: 29px 29px;
 }
-.gdlp .video .vcontainer .finished .afg_tw {
+#gdlpid .videobox .vcontainer .finished .tw {
     height: 29px;
     width: 35px;
     text-indent: -1000em;
     background: url(twitter_white.png) center center no-repeat;
     background-size: 35px 29px;
 }
-.gdlp .video ul.messages {
+#gdlpid .videobox ul.messages {
     background: transparent;
     font-family: "Varela Round", sans-serif;
     margin-right: 10px;
     margin-top: 10px;
     font-size: 16px;
 }
-.gdlp .video ul.messages li { 
+#gdlpid .videobox ul.messages li { 
     display: none; 
     text-align: right;
     background: transparent;
     color: white;
 }
-.gdlp .video ul.messages li span {
+#gdlpid .videobox ul.messages li span {
     display: inline;
     background: transparent;
     color: white;
 }
-.gdlp .thankyou { display: none; }
+#gdlpid .thankyou { display: none; }
 
 @media (max-width: 600px) {
-    .gdlp .video {
+    #gdlpid .videobox {
         width: 100vw;
         height: 80vw;
         top: 50vh;
@@ -212,42 +205,42 @@
         margin-top: -40vw;
         margin-left: 0;
     }
-    .gdlp .video .vcontainer {
+    #gdlpid .videobox .vcontainer {
         background-size: 50px 20px;
         background-position: 3px 3px;
     }
-    .gdlp .video .afg_charity_chooser {
+    #gdlpid .videobox .charity_chooser {
         height: 80%;
     }
-    .gdlp .video .afg_charity_chooser h2 {
+    #gdlpid .videobox .charity_chooser h2 {
         right: 60%;
         font-size: 12px;
         width: 40%;
     }
-    .gdlp .video .afg_charity_chooser ul {
+    #gdlpid .videobox .charity_chooser ul {
         width: 60%;
         height: 100%;
     }
-    .gdlp .video .afg_charity_chooser li {
+    #gdlpid .videobox .charity_chooser li {
         width: 30%;
         margin: 0 2px;
         height: 100%;
     }
-    .gdlp .video ul.messages {
+    #gdlpid .videobox ul.messages {
         font-size: 12px;
     }
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     /* IE10/11-specific styles go here */
-    .gdlp .video .vcontainer > div, .gdlp .video .vcontainer .finished {
+    #gdlpid .videobox .vcontainer > div, #gdlpid .videobox .vcontainer .finished {
         width: 100%;
         height: 100%;
     }
-    .gdlp .video .afg_charity_chooser {
+    #gdlpid .videobox .charity_chooser {
         display: none;
     }
-    .gdlp .video .afg_charity_chooser.showing {
+    #gdlpid .videobox .charity_chooser.showing {
         opacity: 1;
         display: block;
     }

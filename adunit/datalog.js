@@ -40,7 +40,8 @@
 		var data = {
 			d: dataspace,
 			t: eventTag,
-			p: JSON.stringify(eventParams)
+			p: JSON.stringify(eventParams),
+			r: document.referrer // If in a SafeFrame, this will be the page url
 		};
 		// dont do standard tracking
 		if ( addTrackingInfo === false) {
