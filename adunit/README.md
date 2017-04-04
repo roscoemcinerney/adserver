@@ -1,1 +1,0 @@
-This folder is for code copied in from the adunit repo. Do NOT edit these files directly.
