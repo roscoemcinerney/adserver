@@ -4,22 +4,28 @@
 
 goodloop.html = {};
 
-goodloop.html.leaderboard = () => `<div class="gdlpafg leaderboard" onclick="">
-    <header class="animatable">
-        <span class="adlogo"></span>
+// NB: &#9654; is play-triangle
+
+goodloop.html.leaderboard = () => 
+`<div id='gdlpid' class="leaderboard" onclick="">
+    <header>
+        <img class="adlogo" src='${goodloop.vert.logo}'>
         <h1>Watch an ad with Good Loop.</h1>
         <h2>Free money goes to charity.</h2>
         <span class="play"></span>
     </header>
-
-    <ul class="afg_charities">
+	<span class="rarrow"></span>
+    <ul class="charities">
 		${ldbdcharity(goodloop.charities[0])}
 		${ldbdcharity(goodloop.charities[1])}
 		${ldbdcharity(goodloop.charities[2])}
     </ul>
 </div>`;
 
-let ldbdcharity = (charity) => `<li><span>${charity.name}</span></li>`;
+let ldbdcharity = (charity) => 
+`<li title='${charity.name}'>
+	<img class='clogo' src='${charity.logo}'/>${charity.photo? `<img class='cphoto' src='${charity.photo}'/>` : ''}
+</li>`;
 
 goodloop.html.mediumrectangle = `<div class="gdlpafg mediumrectangle">
     <header class="animatable">
@@ -29,7 +35,7 @@ goodloop.html.mediumrectangle = `<div class="gdlpafg mediumrectangle">
         <span class="play"></span>
     </header>
 
-    <ul class="afg_charities">
+    <ul class="charities">
         <li class="shelter"><em></em><span>Shelter</span></li>
         <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
         <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
@@ -45,7 +51,7 @@ goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlp
         <span class="play"></span>
     </header>
 
-    <ul class="afg_charities">
+    <ul class="charities">
         <li class="shelter"><em></em><span>Shelter</span></li>
         <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
         <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
@@ -55,37 +61,37 @@ goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlp
 
 goodloop.html.leaderboard_tq = `
     <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_fb">Facebook</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
     </div>`;
 
 goodloop.html.mediumrectangle_tq = `
     <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_fb">Facebook</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
     </div>`;
 
 goodloop.html.stickybottom_tq = `
     <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="afg_fb">Facebook</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
+        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
     </div>`;
 
 goodloop.html.videobox = `
     <div class="gdlpafg video">
         <button class="close">×</button>
-        <div class="afg_charity_chooser">
+        <div class="charity_chooser">
             <h2>Pick the charity you'd like to receive a free donation.</h2>
-            <ul class="afg_video_charities">
+            <ul class="video_charities">
                 <li class="azru"><span>Alzheimer's Research UK</span></li>
                 <li class="shelter"><span>Shelter</span></li>
                 <li class="bdh"><span>Battersea Dogs Home</span></li>
@@ -95,15 +101,15 @@ goodloop.html.videobox = `
             <div><!-- to be centred by flex -->
                 <video src="https://as.good-loop.com/vert/kerb-480p.m4v" controls=""></video>
                 <div class="finished">
-                    <p class="afg_ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="afg_gl">Good-Loop</a> ad!</p>
-                    <p><span class="afg_company_name">KERB FOOD</span> has funded your donation to <span class="afg_charity_name">$charity</span></p>
+                    <p class="ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="gl">Good-Loop</a> ad!</p>
+                    <p><span class="company_name">KERB FOOD</span> has funded your donation to <span class="charity_name">$charity</span></p>
                     <p>Double your donation by sharing</p>
-                    <p class="afg_share"><a class="afg_fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="afg_tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
+                    <p class="share"><a class="fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
                 </div>
                 <ul class="messages">
                     <li class="messages_countdown">Your donation will be unlocked in <span class="counter">20</span> seconds</li>
-                    <li class="messages_done"><span class="afg_company_name">KERB FOOD</span> has funded your donation to 
-                    <span class="afg_charity_name">$charity</span></li>
+                    <li class="messages_done"><span class="company_name">KERB FOOD</span> has funded your donation to 
+                    <span class="charity_name">$charity</span></li>
                 </ul>
             </div>
         </div>
