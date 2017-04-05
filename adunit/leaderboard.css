@@ -2,25 +2,32 @@
     width: 728px;
     height: 90px;
     border: 1px solid #808080;
-    overflow: hidden;
-	background-color: red;
+    overflow: hidden;	
 }
 
 #gdlpid.leaderboard header {
+	background-color: red;
     color: white;
     position: absolute;
     top: 0;
     left: 0;
-    right: 110px;
+    right: 170px;
     height: 100%;
-    z-index: 4;
+    z-index: 5;
 }
 #gdlpid.leaderboard.mobile {
     width: 100%;
     border-width: 0;
 }
 
-#gdlpid.leaderboard header h1, #gdlpid.leaderboard header h2 {
+#gdlpid.leaderboard header .logo {
+	position: absolute;
+    height: 45px;
+	left: 15px;
+    top: 10px;
+    vertical-align: middle;
+}
+#gdlpid.leaderboard header h2 {
     background: transparent;
     color: white;
     font-size: 20px;
@@ -28,40 +35,24 @@
     position: absolute;
     font-weight: normal;
     left: 5px;
-    right: 265px;
-}
-#gdlpid.leaderboard.mobile header h1, #gdlpid.leaderboard.mobile header h2 {
-    left: 5px;
-    right: 135px;
-}
-
-#gdlpid.leaderboard header h1 {
-    line-height: 62px;
-    height: 52px;
-    top: 0px;
-	/* logo */
-    background: url(gl-head-leaderboard@2x.png) center center no-repeat;
-    background-size: contain;
-    background-color: transparent;
-    text-indent: -10000px;
-    vertical-align: middle;
-}
-#gdlpid.leaderboard.mobile header h1  {
-
-}
-#gdlpid.leaderboard header h2 {
+    right: 210px;
     line-height: 26px;
     height: 26px;
-    bottom: 18px;
+    bottom: 8px;
 }
+#gdlpid.leaderboard.mobile header .logo, #gdlpid.leaderboard.mobile header h2 {
+    left: 5px;
+    right: 210px;
+}
+
 
 #gdlpid.leaderboard img.adlogo {
     background-color: transparent;
     position: absolute;
-    right: 118px;
+    right: 65px;
     top: 5px;
     height: 80px;
-    width: 147px;
+    max-width: 150px;
 }
 #gdlpid.leaderboard.mobile img.adlogo {
     right: 59px;
@@ -73,7 +64,7 @@
 #gdlpid.leaderboard span.rarrow {
 	position: absolute;
 	top:0px;
-	right:calc(269px - 45px);
+	right:calc(170px - 45px);
 	width: 0; 
 	height: 0; 
 	border-top: 45px solid transparent;
@@ -144,7 +135,7 @@
 
 #gdlpid.leaderboard span.play {
     position: absolute;
-    right: 50px;
+    right: -10px;
     top: 50%;
     margin-top: -30px;
     background: transparent;
@@ -160,6 +151,10 @@
     background-repeat: no-repeat;
     z-index: 4;
 	cursor: pointer;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+#gdlpid.leaderboard span.play:hover {
+	/* on hover? */
 }
 #gdlpid.leaderboard.mobile span.play {
     right: 20px;
@@ -257,7 +252,7 @@
     #gdlpid.leaderboard header h1, #gdlpid.leaderboard header h2 {
         font-size: 12px;
     }
-    #gdlpid.leaderboard.mobile header h1 a {
+    #gdlpid.leaderboard.mobile header h1 {
         width: 60px;
         height: 22px;
     }

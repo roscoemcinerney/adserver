@@ -9,7 +9,7 @@ goodloop.html = {};
 goodloop.html.leaderboard = () => 
 `<div id='gdlpid' class="leaderboard" onclick="goodloop.act.startVideo();">
     <header>        
-        <h1>ADS FOR GOOD</h1>
+        <img class='logo' alt='ADS FOR GOOD' src='afg-white.png' />
         <h2>${goodloop.variant.expln}</h2>
 		<img class="adlogo" src='${goodloop.vert.logo}'>
         <span class="play"></span>
@@ -103,7 +103,7 @@ goodloop.html.videobox = () => `
 	<div class="vcontainer">
 		<div><!-- to be centred by flex -->
 			<div>ADS FOR GOOD</div>
-			<video src="${goodloop.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
+			<video src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
 			<div class="finished">
 				<p class="ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="gl">Good-Loop</a> ad!</p>
 				<p><span class="company_name">KERB FOOD</span> has funded your donation to <span class="charity_name">$charity</span></p>

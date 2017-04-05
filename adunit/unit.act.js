@@ -14,18 +14,6 @@
 
 goodloop.act = {};
 
-// Hook in IAB SafeFrame handler
-if (typeof($sf) !== 'undefined') {
-	goodloop.sfHandler = function(status, data) {
-		console.log("#sfHandler", status, data);
-		if (status==='expanded') {			
-			$('#gdlpid .videobox').show();
-		}
-	};
-	$sf.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
-} else {
-	window.$sf = false; // easier tests later
-}
 
 goodloop.act.openLightbox = function() {
 	// in a SafeFrame?
@@ -65,6 +53,11 @@ goodloop.act.closeLightbox = function() {
 /** open lightbox and start the video */
 goodloop.act.startVideo = function() {
 	goodloop.act.openLightbox();
+	// TODO iOS plays the video on its own, full screen. 
+	// So we have to show the chooser first, then start the video.
+	if (goodloop.env.iOS) {
+
+	}	
 	goodloop.state.startTime = new Date().getTime();
 	setTimeout(goodloop.act.elapse, 100);
 
@@ -72,6 +65,10 @@ goodloop.act.startVideo = function() {
 	$('#gdlpid video').on('ended', function(event) {
 		goodloop.act.donate();
 	});
+
+	// start
+	var video = $('#gdlpid video')[0];
+	video.play();
 };
 
 goodloop.act.elapse = function() {
