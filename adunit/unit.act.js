@@ -86,19 +86,26 @@ goodloop.act.elapse = function() {
 			setTimeout(goodloop.act.elapse, 100);
 		}
 	} else {
-		goodloop.act.donate();
+		if (goodloop.state.charity.id) {
+			goodloop.act.donate();
+		} else {
+			goodloop.act.showCharityChooser();
+		}
 	}
 };
 
 goodloop.act.pickCharity = function(charityId) {
 	// set & inform
-	goodloop.state.charityId = charityId;
+	for(var i=0; i<goodloop.charities.length; i++) {
+		if (goodloop.charities[i].id === charityId) {
+			goodloop.state.charity = goodloop.charities[i];
+		}
+	}
 	datalog.log(dataspace, 'pick', {
 			publisher: goodloop.publisher.id,
 			charity: charityId
 	});
-
-	// hide the buttons
+	// TODO hide the buttons
 };
 
 goodloop.dt = function() { 
