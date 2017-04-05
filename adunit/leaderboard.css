@@ -86,7 +86,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 269px;
+    width: 170px;
     height: 100%;
     z-index: 3;
     background-color: blue;
@@ -118,11 +118,11 @@
     100% { opacity: 0; }
 }
 #gdlpid.leaderboard img.clogo {
-	position:relative;
+	position:absolute;
 	top:0px;
-	left:0px;
+	right:0px;
 	max-height: 90px;
-	max-width: 100%;
+	max-width: 80%;
 	z-index: 3;
 }
 #gdlpid.leaderboard img.cphoto {
