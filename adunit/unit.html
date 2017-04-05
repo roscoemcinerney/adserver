@@ -8,18 +8,20 @@ goodloop.html = {};
 
 goodloop.html.leaderboard = () => 
 `<div id='gdlpid' class="leaderboard" onclick="goodloop.act.startVideo();">
-    <header>        
-        <img class='logo' alt='ADS FOR GOOD' src='afg-white.png' />
-        <h2>${goodloop.variant.expln}</h2>
-		<img class="adlogo" src='${goodloop.vert.logo}'>
-        <span class="play"></span>
-    </header>
-	<span class="rarrow"></span>
-    <ul class="charities">
-		${charity_li(goodloop.charities[0])}
-		${charity_li(goodloop.charities[1])}
-		${charity_li(goodloop.charities[2])}
-    </ul>
+	<div class='unit'>
+		<header>        
+			<img class='logo' alt='ADS FOR GOOD' src='afg-white.png' />
+			<h2>${goodloop.variant.expln}</h2>
+			<img class="adlogo" src='${goodloop.vert.logo}'>
+			<span class="play"></span>
+		</header>
+		<span class="rarrow"></span>
+		<ul class="charities">
+			${charity_li(goodloop.charities[0])}
+			${charity_li(goodloop.charities[1])}
+			${charity_li(goodloop.charities[2])}
+		</ul>
+	</div>
 	${goodloop.html.videobox()}
 </div>`;
 
@@ -61,31 +63,13 @@ goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlp
 </div>`;
 
 
-goodloop.html.leaderboard_tq = `
+goodloop.html.tq = () => `
     <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
-    </div>`;
-
-goodloop.html.mediumrectangle_tq = `
-    <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
-    </div>`;
-
-goodloop.html.stickybottom_tq = `
-    <div class="thankyou">
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="company_name">KERB FOOD</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="charity_name">$charity</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="gl_link">Find out more about opt-in ads by Good-Loop.</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="tw">Twitter</a>
-        <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html" class="fb">Facebook</a>
+        <a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
+		<a href="" class="charity_name">${goodloop.state.charity.name}</a>
+		<a href="http://good-loop.com" class="gl_link">Find out more about opt-in ads by <span class='gl'>Good-Loop</span>.</a>
+        <a href="" class="tw">Twitter</a>
+        <a href="" class="fb">Facebook</a>
     </div>`;
 
 

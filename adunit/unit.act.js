@@ -48,6 +48,7 @@ goodloop.act.closeLightbox = function() {
 	$(document).off('keyup', goodloop.act.keyup);
 	$('#gdlpid .videobox').hide();
 	$('#gdlpid .backdrop').hide();
+	goodloop.state.playing = false;
 	if ($sf) {
 		$sf.ext.collapse();
 	}
@@ -67,26 +68,26 @@ goodloop.act.startVideo = function() {
 
 	// on video end
 	$('#gdlpid video').on('ended', function(event) {
-		goodloop.act.donate();
+		goodloop.act.showEndPage(); // TODO
 	});
 
 	// start
 	var video = $('#gdlpid video')[0];
 	video.play();
+	goodloop.state.playing = true;
 };
 
 goodloop.act.elapse = function() {
-	// var s = Math.ceil((adEnd - new Date().getTime()) / 1000.0);
-	// if (s > 0) {
-	// 	$('#skip').text("Donation in "+s+"s")
-	// 	if ($vidbox.css('display') !== 'none') {
-	// 		setTimeout(function(){skipDown(adEnd);}, 100);
-	// 	}
-	// } else {
-	// 	$('#skip').text("Thanks! Your donation has been made.");
-	// 	viewed();
-	// 	$('#skip').click(skip);
-	// }
+	var dt = goodloop.dt();
+	var s = Math.ceil(goodloop.variant.adsecs - dt/1000.0);
+	if (s > 0) {
+		$('#gdlpid .vidbox .counter').text(s+"s");
+		if (goodloop.state.playing) {
+			setTimeout(goodloop.act.elapse, 100);
+		}
+	} else {
+		goodloop.act.donate();
+	}
 };
 
 goodloop.act.pickCharity = function(charityId) {
@@ -100,47 +101,47 @@ goodloop.act.pickCharity = function(charityId) {
 	// hide the buttons
 };
 
+goodloop.dt = function() { 
+	if ( ! goodloop.state.playing) return goodloop.state.elapsed;
+	return new Date().getTime() - goodloop.state.startTime + goodloop.state.elapsed; 
+}; 
 
 goodloop.act.exitEarly = function() {
-	// TODO
-	var viewtime = startTime? (new Date().getTime() - startTime)/1000 : 0;
+	var dt = goodloop.dt();
 	// log it
 	datalog.log('goodloop', 'skip', {
-		publisher: publisher,
+		publisher: goodloop.publisher.id,
 		campaign: goodloop.vert.campaign, 
-		viewtime: viewtime,
-		variant: variant
+		viewtime: dt/1000,
+		variant: goodloop.variant
 	}, true);
 	$(document).off('keyup');
 };
 
 
 goodloop.act.pause = function() {
-
+	goodloop.state.playing = false;
+	goodloop.state.elapsed = goodloop.dt();
 };
 
 /**
  * Called when the video view is complete (i.e. after 14 seconds).
  * Or the user clicks-through to the advertiser.
  */
-goodloop.act.viewed = function() {
-	// TODO adunit specific
-	goodloop.act.donate();
+goodloop.act.donate = function() {
+	if (goodloop.state.donated) return;
 	// log with base
 	var dataspace = 'goodloop';
 	datalog.log(dataspace, 'adview', {
 			campaign: goodloop.vert.campaign,
 			publisher: goodloop.publisher.id,
-			charity: pickedCharity,
+			charity: goodloop.state.charity.id,
 			variant: variant,
 			view: 'complete'
 		}, true);
+	goodloop.state.donated = true;
 	// replace the adunits with a thank you
-	render();
-};
-
-goodloop.act.donate = function() {
-	console.log("DONATE");
+	$('#gdlpid .unit').html(goodloop.html.tq());
 };
 
 /** log a click-through (does not change location - the original a tag must do this) */
