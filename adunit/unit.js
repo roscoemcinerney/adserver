@@ -109,6 +109,8 @@ function render() {
 		}
 		renderUnit(id, $div);
 	});
+	$('#gdlpid .videobox .close').click(goodloop.act.closeLightbox);
+	$('#gdlpid .backdrop').click(goodloop.act.closeLightbox);
 }
 render();
 

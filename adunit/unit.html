@@ -90,8 +90,9 @@ goodloop.html.stickybottom_tq = `
 
 
 goodloop.html.videobox = () => `
-<div class="gdlp videobox">
-	<button class="close" onclick="goodloop.act.closeLightbox();">&times;</button>
+<div class='backdrop'></div>
+<div class="gdlp videobox">	
+	<button class="close" title="close this advert">&times;</button>
 	<div class="charity_chooser">
 		<h2>Pick the charity you'd like to receive a free donation.</h2>
 		<ul class="video_charities">
@@ -101,21 +102,18 @@ goodloop.html.videobox = () => `
 		</ul>
 	</div>
 	<div class="vcontainer">
-		<div><!-- to be centred by flex -->
-			<div>ADS FOR GOOD</div>
-			<video src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
-			<div class="finished">
-				<p class="ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="gl">Good-Loop</a> ad!</p>
-				<p><span class="company_name">KERB FOOD</span> has funded your donation to <span class="charity_name">$charity</span></p>
-				<p>Double your donation by sharing</p>
-				<p class="share"><a class="fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
-			</div>
-			<ul class="messages">
-				<li class="messages_countdown">Your donation will be unlocked in <span class="counter">20</span> seconds</li>
-				<li class="messages_done"><span class="company_name">KERB FOOD</span> has funded your donation to 
-				<span class="charity_name">$charity</span></li>
-			</ul>
+		<img class='logo' alt='ADS FOR GOOD' src='afg-black.png' />
+		<video src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
+		<div class="finished">
+			<p class="ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="gl">Good-Loop</a> ad!</p>
+			<p><span class="company_name">KERB FOOD</span> has funded your donation to <span class="charity_name">$charity</span></p>
+			<p>Double your donation by sharing</p>
+			<p class="share"><a class="fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
 		</div>
+		<ul class="messages">
+			<li class="messages_countdown">Your donation will be unlocked in <span class="counter">20</span> seconds</li>
+			<li class="messages_done"><span class="company_name">${goodloop.vert.name}</span> has funded your donation to <span class="charity_name">charity</span></li>
+		</ul>
 	</div>
 </div>`;
 

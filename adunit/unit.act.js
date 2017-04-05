@@ -30,9 +30,11 @@ goodloop.act.openLightbox = function() {
 	goodloop.act.openLightbox2();
 };
 goodloop.act.openLightbox2 = function() {
-	$('#gdlpid .videobox').show();
-	// exit on esc
+	$('#gdlpid .backdrop').show();
+	$('#gdlpid .videobox').show();	
+	// exits	
 	$(document).on('keyup', goodloop.act.keyup);	
+	// close button & click-out -- already set in render
 };
 
 goodloop.act.keyup = function(event) {
@@ -42,8 +44,10 @@ goodloop.act.keyup = function(event) {
 };
 
 goodloop.act.closeLightbox = function() {	
+	console.log("closeLightbox");
 	$(document).off('keyup', goodloop.act.keyup);
 	$('#gdlpid .videobox').hide();
+	$('#gdlpid .backdrop').hide();
 	if ($sf) {
 		$sf.ext.collapse();
 	}
