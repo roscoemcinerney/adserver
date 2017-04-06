@@ -28,7 +28,7 @@ if (typeof($sf) !== 'undefined') {
 			$('#gdlpid .videobox').show();
 		}
 	};
-	$sf.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
+	$sf.ext.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
 } else {
 	window.$sf = false; // easier tests later
 }
@@ -67,6 +67,7 @@ function renderUnit(id, $div) {
 }
 
 function pickFormat($div) {
+	return 'leaderboard';
 	var format;
 	if (goodloop.env.isMobile) {
 		format = $div.data('mobile-format');
