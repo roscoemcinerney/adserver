@@ -22,7 +22,6 @@ goodloop.html.leaderboard = () =>
 			${charity_li(goodloop.charities[2])}
 		</ul>
 	</div>
-	${goodloop.html.videobox()}
 </div>`;
 
 let charity_li = (charity) => ! charity? '' :
@@ -74,8 +73,8 @@ goodloop.html.tq = () => `
 
 
 // NB: backdrop is to catch exit clicks
+goodloop.html.backdrop = "<div class='backdrop'></div>";
 goodloop.html.videobox = () => `
-<div class='backdrop'></div>
 <div class="gdlp videobox">	
 	<button class="close" title="close this advert">&times;</button>
 	<div class="vcontainer">

@@ -30,8 +30,15 @@ goodloop.act.openLightbox = function() {
 	goodloop.act.openLightbox2();
 };
 goodloop.act.openLightbox2 = function() {
+	// make it?
+	goodloop.$vbox = $('#gdlpid .videobox');
+	if (goodloop.$vbox.length === 0) {
+		goodloop.$vbox = $(goodloop.html.videobox());
+		$('#gdlpid .unit').append(goodloop.html.backdrop);
+		$('#gdlpid .unit').append(goodloop.$vbox);
+	}
 	$('#gdlpid .backdrop').show();
-	$('#gdlpid .videobox').show();	
+	goodloop.$vbox.show();
 	// exits	
 	$(document).on('keyup', goodloop.act.keyup);	
 	// close button & click-out -- already set in render
