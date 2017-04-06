@@ -102,8 +102,8 @@ goodloop.act.elapse = function() {
 
 goodloop.act.showCharityChooser = function() {
 	$('#gdlpid .charity_chooser').addClass('showing');
-	var up = (video.offsetHeight - goodloop.domvideo.offsetHeight - goodloop.domvideo.offsetTop) + 28 + "px";
-	$('#gdlpid .charity_chooser').css('bottom', up);
+	var up = (goodloop.domvideo.offsetHeight + goodloop.domvideo.offsetTop - 80) + "px";
+	$('#gdlpid .charity_chooser').css('top', up);
 };
 
 goodloop.act.pickCharity = function(charityId) {
