@@ -23,19 +23,23 @@
 #gdlpid .videobox .charity_chooser {
     position: absolute;
     left: 0%;
+	bottom: 0;
     width: 100%;
     height: 11vw;
     background-color: rgba(0,0,0,0.6);
     z-index: 6;
-    pointer-events: none;
+    /*pointer-events: none;*/
     overflow: hidden;
     opacity: 0;
+	display:none;
     transition: opacity 0.5s ease;
+	transition: bottom 0.5s ease;
     max-height: 80px;
 }
 #gdlpid .videobox .charity_chooser.showing {
-    pointer-events: auto;
+    /*pointer-events: auto;*/
     opacity: 1;
+	display:block;
 }
 #gdlpid .videobox .charity_chooser h2 {
     color: white;
@@ -72,9 +76,6 @@
     position: relative;
     background: transparent;
     text-indent: -1000em;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
     margin-right: 10px;
 }
 
@@ -116,7 +117,7 @@
 
 /* after the video */
 
-#gdlpid .videobox .vcontainer .finished {
+#gdlpid .videobox .vcontainer .endpage {
     display: none;
     background: rgba(0,0,0,0.8);
     color: white;
@@ -124,14 +125,14 @@
     -ms-flex-direction: column;
     flex-direction: column;
 }
-#gdlpid .videobox .vcontainer .finished p {
+#gdlpid .videobox .vcontainer .endpage p {
     background: transparent;
     color: white;
     padding: 1em;
     text-align: center;
     font-family: "Varela Round", sans-serif;
 }
-#gdlpid .videobox .vcontainer .finished p.share, #gdlpid .videobox .vcontainer .finished p.visit {
+#gdlpid .videobox .vcontainer .endpage p.share, #gdlpid .videobox .vcontainer .endpage p.visit {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
@@ -141,7 +142,7 @@
     -ms-align-items: center;
     align-items: center;
 }
-#gdlpid .videobox .vcontainer .finished p.share > *, #gdlpid .videobox .vcontainer .finished p.visit > * {
+#gdlpid .videobox .vcontainer .endpage p.share > *, #gdlpid .videobox .vcontainer .endpage p.visit > * {
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
     background-color: transparent;
@@ -149,12 +150,12 @@
     margin: 0 1em;
 }
 
-#gdlpid .videobox .vcontainer .finished span.charity_name, #gdlpid .videobox .vcontainer .finished span.company_name {
+#gdlpid .videobox .vcontainer .endpage span.charity_name, #gdlpid .videobox .vcontainer .endpage span.company_name {
     display: inline;
     background: transparent;
     color: white;
 }
-#gdlpid .videobox .vcontainer .finished a.gl {
+#gdlpid .videobox .vcontainer .endpage a.gl {
     display: inline-block;
     background-color: transparent;
     background-position: center center;
@@ -166,14 +167,14 @@
     text-indent: -1000em;
     vertical-align: middle;
 }
-#gdlpid .videobox .vcontainer .finished .fb {
+#gdlpid .videobox .vcontainer .endpage .fb {
     height: 29px;
     width: 29px;
     text-indent: -1000em;
     background: url(facebook_white.png) center center no-repeat;
     background-size: 29px 29px;
 }
-#gdlpid .videobox .vcontainer .finished .tw {
+#gdlpid .videobox .vcontainer .endpage .tw {
     height: 29px;
     width: 35px;
     text-indent: -1000em;
@@ -243,7 +244,7 @@
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     /* IE10/11-specific styles go here */
-    #gdlpid .videobox .vcontainer > div, #gdlpid .videobox .vcontainer .finished {
+    #gdlpid .videobox .vcontainer > div, #gdlpid .videobox .vcontainer .endpage {
         width: 100%;
         height: 100%;
     }

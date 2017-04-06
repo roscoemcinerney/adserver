@@ -62,7 +62,7 @@ goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlp
     </ul>
 </div>`;
 
-
+/** goes inside div.unit, replacing the advert */
 goodloop.html.tq = () => `
     <div class="thankyou">
         <a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
@@ -73,32 +73,40 @@ goodloop.html.tq = () => `
     </div>`;
 
 
+// NB: backdrop is to catch exit clicks
 goodloop.html.videobox = () => `
 <div class='backdrop'></div>
 <div class="gdlp videobox">	
 	<button class="close" title="close this advert">&times;</button>
-	<div class="charity_chooser">
-		<h2>Pick the charity you'd like to receive a free donation.</h2>
-		<ul class="video_charities">
-			${charity_li(goodloop.charities[0])}
-			${charity_li(goodloop.charities[1])}
-			${charity_li(goodloop.charities[2])}
-		</ul>
-	</div>
 	<div class="vcontainer">
 		<img class='logo' alt='ADS FOR GOOD' src='afg-black.png' />
 		<video src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
-		<div class="finished">
-			<p class="ty">Thank you for watching this <a href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#" class="gl">Good-Loop</a> ad!</p>
-			<p><span class="company_name">KERB FOOD</span> has funded your donation to <span class="charity_name">$charity</span></p>
-			<p>Double your donation by sharing</p>
-			<p class="share"><a class="fb" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Facebook</a> <a class="tw" href="https://kryogenix.org/work/good-loop/designs/final/final-ld.html#">Twitter</a></p>
+		<div class="charity_chooser">
+			<h2>Pick the charity you'd like to receive a free donation.</h2>
+			<ul class="video_charities">
+				${charity_li(goodloop.charities[0])}
+				${charity_li(goodloop.charities[1])}
+				${charity_li(goodloop.charities[2])}
+			</ul>
 		</div>
 		<ul class="messages">
 			<li class="messages_countdown">Your donation will be unlocked in <span class="counter">20</span> seconds</li>
-			<li class="messages_done"><span class="company_name">${goodloop.vert.name}</span> has funded your donation to <span class="charity_name">charity</span></li>
+			<li class="messages_done"><a href='${goodloop.vert.url}' class="company_name">${goodloop.vert.name}</a> has funded your donation to <span class="charity_name">charity</span></li>
 		</ul>
 	</div>
+</div>`;
+
+/** replaces the contents of videobox .vcontainer*/
+goodloop.html.endpage = () => `
+<div class="endpage">
+	<p><a href='${goodloop.vert.url}' class="company_name">${goodloop.vert.name}</a> has funded your donation to 
+		<a class="charity_name">${goodloop.state.charity.name || 'the Good-Loop fund.'}</a></p>
+	<p>Double your donation by sharing</p>
+	<p class="share">
+		<a class="fb" href="TODO">Facebook</a> 
+		<a class="tw" href="TODO">Twitter</a>
+	</p>
+	<p class="ty">Thank you for watching this <a href="http://good-loop.com" class="gl">Good-Loop</a> ad!</p>
 </div>`;
 
 }

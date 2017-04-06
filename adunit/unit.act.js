@@ -48,6 +48,7 @@ goodloop.act.closeLightbox = function() {
 	$(document).off('keyup', goodloop.act.keyup);
 	$('#gdlpid .videobox').hide();
 	$('#gdlpid .backdrop').hide();
+	if (goodloop.domvideo) goodloop.domvideo.stop();
 	goodloop.state.playing = false;
 	if ($sf) {
 		$sf.ext.collapse();
@@ -57,23 +58,21 @@ goodloop.act.closeLightbox = function() {
 
 /** open lightbox and start the video */
 goodloop.act.startVideo = function() {
-	goodloop.act.openLightbox();
+	goodloop.act.openLightbox();	
+	goodloop.domvideo = $('#gdlpid video')[0];
 	// TODO iOS plays the video on its own, full screen. 
 	// So we have to show the chooser first, then start the video.
 	if (goodloop.env.iOS) {
-
+		// ??
 	}	
 	goodloop.state.startTime = new Date().getTime();
 	setTimeout(goodloop.act.elapse, 100);
-
 	// on video end
-	$('#gdlpid video').on('ended', function(event) {
+	goodloop.domvideo.addEventListener("ended", function(event) {
 		goodloop.act.showEndPage(); // TODO
 	});
-
-	// start
-	var video = $('#gdlpid video')[0];
-	video.play();
+	// start	
+	goodloop.domvideo.play();
 	goodloop.state.playing = true;
 };
 
@@ -86,12 +85,18 @@ goodloop.act.elapse = function() {
 			setTimeout(goodloop.act.elapse, 100);
 		}
 	} else {
-		if (goodloop.state.charity.id) {
+		if (goodloop.state.charity && goodloop.state.charity.id) {
 			goodloop.act.donate();
 		} else {
 			goodloop.act.showCharityChooser();
 		}
 	}
+};
+
+goodloop.act.showCharityChooser = function() {
+	$('#gdlpid .charity_chooser').addClass('showing');
+	var up = (video.offsetHeight - goodloop.domvideo.offsetHeight - goodloop.domvideo.offsetTop) + 28 + "px";
+	$('#gdlpid .charity_chooser').css('bottom', up);
 };
 
 goodloop.act.pickCharity = function(charityId) {
@@ -129,6 +134,7 @@ goodloop.act.exitEarly = function() {
 goodloop.act.pause = function() {
 	goodloop.state.playing = false;
 	goodloop.state.elapsed = goodloop.dt();
+	if (goodloop.domvideo) goodloop.domvideo.pause();
 };
 
 /**
