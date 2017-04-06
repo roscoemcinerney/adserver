@@ -83,11 +83,15 @@ goodloop.act.startVideo = function() {
 	goodloop.state.playing = true;
 };
 
+goodloop.act.showEndPage = function() {
+	$('#gdlpid .vcontainer').html(goodloop.html.endpage());
+};
+
 goodloop.act.elapse = function() {
 	var dt = goodloop.dt();
 	var s = Math.ceil(goodloop.variant.adsecs - dt/1000.0);
-	if (s > 0) {
-		$('#gdlpid .vidbox .counter').text(s+"s");
+	if (s > 0) {				
+		$('#gdlpid .videobox .message').text("Your donation will be unlocked in "+s+"s");
 		if (goodloop.state.playing) {
 			setTimeout(goodloop.act.elapse, 100);
 		}
@@ -101,8 +105,9 @@ goodloop.act.elapse = function() {
 };
 
 goodloop.act.showCharityChooser = function() {
+	$('#gdlpid .videobox .message').text("");
 	$('#gdlpid .charity_chooser').addClass('showing');
-	var up = (goodloop.domvideo.offsetHeight + goodloop.domvideo.offsetTop - 80) + "px";
+	var up = (goodloop.domvideo.offsetHeight + goodloop.domvideo.offsetTop - 104) + "px";
 	$('#gdlpid .charity_chooser').css('top', up);
 };
 
@@ -162,6 +167,7 @@ goodloop.act.donate = function() {
 	goodloop.state.donated = true;
 	// replace the adunits with a thank you
 	$('#gdlpid .unit').html(goodloop.html.tq());
+	$('#gdlpid .videobox .message').html(goodloop.html.msgdonated());
 };
 
 /** log a click-through (does not change location - the original a tag must do this) */
