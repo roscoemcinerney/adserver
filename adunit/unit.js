@@ -38,6 +38,7 @@ if (typeof($sf) !== 'undefined') {
 goodloop.state = {
 	/** Your chosen charity */
 	charity: {},
+	playing: false,
 	done: false,
 	/** If you pause & restart, this is the restart time. */
 	startTime: null,

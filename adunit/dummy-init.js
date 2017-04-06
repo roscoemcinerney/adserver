@@ -27,7 +27,7 @@ goodloop.charities = [
 ];
 
 goodloop.variant = {
-	adsecs: 9, // TODO explore the effect of 5-15 seconds
+	adsecs: 5, // TODO explore the effect of 5-15 seconds
 	expln: "Give a donation by watching an advert"
 };
 
