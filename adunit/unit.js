@@ -35,6 +35,7 @@ if (typeof($sf) !== 'undefined') {
 
 
 // STATE
+goodloop.dataspace='goodloop';
 goodloop.state = {
 	/** Your chosen charity */
 	charity: {},
@@ -62,8 +63,9 @@ function renderUnit(id, $div) {
 		return;	
 	}
 	// show offer
-	var html = goodloop.html[format]();
-	$div.html(html);
+	var $unit = $(goodloop.html[format]());
+	$unit.addClass(format);
+	$div.append($unit);
 }
 
 function pickFormat($div) {

@@ -7,7 +7,7 @@ goodloop.html = {};
 // NB: &#9654; is play-triangle
 
 goodloop.html.leaderboard = () => 
-`<div id='gdlpid' class="leaderboard" onclick="goodloop.act.startVideo();">
+`<div id='gdlpid' onclick="goodloop.act.startVideo();">
 	<div class='unit'>
 		<header>        
 			<img class='logo' alt='ADS FOR GOOD' src='afg-white.png' />
@@ -25,41 +25,14 @@ goodloop.html.leaderboard = () =>
 </div>`;
 
 let charity_li = (charity) => ! charity? '' :
-`<li title='${charity.name}'>
+`<li class='chty' data-cid='${charity.id}' title='${charity.name}'>
 	<img class='clogo' src='${charity.logo}'/>
 	${charity.photo? `<img class='cphoto' src='${charity.photo}'/>` : ''}
 </li>`;
 
-goodloop.html.mediumrectangle = `<div class="gdlpafg mediumrectangle">
-    <header class="animatable">
-        <span class="adlogo"></span>
-        <h1>Watch an ad with Good Loop.</h1>
-        <h2>Free money goes to charity.</h2>
-        <span class="play"></span>
-    </header>
+goodloop.html.mediumrectangle = goodloop.html.leaderboard;
 
-    <ul class="charities">
-        <li class="shelter"><em></em><span>Shelter</span></li>
-        <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
-        <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
-    </ul>
-</div>`;
-
-
-goodloop.html.stickybottom = ({charities, publisher, vert}) => `<div class="gdlpafg stickybottom">
-    <header class="animatable">
-        <span class="adlogo"></span>
-        <h1>Watch an ad with Good Loop.</h1>
-        <h2>Free money goes to charity.</h2>
-        <span class="play"></span>
-    </header>
-
-    <ul class="charities">
-        <li class="shelter"><em></em><span>Shelter</span></li>
-        <li class="azru"><em></em><span>Alzheimer's Research UK</span></li>
-        <li class="bdh showing"><em></em><span>Battersea Dogs Home</span></li>
-    </ul>
-</div>`;
+goodloop.html.stickybottom = goodloop.html.leaderboard;
 
 /** goes inside div.unit, replacing the advert */
 goodloop.html.tq = () => `

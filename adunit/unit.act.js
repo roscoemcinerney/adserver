@@ -36,6 +36,11 @@ goodloop.act.openLightbox2 = function() {
 		goodloop.$vbox = $(goodloop.html.videobox());
 		$('#gdlpid .unit').append(goodloop.html.backdrop);
 		$('#gdlpid .unit').append(goodloop.$vbox);
+		// wire up chooser	
+		$('.chty', goodloop.$vbox).each(function() {
+			var cid = $(this).attr('data-cid');
+			$(this).click(function() { goodloop.act.pickCharity(cid); });
+		});
 	}
 	$('#gdlpid .backdrop').show();
 	goodloop.$vbox.show();
@@ -109,8 +114,8 @@ goodloop.act.showCharityChooser = function() {
 	$('#gdlpid .charity_chooser').addClass('showing');
 	var up = (goodloop.domvideo.offsetHeight + goodloop.domvideo.offsetTop - 104) + "px";
 	$('#gdlpid .charity_chooser').css('top', up);
+	// NB wired up when the vidbox html was made
 };
-
 goodloop.act.pickCharity = function(charityId) {
 	// set & inform
 	for(var i=0; i<goodloop.charities.length; i++) {
@@ -118,11 +123,12 @@ goodloop.act.pickCharity = function(charityId) {
 			goodloop.state.charity = goodloop.charities[i];
 		}
 	}
-	datalog.log(dataspace, 'pick', {
-			publisher: goodloop.publisher.id,
-			charity: charityId
-	});
-	// TODO hide the buttons
+	goodloop.act.log('pick', {charity: charityId});
+	// hide the buttons
+	// TODO could we make the chosen charity pulse? 
+	// e.g. via opacity or border-colour, and use a css animation or transition?
+	$('#gdlpid .charity_chooser').removeClass('showing');
+	$('#gdlpid .charity_chooser').css('top', '600px');
 };
 
 goodloop.dt = function() { 
@@ -133,12 +139,7 @@ goodloop.dt = function() {
 goodloop.act.exitEarly = function() {
 	var dt = goodloop.dt();
 	// log it
-	datalog.log('goodloop', 'skip', {
-		publisher: goodloop.publisher.id,
-		campaign: goodloop.vert.campaign, 
-		viewtime: dt/1000,
-		variant: goodloop.variant
-	}, true);
+	goodloop.act.log('skip', {viewtime: dt/1000});
 	$(document).off('keyup');
 };
 
@@ -156,14 +157,10 @@ goodloop.act.pause = function() {
 goodloop.act.donate = function() {
 	if (goodloop.state.donated) return;
 	// log with base
-	var dataspace = 'goodloop';
-	datalog.log(dataspace, 'adview', {
-			campaign: goodloop.vert.campaign,
-			publisher: goodloop.publisher.id,
-			charity: goodloop.state.charity.id,
-			variant: variant,
-			view: 'complete'
-		}, true);
+	goodloop.act.log('adview', {
+		charity: goodloop.state.charity.id,
+		view: 'complete'
+	});
 	goodloop.state.donated = true;
 	// replace the adunits with a thank you
 	$('#gdlpid .unit').html(goodloop.html.tq());
@@ -178,16 +175,19 @@ goodloop.act.click = function() {
 	const href = $(el).attr('href');
 	if (href) url = href;
 	// log the click
-	var dataspace = 'goodloop';
-	datalog.log(dataspace, 'click', {
-			publisher: publisher,
-			variant: variant,
-			url: url
-	}, true);
+	goodloop.act.log('click', {url:url});
 	// make a donation?
 	if (url === goodloop.vert.url) {
 		goodloop.act.donate();
 	}
 	// window.location = url; this wouldn't open a new tab :(
 	return true;
+};
+goodloop.act.log = function(eventTag, eventParams) {
+	eventParams = $.extend({
+		publisher: goodloop.publisher.id,
+		campaign: goodloop.vert.campaign,
+		variant: goodloop.variant
+	}, eventParams);
+	datalog.log(goodloop.dataspace, eventTag, eventParams, true);
 };
