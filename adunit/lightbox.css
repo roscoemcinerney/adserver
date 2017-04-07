@@ -62,7 +62,7 @@
     margin: 0;
     background: transparent;
     position: absolute;
-    bottom: 0;
+    /*bottom: 0;*/
     right: 0;
     max-height: 80px;
 }
@@ -80,6 +80,22 @@
     background: transparent;
     text-indent: -1000em;
     margin-right: 10px;
+}
+#gdlpid .charity_chooser img.clogo {
+	position:absolute;
+	top:0px;
+	right:5px;
+	max-height:80px;
+	width:85%;
+	z-index: 3;
+}
+#gdlpid .charity_chooser img.cphoto {
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:100%;
+	height:100%;
+	z-index: 2;
 }
 
 

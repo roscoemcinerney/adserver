@@ -118,7 +118,7 @@
     35% { opacity: 0; }
     100% { opacity: 0; }
 }
-#gdlpid.leaderboard img.clogo {
+#gdlpid.leaderboard .unit img.clogo {
 	position:absolute;
 	top:0px;
 	right:5px;
@@ -126,7 +126,7 @@
 	width:115px;
 	z-index: 3;
 }
-#gdlpid.leaderboard img.cphoto {
+#gdlpid.leaderboard .unit img.cphoto {
 	position:absolute;
 	top:0px;
 	right:0px;
