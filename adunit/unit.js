@@ -25,7 +25,7 @@ if (typeof($sf) !== 'undefined') {
 	goodloop.sfHandler = function(status, data) {
 		console.log("#sfHandler", status, data);
 		if (status==='expanded') {			
-			$('#gdlpid .videobox').show();
+			goodloop.act.openLightbox2();
 		}
 	};
 	$sf.ext.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
@@ -100,7 +100,7 @@ function pickFormat($div) {
 function render() {
 	var $ads = $('div.goodloopad');
 	if ($ads.length==0 && $sf) {
-		$('body').append('<div class="goodloopad"></div>');
+		document.write('<div class="goodloopad"></div>');
 		$ads = $('div.goodloopad');
 	}
 	$ads.each(function(i) {
@@ -112,10 +112,12 @@ function render() {
 			$div.attr('id', id);
 		}
 		renderUnit(id, $div);
-	});
+	});	
 	$('#gdlpid .videobox .close').click(goodloop.act.closeLightbox);
 	$('#gdlpid .backdrop').click(goodloop.act.closeLightbox);
 }
+document.write("<style>@import 'all.css';</style>");
 render();
+
 
 });

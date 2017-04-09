@@ -3,7 +3,8 @@
 /*	LIFECYLE
 
 1. Advert
-2. startVideo -> openLightbox
+2. openLightbox
+ -> openLightbox2 (possibly async after a SafeFrame expand)
 
 3. closeLightbox (covers all forms of exit)
    -?> exitEarly
@@ -47,6 +48,7 @@ goodloop.act.openLightbox2 = function() {
 	// exits	
 	$(document).on('keyup', goodloop.act.keyup);	
 	// close button & click-out -- already set in render
+	goodloop.act.startVideo();
 };
 
 goodloop.act.keyup = function(event) {
@@ -56,11 +58,12 @@ goodloop.act.keyup = function(event) {
 };
 
 goodloop.act.closeLightbox = function() {	
-	console.log("closeLightbox");
+	try {
+		if (goodloop.domvideo) goodloop.domvideo.stop();
+	} catch(err) {}
 	$(document).off('keyup', goodloop.act.keyup);
 	$('#gdlpid .videobox').hide();
-	$('#gdlpid .backdrop').hide();
-	if (goodloop.domvideo) goodloop.domvideo.stop();
+	$('#gdlpid .backdrop').hide();	
 	goodloop.state.playing = false;
 	if ($sf) {
 		$sf.ext.collapse();
@@ -68,9 +71,10 @@ goodloop.act.closeLightbox = function() {
 };
 
 
-/** open lightbox and start the video */
+/** assumes: open lightbox
+ * Start the video */
 goodloop.act.startVideo = function() {
-	goodloop.act.openLightbox();	
+	// goodloop.act.openLightbox();	
 	goodloop.domvideo = $('#gdlpid video')[0];
 	// TODO iOS plays the video on its own, full screen. 
 	// So we have to show the chooser first, then start the video.

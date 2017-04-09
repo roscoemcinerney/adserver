@@ -49,7 +49,6 @@
     right: 270px;
     text-align: center;
     font-size: 16px;
-    font-family: "Varela Round", sans-serif;
     font-weight: normal;
     background: transparent;
     transform: translateY(-50%);
@@ -133,23 +132,25 @@
     max-width: 100%;
 }
 
+#gdlpid .videobox .message {
+    background: transparent;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
 
 /* after the video */
 
 #gdlpid .videobox .vcontainer .endpage {
-    display: none;
-    background: rgba(0,0,0,0.8);
-    color: white;
+    color: black;
     justify-content: center;
     -ms-flex-direction: column;
     flex-direction: column;
 }
 #gdlpid .videobox .vcontainer .endpage p {
     background: transparent;
-    color: white;
     padding: 1em;
     text-align: center;
-    font-family: "Varela Round", sans-serif;
 }
 #gdlpid .videobox .vcontainer .endpage p.share, #gdlpid .videobox .vcontainer .endpage p.visit {
     display: -ms-flexbox;
@@ -164,28 +165,9 @@
 #gdlpid .videobox .vcontainer .endpage p.share > *, #gdlpid .videobox .vcontainer .endpage p.visit > * {
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
-    background-color: transparent;
-    color: white;
     margin: 0 1em;
 }
 
-#gdlpid .videobox .vcontainer .endpage span.charity_name, #gdlpid .videobox .vcontainer .endpage span.company_name {
-    display: inline;
-    background: transparent;
-    color: white;
-}
-#gdlpid .videobox .vcontainer .endpage a.gl {
-    display: inline-block;
-    background-color: transparent;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-image: url(gl-head-leaderboard@2x.png);
-    background-size: 104px 43px;
-    height: 43px;
-    width: 104px;
-    text-indent: -1000em;
-    vertical-align: middle;
-}
 #gdlpid .videobox .vcontainer .endpage .fb {
     height: 29px;
     width: 29px;
@@ -200,31 +182,6 @@
     background: url(twitter_white.png) center center no-repeat;
     background-size: 35px 29px;
 }
-
-
-
-
-
-#gdlpid .videobox ul.messages {
-    background: transparent;
-    font-family: "Varela Round", sans-serif;
-    margin-right: 10px;
-    margin-top: 10px;
-    font-size: 16px;
-}
-#gdlpid .videobox ul.messages li { 
-    display: none; 
-    text-align: right;
-    background: transparent;
-    color: white;
-}
-#gdlpid .videobox ul.messages li span {
-    display: inline;
-    background: transparent;
-    color: white;
-}
-
-
 
 @media (max-width: 600px) {
     #gdlpid .videobox {

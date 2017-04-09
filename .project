@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>adunit/all.js</name>
+			<type>1</type>
+			<location>/home/daniel/winterwell/safeframe/tests/sample_ads/all.js</location>
+		</link>
+	</linkedResources>
 </projectDescription>
