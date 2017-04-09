@@ -212,7 +212,7 @@
         margin: 0 2px;
         height: 100%;
     }
-    #gdlpid .videobox ul.messages {
+    #gdlpid .videobox .message {
         font-size: 12px;
     }
 }

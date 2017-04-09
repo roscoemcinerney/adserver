@@ -168,7 +168,8 @@ goodloop.act.donate = function() {
 	goodloop.state.donated = true;
 	// replace the adunits with a thank you
 	$('#gdlpid .unit').html(goodloop.html.tq());
-	$('#gdlpid .videobox .message').html(goodloop.html.msgdonated());
+	var msg = goodloop.html.msgdonated();
+	$('#gdlpid .videobox .message').html(msg);
 };
 
 /** log a click-through (does not change location - the original a tag must do this) */
