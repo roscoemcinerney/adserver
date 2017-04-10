@@ -99,8 +99,11 @@ function pickFormat($div) {
 	// TODO support ad units added dynamically
 function render() {
 	// style
-	var $style = $("<style>@import 'all.css';</style>");
-	$('head').append($style);
+	var $style = $(`<style>@import 'all.css';
+	.chty {border: solid 2px red;}
+	</style>`);
+	var hd = document.getElementsByTagName('head')[0];
+	var ce = hd.createElement("style");	
 	// ads
 	var $ads = $('div.goodloopad');
 	if ($ads.length==0 && $sf) {
