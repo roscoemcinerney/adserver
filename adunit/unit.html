@@ -66,7 +66,7 @@ goodloop.html.videobox = () => `
 </div>`;
 
 goodloop.html.msgdonated = () => `<a href='${goodloop.vert.url}' class="company_name">${goodloop.vert.name}</a> 
-	has funded your donation to <span class="charity_name">charity</span>`;
+	has funded your donation to <span class="charity_name">${goodloop.status.charity.name}</span>`;
 
 /** replaces the contents of videobox .vcontainer*/
 goodloop.html.endpage = () => `

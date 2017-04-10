@@ -37,6 +37,9 @@ goodloop.act.openLightbox2 = function() {
 		goodloop.$vbox = $(goodloop.html.videobox());		
 		$('#gdlpid').append(goodloop.html.backdrop);
 		$('#gdlpid').append(goodloop.$vbox);
+		// close
+		$('.close', goodloop.$vbox).click(goodloop.act.closeLightbox);
+		$('#gdlpid .backdrop').click(goodloop.act.closeLightbox);
 		// wire up chooser	
 		$('.chty', goodloop.$vbox).each(function() {
 			var cid = $(this).attr('data-cid');
@@ -62,8 +65,8 @@ goodloop.act.closeLightbox = function() {
 		if (goodloop.domvideo) goodloop.domvideo.stop();
 	} catch(err) {}
 	$(document).off('keyup', goodloop.act.keyup);
-	$('#gdlpid.videobox').hide();
-	$('#gdlpid.backdrop').hide();	
+	$('#gdlpid .videobox').hide();
+	$('#gdlpid .backdrop').hide();	
 	goodloop.state.playing = false;
 	if ($sf) {
 		$sf.ext.collapse();
