@@ -32,11 +32,11 @@ goodloop.act.openLightbox = function() {
 };
 goodloop.act.openLightbox2 = function() {
 	// make it?
-	goodloop.$vbox = $('#gdlpid .videobox');
+	goodloop.$vbox = $('#gdlpid.videobox');
 	if (goodloop.$vbox.length === 0) {
-		goodloop.$vbox = $(goodloop.html.videobox());
-		$('#gdlpid .unit').append(goodloop.html.backdrop);
-		$('#gdlpid .unit').append(goodloop.$vbox);
+		goodloop.$vbox = $(goodloop.html.videobox());		
+		$('#gdlpid').append(goodloop.html.backdrop);
+		$('#gdlpid').append(goodloop.$vbox);
 		// wire up chooser	
 		$('.chty', goodloop.$vbox).each(function() {
 			var cid = $(this).attr('data-cid');
@@ -62,8 +62,8 @@ goodloop.act.closeLightbox = function() {
 		if (goodloop.domvideo) goodloop.domvideo.stop();
 	} catch(err) {}
 	$(document).off('keyup', goodloop.act.keyup);
-	$('#gdlpid .videobox').hide();
-	$('#gdlpid .backdrop').hide();	
+	$('#gdlpid.videobox').hide();
+	$('#gdlpid.backdrop').hide();	
 	goodloop.state.playing = false;
 	if ($sf) {
 		$sf.ext.collapse();
@@ -96,11 +96,15 @@ goodloop.act.showEndPage = function() {
 	$('#gdlpid .vcontainer').html(goodloop.html.endpage());
 };
 
+goodloop.act.vmsg = function(m) {
+	$('#gdlpid .message').html(m);
+};
+
 goodloop.act.elapse = function() {
 	var dt = goodloop.dt();
 	var s = Math.ceil(goodloop.variant.adsecs - dt/1000.0);
-	if (s > 0) {				
-		$('#gdlpid .videobox .message').text("Your donation will be unlocked in "+s+"s");
+	if (s > 0) {
+		goodloop.act.vmsg("Your donation will be unlocked in "+s+"s");
 		if (goodloop.state.playing) {
 			setTimeout(goodloop.act.elapse, 100);
 		}
@@ -115,7 +119,7 @@ goodloop.act.elapse = function() {
 };
 
 goodloop.act.showCharityChooser = function() {
-	$('#gdlpid .videobox .message').text("");
+	goodloop.act.vmsg("");
 	$('#gdlpid .charity_chooser').addClass('showing');
 	var up = (goodloop.domvideo.offsetHeight + goodloop.domvideo.offsetTop - 104) + "px";
 	$('#gdlpid .charity_chooser').css('top', up);
@@ -174,7 +178,7 @@ goodloop.act.donate = function() {
 	// replace the adunits with a thank you
 	$('#gdlpid .unit').html(goodloop.html.tq());
 	var msg = goodloop.html.msgdonated();
-	$('#gdlpid .videobox .message').html(msg);
+	goodloop.act.vmsg(msg);
 };
 
 /** log a click-through (does not change location - the original a tag must do this) */

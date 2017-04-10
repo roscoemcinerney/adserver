@@ -80,6 +80,7 @@
     text-indent: -1000em;
     margin-right: 10px;
 	overflow: hidden;
+	cursor: pointer;
 }
 #gdlpid .charity_chooser img.clogo {
 	position:absolute;
