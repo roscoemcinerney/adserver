@@ -98,6 +98,10 @@ function pickFormat($div) {
 // setTimeout(function() {
 	// TODO support ad units added dynamically
 function render() {
+	// style
+	var $style = $("<style>@import 'all.css';</style>");
+	$('head').append($style);
+	// ads
 	var $ads = $('div.goodloopad');
 	if ($ads.length==0 && $sf) {
 		document.write('<div class="goodloopad"></div>');
@@ -116,7 +120,6 @@ function render() {
 	$('#gdlpid .videobox .close').click(goodloop.act.closeLightbox);
 	$('#gdlpid .backdrop').click(goodloop.act.closeLightbox);
 }
-document.write("<style>@import 'all.css';</style>");
 render();
 
 

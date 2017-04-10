@@ -126,7 +126,7 @@
 	width:115px;
 	z-index: 3;
 }
-#gdlpid.leaderboard .unit img.cphoto {
+#gdlpid.leaderboard .charities img.cphoto {
 	position:absolute;
 	top:0px;
 	right:0px;
@@ -173,8 +173,10 @@
 }
 
 
-#gdlpid.leaderboard .thankyou a { width: 80px; height: 80px; }
+/** THANK YOU */
+
 #gdlpid.leaderboard.mobile .thankyou a { width: 45px; height: 45px; }
+
 #gdlpid.leaderboard .thankyou a.afg_charity_name { left: 80px; }
 #gdlpid.leaderboard.mobile .thankyou a.afg_charity_name { left: 45px; }
 #gdlpid.leaderboard .thankyou a.afg_gl_link {
@@ -188,18 +190,6 @@
     width: auto;
 }
 
-/* Thank you */
-
-#gdlpid.leaderboard .thankyou {
-    background: url(leaderboard-bg-90.png) left center no-repeat;
-    background-size: cover;
-    background-color: transparent;
-    color: white;
-    height: 90px;
-}
-#gdlpid.leaderboard.mobile .thankyou {
-    height: 50px;
-}
 #gdlpid.leaderboard .thankyou a {
     display: block;
     width: 90px;
@@ -212,24 +202,7 @@
     background-repeat: no-repeat;
     text-indent: -1000em;
 }
-#gdlpid.leaderboard .thankyou a.afg_company_name {
-    left: 0;
-    background-image: url(ad-logo@2x.png);
-}
-#gdlpid.leaderboard .thankyou a.afg_charity_name {
-    left: 90px;
-    background-image: url(logo_shelter_white@2x.png);
-}
-#gdlpid.leaderboard .thankyou a.afg_gl_link {
-    width: auto;
-    left: 180px;
-    right: 180px;
-    background-image: url(gl-head-leaderboard@2x.png);
-    background-size: auto 45px;
-}
-#gdlpid.leaderboard.mobile .thankyou a.afg_gl_link {
-    background-size: auto 40px;
-}
+
 #gdlpid.leaderboard .thankyou a.afg_tw {
     right: 0px;
     background-image: url(twitter_white.png);

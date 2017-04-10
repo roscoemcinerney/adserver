@@ -105,6 +105,7 @@ goodloop.act.elapse = function() {
 			setTimeout(goodloop.act.elapse, 100);
 		}
 	} else {
+		goodloop.state.complete = true;
 		if (goodloop.state.charity && goodloop.state.charity.id) {
 			goodloop.act.donate();
 		} else {
@@ -133,6 +134,10 @@ goodloop.act.pickCharity = function(charityId) {
 	// e.g. via opacity or border-colour, and use a css animation or transition?
 	$('#gdlpid .charity_chooser').removeClass('showing');
 	$('#gdlpid .charity_chooser').css('top', '600px');
+	// make the donation?
+	if (goodloop.state.complete) {
+		goodloop.act.donate();
+	}
 };
 
 goodloop.dt = function() { 

@@ -8,3 +8,9 @@ cat unit.css lightbox.css leaderboard.css sticky-bottom.css medium-rectangle.css
 # TODO shrink images
 
 # TODO shrink js and css
+
+# Copy for local test
+cp build/all.css all.css
+# Copy for SafeFrame test
+cp build/all.css ~/winterwell/safeframe/src/html/all.css
+cp build/all.js ~/winterwell/safeframe/tests/sample_ads/all.js
