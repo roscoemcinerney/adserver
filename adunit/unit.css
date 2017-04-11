@@ -71,6 +71,15 @@
 
 }
 
+#gdlpid img.tw {
+	width: 35px;
+	height: 29px;
+}
+#gdlpid img.fb {
+	width: 29px;
+	height: 29px;
+}
+
 @media only screen and ( -webkit-min-device-pixel-ratio: 1.3 ),
        only screen and (    min--moz-device-pixel-ratio: 1.3 ),
        only screen and (      -o-min-device-pixel-ratio: 2.6/2 ), /* returns 1.3, see Dev.Opera */

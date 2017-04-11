@@ -171,21 +171,6 @@
     margin: 0 1em;
 }
 
-#gdlpid .fb {
-    height: 29px;
-    width: 29px;
-    text-indent: -1000em;
-    background: url(facebook.png) center center no-repeat;
-    background-size: 29px 29px;
-}
-#gdlpid .tw {
-    height: 29px;
-    width: 35px;
-    text-indent: -1000em;
-    background: url(twitter.png) center center no-repeat;
-    background-size: 35px 29px;
-}
-
 @media (max-width: 600px) {
     #gdlpid .videobox {
         width: 100vw;
