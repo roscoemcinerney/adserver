@@ -22,6 +22,9 @@ goodloop.act.openLightbox = function() {
 		try {
 			var g = $sf.ext.geom(); // the geometry object
 			$sf.ext.expand(g.exp);
+			setTimeout(function() {
+				if ( ! goodloop.state.lightbox) goodloop.act.openLightbox2();
+			}, 300);
 			return; // show on expand
 		} catch (e) {
 			//do not expand :(
@@ -31,6 +34,8 @@ goodloop.act.openLightbox = function() {
 	goodloop.act.openLightbox2();
 };
 goodloop.act.openLightbox2 = function() {
+	if (goodloop.state.lightbox) return;
+	goodloop.state.lightbox = true;
 	// make it?
 	goodloop.$vbox = $('#gdlpid.videobox');
 	if (goodloop.$vbox.length === 0) {
@@ -47,7 +52,7 @@ goodloop.act.openLightbox2 = function() {
 		});
 	}
 	$('#gdlpid .backdrop').show();
-	goodloop.$vbox.show();
+	goodloop.$vbox.show();	
 	// exits	
 	$(document).on('keyup', goodloop.act.keyup);	
 	// close button & click-out -- already set in render
@@ -68,8 +73,9 @@ goodloop.act.closeLightbox = function() {
 	$('#gdlpid .videobox').hide();
 	$('#gdlpid .backdrop').hide();	
 	goodloop.state.playing = false;
-	if ($sf) {
-		$sf.ext.collapse();
+	goodloop.state.lightbox = false;
+	if ($sf) {		
+		$sf.ext.collapse();		
 	}
 };
 

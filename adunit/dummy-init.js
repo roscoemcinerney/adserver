@@ -1,6 +1,6 @@
 if ( ! window.goodloop) window.goodloop = {};
-goodloop.BURL='//as.good-loop.com/'; 
-goodloop.LBURL='//lg.good-loop.com'; 
+//goodloop.BURL='//localas.good-loop.com/'; not needed
+goodloop.LBURL='//locallg.good-loop.com'; 
 
 goodloop.publisher = {
 	"active":true,

@@ -18,7 +18,10 @@
 #gdlpid h1,h2,h3,h4 {
     font-size: inherit;
 }
-#gdlpid a {
+#gdlpid a, #gdlpid span {
+	display: inline; 
+}
+#gdlpid a {	
     text-decoration: none;
 }
 #gdlpid button {

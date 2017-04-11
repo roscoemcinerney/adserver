@@ -24,7 +24,7 @@ goodloop.env.isMobile = !!(userAgent.match('/mobile|Android|webOS|iPhone|iPad|iP
 if (typeof($sf) !== 'undefined') {
 	goodloop.sfHandler = function(status, data) {
 		console.log("#sfHandler", status, data);
-		if (status==='expanded') {			
+		if (status==='expanded') {				
 			goodloop.act.openLightbox2();
 		}
 	};
@@ -45,6 +45,8 @@ goodloop.state = {
 	startTime: null,
 	/** If you pause, this is the previously elapsed time. */
 	elapsed: 0,
+	/** true => open */
+	lightbox: false
 };
 
 
@@ -99,11 +101,21 @@ function pickFormat($div) {
 	// TODO support ad units added dynamically
 function render() {
 	// style
-	var $style = $(`<style>@import 'all.css';
-	.chty {border: solid 2px red;}
-	</style>`);
-	var hd = document.getElementsByTagName('head')[0];
-	var ce = hd.createElement("style");	
+	var css = `@import 'all.css';`;
+	if ($sf) {
+		// for some reason adding to head fails :(
+		document.write('<style type="text/css">'+css+'</style>');
+	} else {
+		var style = document.createElement("style");
+		style.type = 'text/css';
+		if (style.styleSheet) {
+			style.styleSheet.cssText = css;
+		} else {
+			style.appendChild(document.createTextNode(css));
+		}
+		document.head.appendChild(style);
+	}
+
 	// ads
 	var $ads = $('div.goodloopad');
 	if ($ads.length==0 && $sf) {
