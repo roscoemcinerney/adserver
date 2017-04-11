@@ -171,18 +171,18 @@
     margin: 0 1em;
 }
 
-#gdlpid .videobox .vcontainer .endpage .fb {
+#gdlpid .fb {
     height: 29px;
     width: 29px;
     text-indent: -1000em;
-    background: url(facebook_white.png) center center no-repeat;
+    background: url(facebook.png) center center no-repeat;
     background-size: 29px 29px;
 }
-#gdlpid .videobox .vcontainer .endpage .tw {
+#gdlpid .tw {
     height: 29px;
     width: 35px;
     text-indent: -1000em;
-    background: url(twitter_white.png) center center no-repeat;
+    background: url(twitter.png) center center no-repeat;
     background-size: 35px 29px;
 }
 

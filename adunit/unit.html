@@ -57,7 +57,7 @@ goodloop.html.videobox = () => `
 	<button class="close" title="close this advert">&times;</button>
 	<div class="vcontainer">
 		<img class='logo' alt='ADS FOR GOOD' src='afg-black.png' />
-		<video src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
+		<video id='gdlpvid${Math.round(Math.random()*1000)}' src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
 		<div class="charity_chooser">
 			<h2>Pick the charity you'd like to receive a free donation.</h2>
 			<ul class="video_charities">
@@ -80,6 +80,7 @@ goodloop.html.endpage = () => `
 		has funded your donation to 
 		<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
 	</p>
+	<p><small>The amount donated is a full 50% of the advert value. The amount varies - about 10p is average. These adverts also support the website.</small></p>
 	<p>Double your donation by sharing</p>
 	<p class="share">
 		<a class="fb" href="TODO">Facebook</a> 

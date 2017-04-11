@@ -41,7 +41,7 @@ goodloop.act.openLightbox2 = function() {
 	if (goodloop.state.lightbox) return;
 	goodloop.state.lightbox = true;
 	// make it?
-	goodloop.$vbox = $('#gdlpid.videobox');
+	goodloop.$vbox = $('#gdlpid .videobox');
 	if (goodloop.$vbox.length === 0) {
 		goodloop.$vbox = $(goodloop.html.videobox());		
 		$('#gdlpid').append(goodloop.html.backdrop);
@@ -103,6 +103,7 @@ goodloop.act.startVideo = function() {
 		goodloop.act.showEndPage(); // TODO
 	});
 	// start	
+	// console.log("play video", goodloop.domvideo, $(goodloop.domvideo).attr('id'));
 	goodloop.domvideo.play();
 	goodloop.state.playing = true;
 };
@@ -119,7 +120,7 @@ goodloop.act.elapse = function() {
 	var dt = goodloop.dt();
 	var s = Math.ceil(goodloop.variant.adsecs - dt/1000.0);
 	if (s > 0) {
-		goodloop.act.vmsg("Your donation will be unlocked in "+s+"s");
+		goodloop.act.vmsg("Your donation will be unlocked in "+s+" seconds");
 		if (goodloop.state.playing) {
 			setTimeout(goodloop.act.elapse, 100);
 		}

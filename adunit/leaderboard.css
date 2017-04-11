@@ -177,24 +177,6 @@
 
 #gdlpid.leaderboard.mobile .thankyou a { width: 45px; height: 45px; }
 
-#gdlpid.leaderboard .thankyou a.tw {
-    right: 0px;
-    background-image: url(twitter_white.png);
-    background-size: 45px 35px;
-}
-#gdlpid.leaderboard.mobile .thankyou a.tw {
-    background-size: 40px 31px;
-}
-#gdlpid.leaderboard .thankyou a.fb {
-    right: 90px;
-    background-image: url(facebook_white.png);
-    background-size: 45px 45px;
-}
-#gdlpid.leaderboard.mobile .thankyou a.fb {
-    right: 45px;
-    background-size: 40px 40px;
-}
-
 @media (max-width: 700px) {
     #gdlpid.leaderboard.mobile .charities li {
         width: 135px;
