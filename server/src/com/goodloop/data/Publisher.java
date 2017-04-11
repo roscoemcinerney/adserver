@@ -1,5 +1,6 @@
 package com.goodloop.data;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.winterwell.utils.web.WebUtils2;
@@ -31,6 +32,9 @@ public class Publisher extends Thing {
 	NGO charity1;
 	NGO charity2;
 	
+	public List<NGO> getCharities() {
+		return Arrays.asList(charity0, charity1, charity2);
+	}
 	
 	public void validate() {
 		if (domain==null && url!=null) {

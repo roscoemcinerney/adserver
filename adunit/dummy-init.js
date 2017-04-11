@@ -1,5 +1,5 @@
 if ( ! window.goodloop) window.goodloop = {};
-//goodloop.BURL='//localas.good-loop.com/'; not needed
+goodloop.BURL='//localas.good-loop.com/'; //not needed??
 goodloop.LBURL='//locallg.good-loop.com'; 
 
 goodloop.publisher = {
@@ -31,5 +31,3 @@ goodloop.variant = {
 	expln: "Give a donation by watching an advert"
 };
 
-// Thank You (and no repeat) valid across this site for 1 minute TODO 1 day
-goodloop.expires = 1.0 / (24*60);
