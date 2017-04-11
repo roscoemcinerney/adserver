@@ -47,13 +47,7 @@
 }
 
 /* Ad sizes */
-#gdlpid.medium-rectangle {
-    width: 300px;
-    height: 250px;
-    border: 1px solid #808080;
-    overflow: hidden;
-}
-#gdlpid.mobile {
+#gdlpid .mobile {
     width: calc(100vw - 70px);
     height: 50px;
     border: 1px solid #808080;
@@ -66,7 +60,17 @@
 #gdlpid {
     position: relative;
 	font-family: Tahoma, Geneva, sans-serif;
+	overflow: hidden;
 }
+#gdlpid header {
+	background-color: red;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;	
+}
+
 #gdlpid .video {
 
 }

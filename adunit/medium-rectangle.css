@@ -1,55 +1,140 @@
 /* medium rectangle */
-.gdlpafg.medium-rectangle header {
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
+#gdlpid.mediumrectangle {
     width: 300px;
-    height: 185px;
-    background: url(medium-rectangle-bg.png) center bottom no-repeat transparent;
-    z-index: 2;
+    height: 250px;
+    border: 1px solid #808080;
 }
-.gdlpafg.medium-rectangle header h1, .gdlpafg.medium-rectangle header h2, .gdlpafg.medium-rectangle header h1 a {
+#gdlpid.mediumrectangle header {
+    right: 0px;
+	width: 100%;
+}
+#gdlpid.mediumrectangle.mobile {
+    width: 100%;
+    border-width: 0;
+}
+
+#gdlpid.mediumrectangle header .logo {
+	position: absolute;
+    height: 45px;
+	left: 15px;
+    top: 10px;
+    vertical-align: middle;
+}
+#gdlpid.mediumrectangle header h2 {
     background: transparent;
     color: white;
-    font-family: "Varela Round", sans-serif;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
     font-weight: normal;
-}
-.gdlpafg.medium-rectangle header h1 {
-    font-size: 16px;
-    height: 70px;
-    text-align: center;
-    position: absolute;
-    bottom: 48px;
-    left: 0;
-    width: 300px;
-    overflow: hidden;
-}
-.gdlpafg.medium-rectangle header h1 a {
-    display: inline-block;
-    background: url(gl-head-leaderboard@2x.png) center center no-repeat;
-    background-size: contain;
-    background-color: transparent;
-    text-indent: -10000px;
-    width: 120px;
-    height: 70px;
-    vertical-align: middle;
-    margin-top: -5px;
-}
-.gdlpafg.medium-rectangle header h2 {
-    font-size: 16px;
+    left: 5px;
+    right: 210px;
+    line-height: 26px;
     height: 26px;
-    text-align: center;
-    position: absolute;
-    bottom: 41px;
-    left: 0;
-    width: 300px;
-    overflow: hidden;
+    bottom: 8px;
 }
-.gdlpafg.medium-rectangle span.play {
+#gdlpid.mediumrectangle.mobile header .logo, #gdlpid.mediumrectangle.mobile header h2 {
+    left: 5px;
+    right: 210px;
+}
+
+
+#gdlpid.mediumrectangle img.adlogo {
+    background-color: transparent;
     position: absolute;
+    right: 65px;
     top: 5px;
-    left: 70%;
+    height: 80px;
+    max-width: 150px;
+}
+#gdlpid.mediumrectangle.mobile img.adlogo {
+    right: 59px;
+    top: 5px;
+    height: 40px;
+    width: 74px;
+}
+
+#gdlpid.mediumrectangle span.rarrow {
+	position: absolute;
+	top:0px;
+	right:calc(170px - 45px);
+	width: 0; 
+	height: 0; 
+	border-top: 45px solid transparent;
+	border-bottom: 45px solid transparent;  
+	border-left: 45px solid red;
+	z-index: 4;
+}
+#gdlpid.mediumrectangle.mobile span.rarrow {
+	right:calc(269px - 25px);
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;  
+	border-left: 25px solid red;
+}
+
+
+/* CHARITIES */
+
+#gdlpid.mediumrectangle .charities {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 170px;
+    height: 100%;
+    z-index: 3;
+    background-color: blue;
+}
+#gdlpid.mediumrectangle .charities li {
+	position: absolute;
+    top: 0;
+    right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+/*    transition: opacity 1s ease-in-out;*/
+	/* name duration timing delay count direction */
+	animation-duration: 15s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-name: fade3;
+}
+#gdlpid.mediumrectangle .charities li:nth-child(2) {
+	animation-delay: 5s;
+}
+#gdlpid.mediumrectangle .charities li:nth-child(3) {
+	animation-delay: 10s;
+}
+@keyframes fade3 {
+    0% { opacity: 0; }
+	5% { opacity: 1; }
+    30% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+}
+#gdlpid.mediumrectangle .unit img.clogo {
+	position:absolute;
+	top:0px;
+	right:5px;
+	max-height:90px;
+	width:115px;
+	z-index: 3;
+}
+#gdlpid.mediumrectangle .charities img.cphoto {
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:100%;
+	height:100%;
+	z-index: 2;
+}
+
+#gdlpid.mediumrectangle span.play {
+	/*opacity: 0.9;
+	transition: opacity 0.1s;*/
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    margin-top: -30px;
     background: transparent;
     color: white;
     border: 2px solid white;
@@ -61,117 +146,21 @@
     background-size: 25px 25px;
     background-position: 18px center;
     background-repeat: no-repeat;
-    margin-left: -28px;
     z-index: 4;
+	cursor: pointer;
+	/* copied from bootstrap button */
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.gdlpafg.medium-rectangle span.adlogo {
-    background-color: transparent;
-    background-image: url("ad-logo@2x.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    position: absolute;
-    left: 30%;
-    margin-left: -51px;
-    top: 5px;
-    height: 56px;
-    width: 103px;
-    background-size: 103px 56px;
+#gdlpid.mediumrectangle span.play:hover {
+	/*opacity: 1;*/
+	box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.2);
 }
-
-.gdlpafg.medium-rectangle .afg_charities li {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 1;
-    background-color: black;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    background-size: cover;
-    background-position: bottom left;
-    background-repeat: no-repeat;
-}
-.gdlpafg.medium-rectangle .afg_charities li.showing { opacity: 1; }
-.gdlpafg.medium-rectangle .afg_charities li span {
-    width: 80px;
-    height: 80px;
-    background-position: bottom right;
-    background-size: 80px auto;
-    background-repeat: no-repeat;
-    text-indent: -1000em;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: transparent;
-}
-.gdlpafg.medium-rectangle .afg_charities li em {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
-}
-.gdlpafg.medium-rectangle .afg_charities li.shelter {
-    background-image: url(image_shelter.jpg);
-}
-.gdlpafg.medium-rectangle .afg_charities li.azru {
-    background-image: url(image_azru.jpg);
-}
-.gdlpafg.medium-rectangle .afg_charities li.bdh {
-    background-image: url(image_bdh.jpg);
-}
-
-.gdlpafg.medium-rectangle .afg_charities li.shelter span {
-    background-image: url(logo_shelter_white@2x.png);
-}
-.gdlpafg.medium-rectangle .afg_charities li.azru span {
-    background-image: url(logo_azru_white@2x.png);
-}
-.gdlpafg.medium-rectangle .afg_charities li.bdh span {
-    background-image: url(logo_bdh_white@2x.png);
-}
-
-.gdlpafg.medium-rectangle .thankyou {
-    background: url(medium-rectangle-bg.png) center top no-repeat transparent;
-    height: 250px;
-}
-.gdlpafg.medium-rectangle .thankyou a {
-    width: 75px; height: 75px;
-    position: absolute;
-    top: 0;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    text-indent: -1000em;
-    background-size: auto 45px;
-}
-.gdlpafg.medium-rectangle .thankyou a.afg_company_name {
-    left: 0;
-    background-image: url(ad-logo@2x.png);
-}
-.gdlpafg.medium-rectangle .thankyou a.afg_charity_name {
-    left: 75px;
-    background-image: url(logo_shelter_white@2x.png);
-}
-.gdlpafg.medium-rectangle .thankyou a.afg_gl_link {
-    width: auto;
-    left: 0px;
-    top: 75px;
-    width: 100%;
-    height: 175px;
-    background-image: url(gl-head-leaderboard@2x.png);
-    background-size: 230px auto;
-}
-.gdlpafg.medium-rectangle .thankyou a.afg_tw {
-    left: 150px;
-    background-image: url(twitter_white.png);
-    background-size: 45px 35px;
-}
-.gdlpafg.medium-rectangle .thankyou a.afg_fb {
-    left: 225px;
-    background-image: url(facebook_white.png);
-    background-size: 45px 45px;
+#gdlpid.mediumrectangle.mobile span.play {
+    right: 20px;
+    top: 50%;
+    margin-top: -16px;
+    height: 30px;
+    width: 30px;
+    background-size: 15px 15px;
+    background-position: 9px center;
 }

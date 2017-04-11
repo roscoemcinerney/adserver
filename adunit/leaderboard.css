@@ -2,18 +2,12 @@
     width: 728px;
     height: 90px;
     border: 1px solid #808080;
-    overflow: hidden;	
+
 }
 
 #gdlpid.leaderboard header {
-	background-color: red;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
     right: 170px;
     height: 100%;
-    z-index: 5;
 }
 #gdlpid.leaderboard.mobile {
     width: 100%;
