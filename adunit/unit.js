@@ -27,8 +27,9 @@ if (typeof($sf) !== 'undefined') {
 		if (status==='expanded') {				
 			goodloop.act.openLightbox2();
 		}
-	};
+	};	
 	$sf.ext.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
+	goodloop.env.geom = $sf.ext.geom();
 } else {
 	window.$sf = false; // easier tests later
 }
@@ -46,7 +47,9 @@ goodloop.state = {
 	/** If you pause, this is the previously elapsed time. */
 	elapsed: 0,
 	/** true => open */
-	lightbox: false
+	lightbox: false,
+	/** SF is picky about expand to show unit => must collapse before a re-expand to show lightbox */
+	expanded: false
 };
 
 
@@ -56,7 +59,22 @@ datalog.track();
 function renderUnit(id, $div) {
 	console.log(this, $div, $div.width(), 'x', $div.height());
 	// pick format
-	var format = pickFormat($div);
+	var format = pickFormat($div);		
+	// expand?
+	if ($sf) {		
+		var wh = {
+			mediumrectangle: [300, 250],
+			leaderboard: [728, 90],
+			verticalbanner: [120, 240],
+			stickybottom: [728, 50] // NB: stickybottom width = 100%
+		}[format];
+		var ew = wh[0] - goodloop.env.geom.self.w;
+		var eh = wh[1] - goodloop.env.geom.self.h;
+		if (ew>0 || eh>0) {
+			$sf.ext.expand(Math.max(0, ew), Math.max(0, eh), true);
+			goodloop.state.expanded = true;
+		}
+	}
 	// done?
 	var done = goodloop.state.done;
 	if (done) {
@@ -71,27 +89,28 @@ function renderUnit(id, $div) {
 }
 
 function pickFormat($div) {
-	return 'leaderboard';
-	var format;
-	if (goodloop.env.isMobile) {
-		format = $div.data('mobile-format');
-		// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
-		if (format) {
-			return format.toLowerCase().replace(/\W/, '');
-		}
-		return 'sticky-bottom';
-	}
-	format = $div.data('format');
+	var format = $div.data(goodloop.env.isMobile? 'mobile-format' : 'format');
 	// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
 	if (format) {
 		return format.toLowerCase().replace(/\W/, '');
 	}
+	if (goodloop.env.isMobile && ! $sf) return 'stickybottom';	
 	// space?
 	var w = $div.width();
+	if ($sf) {
+		w = parseInt(goodloop.env.geom.self.w);
+		if ($sf.ext.supports("exp-push")) {
+			w += parseInt(goodloop.env.geom.exp.w);
+		}
+	}
 	if (w >= 728) {
 		return 'leaderboard';
 	}
-	return 'mediumrectangle';
+	if (w >= 300) {
+		return 'mediumrectangle';
+	}
+	// limited space
+	return 'verticalbanner';
 }
 
 

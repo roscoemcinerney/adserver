@@ -20,8 +20,12 @@ goodloop.act.openLightbox = function() {
 	// in a SafeFrame?
 	if ($sf) {
 		try {
-			var g = $sf.ext.geom(); // the geometry object
+			var g = goodloop.env.geom; // the geometry object
+			if (goodloop.state.expanded) {
+				$sf.ext.collapse();
+			}
 			$sf.ext.expand(g.exp);
+			goodloop.state.expanded = true;
 			setTimeout(function() {
 				if ( ! goodloop.state.lightbox) goodloop.act.openLightbox2();
 			}, 300);
@@ -75,7 +79,9 @@ goodloop.act.closeLightbox = function() {
 	goodloop.state.playing = false;
 	goodloop.state.lightbox = false;
 	if ($sf) {		
-		$sf.ext.collapse();		
+		$sf.ext.collapse();
+		goodloop.state.expanded = false;
+		// FIXME we may have to re-expand!!
 	}
 };
 
@@ -185,7 +191,7 @@ goodloop.act.donate = function() {
 	});
 	goodloop.state.donated = true;
 	// replace the adunits with a thank you
-	$('#gdlpid .unit').html(goodloop.html.tq());
+	$('#gdlpid .unit').replaceWith(goodloop.html.tq());
 	var msg = goodloop.html.msgdonated();
 	goodloop.act.vmsg(msg);
 };
