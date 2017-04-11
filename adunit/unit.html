@@ -37,11 +37,16 @@ goodloop.html.stickybottom = goodloop.html.leaderboard;
 /** goes inside div.unit, replacing the advert */
 goodloop.html.tq = () => `
     <div class="thankyou">
-        <a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
-		<a href="" class="charity_name">${goodloop.state.charity.name}</a>
+        <div>
+			<a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
+			<span>funded your donation to</span>
+			<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
+		</div>
 		<a href="http://good-loop.com" class="gl_link">Find out more about opt-in ads by <span class='gl'>Good-Loop</span>.</a>
-        <a href="" class="tw">Twitter</a>
-        <a href="" class="fb">Facebook</a>
+		<div>
+			<a href="" class="tw">Twitter</a>
+			<a href="" class="fb">Facebook</a>
+		</div>
     </div>`;
 
 
@@ -66,14 +71,14 @@ goodloop.html.videobox = () => `
 </div>`;
 
 goodloop.html.msgdonated = () => `<a href='${goodloop.vert.url}' class="company_name">${goodloop.vert.name}</a> 
-	has funded your donation to <span class="charity_name">${goodloop.state.charity.name}</span>`;
+	has funded your donation to ${goodloop.state.charity.name}`;
 
 /** replaces the contents of videobox .vcontainer*/
 goodloop.html.endpage = () => `
 <div class="endpage">
 	<p><a href='${goodloop.vert.url}'><img class="adlogo" src='${goodloop.vert.logo}' alt='${goodloop.vert.name}'></a> 
 		has funded your donation to 
-		<a>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
+		<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
 	</p>
 	<p>Double your donation by sharing</p>
 	<p class="share">

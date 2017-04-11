@@ -177,46 +177,20 @@
 
 #gdlpid.leaderboard.mobile .thankyou a { width: 45px; height: 45px; }
 
-#gdlpid.leaderboard .thankyou a.afg_charity_name { left: 80px; }
-#gdlpid.leaderboard.mobile .thankyou a.afg_charity_name { left: 45px; }
-#gdlpid.leaderboard .thankyou a.afg_gl_link {
-    left: 180px;
-    right: 180px;
-    width: auto;
-}
-#gdlpid.leaderboard.mobile .thankyou a.afg_gl_link {
-    left: 90px;
-    right: 90px;
-    width: auto;
-}
-
-#gdlpid.leaderboard .thankyou a {
-    display: block;
-    width: 90px;
-    height: 90px;
-    position: absolute;
-    top: 0;
-    background-size: contain;
-    background-color: transparent;
-    background-position: center center;
-    background-repeat: no-repeat;
-    text-indent: -1000em;
-}
-
-#gdlpid.leaderboard .thankyou a.afg_tw {
+#gdlpid.leaderboard .thankyou a.tw {
     right: 0px;
     background-image: url(twitter_white.png);
     background-size: 45px 35px;
 }
-#gdlpid.leaderboard.mobile .thankyou a.afg_tw {
+#gdlpid.leaderboard.mobile .thankyou a.tw {
     background-size: 40px 31px;
 }
-#gdlpid.leaderboard .thankyou a.afg_fb {
+#gdlpid.leaderboard .thankyou a.fb {
     right: 90px;
     background-image: url(facebook_white.png);
     background-size: 45px 45px;
 }
-#gdlpid.leaderboard.mobile .thankyou a.afg_fb {
+#gdlpid.leaderboard.mobile .thankyou a.fb {
     right: 45px;
     background-size: 40px 40px;
 }
