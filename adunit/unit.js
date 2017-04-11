@@ -65,7 +65,7 @@ function renderUnit(id, $div) {
 		var wh = {
 			mediumrectangle: [300, 250],
 			leaderboard: [728, 90],
-			verticalbanner: [120, 240],
+			vbnr: [120, 240],
 			stickybottom: [728, 50] // NB: stickybottom width = 100%
 		}[format];
 		var ew = wh[0] - goodloop.env.geom.self.w;
@@ -92,7 +92,9 @@ function pickFormat($div) {
 	var format = $div.data(goodloop.env.isMobile? 'mobile-format' : 'format');
 	// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
 	if (format) {
-		return format.toLowerCase().replace(/\W/, '');
+		var f = format.toLowerCase().replace(/\W/, '');
+		if (f==='verticalbanner') return 'vbnr'; // TODO shrink them all
+		return f;
 	}
 	if (goodloop.env.isMobile && ! $sf) return 'stickybottom';	
 	// space?
@@ -110,7 +112,7 @@ function pickFormat($div) {
 		return 'mediumrectangle';
 	}
 	// limited space
-	return 'verticalbanner';
+	return 'vbnr';
 }
 
 

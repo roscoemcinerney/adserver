@@ -1,27 +1,22 @@
-/* medium rectangle */
-#gdlpid.mediumrectangle {
-    width: 300px;
-    height: 250px;
+#gdlpid.vbnr {
+    width: 120px;
+    height: 240px;
     border: 1px solid #808080;
 }
-#gdlpid.mediumrectangle header {
-    right: 0px;
-	width: 100%;
-	height: 150px;
-}
-#gdlpid.mediumrectangle.mobile {
-    width: 100%;
-    border-width: 0;
+
+#gdlpid.vbnr header {
+    right: 170px;
+    height: 100%;
 }
 
-#gdlpid.mediumrectangle header .logo {
+#gdlpid.vbnr header .logo {
 	position: absolute;
     height: 45px;
 	left: 15px;
     top: 10px;
     vertical-align: middle;
 }
-#gdlpid.mediumrectangle header h2 {
+#gdlpid.vbnr header h2 {
     background: transparent;
     color: white;
     font-size: 20px;
@@ -34,13 +29,8 @@
     height: 26px;
     bottom: 8px;
 }
-#gdlpid.mediumrectangle.mobile header .logo, #gdlpid.mediumrectangle.mobile header h2 {
-    left: 5px;
-    right: 210px;
-}
 
-
-#gdlpid.mediumrectangle img.adlogo {
+#gdlpid.vbnr img.adlogo {
     background-color: transparent;
     position: absolute;
     right: 65px;
@@ -49,28 +39,57 @@
     max-width: 150px;
 }
 
-#gdlpid.mediumrectangle span.rarrow {
+#gdlpid.vbnr span.rarrow {
 	position: absolute;
-	top:150px;
-	left:0;
+	top:0px;
+	right:calc(170px - 45px);
 	width: 0; 
 	height: 0; 
-	border-left:150px solid transparent;
-	border-right:150px solid transparent;  
-	border-top: 45px solid red;
+	border-top: 45px solid transparent;
+	border-bottom: 45px solid transparent;  
+	border-left: 45px solid red;
 	z-index: 4;
 }
 
-
 /* CHARITIES */
 
-#gdlpid.mediumrectangle .charities {
-    bottom: 0;
-    width: 100%;
-    height: 100px;
+#gdlpid.vbnr .charities {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 170px;
+    height: 100%;
+    z-index: 3;
+    background-color: blue;
 }
-
-#gdlpid.mediumrectangle .unit img.clogo {
+#gdlpid.vbnr .charities li {
+	position: absolute;
+    top: 0;
+    right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+/*    transition: opacity 1s ease-in-out;*/
+	/* name duration timing delay count direction */
+	animation-duration: 15s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+	animation-name: fade3;
+}
+#gdlpid.vbnr .charities li:nth-child(2) {
+	animation-delay: 5s;
+}
+#gdlpid.vbnr .charities li:nth-child(3) {
+	animation-delay: 10s;
+}
+@keyframes fade3 {
+    0% { opacity: 0; }
+	5% { opacity: 1; }
+    30% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+}
+#gdlpid.vbnr .unit img.clogo {
 	position:absolute;
 	top:0px;
 	right:5px;
@@ -78,7 +97,7 @@
 	width:115px;
 	z-index: 3;
 }
-#gdlpid.mediumrectangle .charities img.cphoto {
+#gdlpid.vbnr .charities img.cphoto {
 	position:absolute;
 	top:0px;
 	right:0px;
@@ -87,7 +106,7 @@
 	z-index: 2;
 }
 
-#gdlpid.mediumrectangle span.play {
+#gdlpid.vbnr span.play {
 	/*opacity: 0.9;
 	transition: opacity 0.1s;*/
     position: absolute;
@@ -109,4 +128,8 @@
 	cursor: pointer;
 	/* copied from bootstrap button */
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+#gdlpid.vbnr span.play:hover {
+	/*opacity: 1;*/
+	box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.2);
 }
