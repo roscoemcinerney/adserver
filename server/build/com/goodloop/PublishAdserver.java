@@ -60,6 +60,9 @@ import jobs.BuildWinterwellProject;
 
 
 /**
+ * 
+ * TODO refactor merge with publish-adserver.sh
+ * 
  * copy pasta of {@link PublishDataServer}
  * FIXME rsync is making sub-dirs :(
  */
