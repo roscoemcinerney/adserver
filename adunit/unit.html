@@ -10,9 +10,9 @@ goodloop.html.leaderboard = () =>
 `<div id='gdlpid'>
 	<div class='unit' onclick="goodloop.act.openLightbox();">
 		<header>        
-			<img class='logo' alt='ADS FOR GOOD' src='afg-white.png' />
+			<img class='logo' alt='ADS FOR GOOD' src='${goodloop.BURL}afg-white.png' />
 			<h2>${goodloop.variant.expln}</h2>
-			<img class="adlogo" src='${goodloop.vert.logo}' alt='${goodloop.vert.name}' title='Watch their short advert and ${goodloop.vert.name} will fund your donation'>
+			<img class="adlogo" src='${goodloop.vert.logo || "//localas.good-loop.com/acme.png"}' alt='${goodloop.vert.name}' title='Watch their short advert and ${goodloop.vert.name} will fund your donation'>
 			<span class="play"></span>
 		</header>
 		<span class="rarrow"></span>
@@ -41,7 +41,7 @@ goodloop.html.videobox = () => `
 <div class="gdlp videobox">	
 	<button class="close" title="close this advert">&times;</button>
 	<div class="vcontainer">
-		<img class='logo' alt='ADS FOR GOOD' src='afg-black.png' />
+		<img class='logo' alt='ADS FOR GOOD' src='${goodloop.BURL}afg-black.png' />
 		<video id='gdlpvid${Math.round(Math.random()*1000)}' src="${goodloop.env.isMobile? goodloop.vert.mobileVideo : goodloop.vert.video}" controls=""></video>
 		<div class="charity_chooser">
 			<h2>Pick the charity you'd like to receive a free donation.</h2>
@@ -78,10 +78,10 @@ goodloop.html.social = function() {
 	var msg = 'I donated '+goodloop.variant.adsecs+' seconds to '+(goodloop.state.charity.name || 'charity')+' by watching this advert';
 	return `
 	<a class="fb" href="https://facebook.com/sharer/sharer.php?caption=Ads+For+Good&u=${escape(adurl)}&description=${escape(msg)}">
-		<img src='facebook.png' class='fb' alt='Facebook'>
+		<img src='${goodloop.BURL}facebook.png' class='fb' alt='Facebook'>
 	</a> 
 	<a class="tw" href="https://twitter.com/intent/tweet?text=${escape(msg+' '+adurl+' via @good__loop')}">
-		<img src='twitter.png' class='tw' alt='Twitter'>
+		<img src='${goodloop.BURL}twitter.png' class='tw' alt='Twitter'>
 	</a>`;
 };
 

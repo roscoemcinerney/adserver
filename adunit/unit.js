@@ -122,7 +122,7 @@ function pickFormat($div) {
 	// TODO support ad units added dynamically
 function render() {
 	// style
-	var css = `@import 'all.css';`;
+	var css = `@import '${goodloop.BURL}all.css';`;
 	if ($sf) {
 		// for some reason adding to head fails :(
 		document.write('<style type="text/css">'+css+'</style>');

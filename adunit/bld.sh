@@ -4,7 +4,7 @@ mkdir build
 
 # combine
 # TODO remove dummy-init!
-cat zepto.min.js js.cookie.js datalog.js unit.js unit.html unit.act.js > build/all.js
+cat zepto.min.js js.cookie.js datalog.js unit.html unit.act.js unit.js > build/all.js
 cat dummy-init.js build/all.js > build/dummy.all.js
 cat unit.css lightbox.css leaderboard.css sticky-bottom.css verticalbanner.css medium-rectangle.css > build/all.css
 
@@ -15,7 +15,7 @@ cat unit.css lightbox.css leaderboard.css sticky-bottom.css verticalbanner.css m
 # TODO shrink js and css
 
 # Copy for adserver
-cp build/all.css web-as/all.css
+cp build/all.css ../web-as/all.css
 # Copy for local test
 cp build/all.css all.css
 # Copy for SafeFrame test
