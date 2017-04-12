@@ -68,12 +68,22 @@ goodloop.html.endpage = () => `
 	<p><small>The amount donated is a full 50% of the advert value. The amount varies - about 10p is average. These adverts also support the website.</small></p>
 	<p>Double your donation by sharing</p>
 	<p class="share">
-		<a class="fb" href="TODO"><img src='facebook.png' class='fb' alt='Facebook'></a> 
-		<a class="tw" href="TODO"><img src='twitter.png' class='tw' alt='Twitter'></a>
+		${goodloop.html.social()}
 	</p>
 	<p class="ty">Thank you for watching this <a href="http://good-loop.com" class="gl">Good-Loop</a> ad!</p>
 </div>`;
 
+goodloop.html.social = function() {
+	var adurl = 'https://as.good-loop.com/share/'+escape(goodloop.vert.id);
+	var msg = 'I donated '+goodloop.variant.adsecs+' seconds to '+(goodloop.state.charity.name || 'charity')+' by watching this advert';
+	return `
+	<a class="fb" href="https://facebook.com/sharer/sharer.php?caption=Ads+For+Good&u=${escape(adurl)}&description=${escape(msg)}">
+		<img src='facebook.png' class='fb' alt='Facebook'>
+	</a> 
+	<a class="tw" href="https://twitter.com/intent/tweet?text=${escape(msg+' '+adurl+' via @good__loop')}">
+		<img src='twitter.png' class='tw' alt='Twitter'>
+	</a>`;
+};
 
 /** goes inside div.unit, replacing the advert */
 goodloop.html.tq = () => `
@@ -84,12 +94,7 @@ goodloop.html.tq = () => `
 			<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
 		</div>
 		<a href="http://good-loop.com" class="gl_link">Find out more about opt-in ads by <span class='gl'>Good-Loop</span>.</a>
-		<div>
-			<a class="fb" href="TODO"><img src='facebook.png' class='fb' alt='Facebook'></a> 
-			<a class="tw" href="https://twitter.com/intent/tweet?text=${escape('I donated to '+(goodloop.state.charity.name || 'charity')+' just by watching this advert https://as.good-loop.com/share/'+goodloop.vert.id+' via @good__loop')}">
-				<img src='twitter.png' class='tw' alt='Twitter'>
-			</a>
-		</div>
+		<div>${goodloop.html.social()}</div>
     </div>`;
 
 }

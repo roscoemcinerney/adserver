@@ -11,25 +11,70 @@
 <script src='unit.html'></script>
 <script src='unit.act.js'></script>
 
-<h3>leaderboard</h3>
+<h2>leaderboard</h2>
 <div>
 <div class='goodloopad' data-format='leaderboard'></div>
 </div>
 
-<h3>medium-rectangle</h3>
+<h4>Thank You</h4>
+<script>
+	var popdst = goodloop.state;
+	goodloop.state = {
+		charity: {"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"}
+	};
+	var tq = goodloop.html.tq();
+	document.write('<div id="gdlpid" class="leaderboard">'+tq+'</div>');
+	goodloop.state = popdst;
+</script>	
+
+<hr>
+<h2>medium-rectangle</h2>
 <div>
 <div class='goodloopad' data-format='medium-rectangle'></div>
 </div>
+<h4>Thank You</h4>
+<script>
+	var popdst = goodloop.state;
+	goodloop.state = {
+		charity: {"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"}
+	};
+	var tq = goodloop.html.tq();
+	document.write('<div id="gdlpid" class="mediumrectangle">'+tq+'</div>');
+	goodloop.state = popdst;
+</script>
 
-<h3>vertical-banner</h3>
+<hr>
+<h2>vertical-banner</h2>
 <div style='width:200px;'>
 <div class='goodloopad'></div>
 </div>
+<h4>Thank You</h4>
+<script>
+	var popdst = goodloop.state;
+	goodloop.state = {
+		charity: {"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"}
+	};
+	var tq = goodloop.html.tq();
+	document.write('<div id="gdlpid" class="vbnr">'+tq+'</div>');
+	goodloop.state = popdst;
+</script>
 
-<h3>mobile</h3>
+<hr>
+<h2>mobile: stickybottom</h2>
 <div>
 <div class='goodloopad' data-format='stickybottom'></div>
 </div>
+
+<h4>Thank You</h4>
+<script>
+	var popdst = goodloop.state;
+	goodloop.state = {
+		charity: {"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"}
+	};
+	var tq = goodloop.html.tq();
+	document.write('<div id="gdlpid" class="stickybottom mobile">'+tq+'</div>');
+	goodloop.state = popdst;
+</script>
 
 </body>
 </html>
