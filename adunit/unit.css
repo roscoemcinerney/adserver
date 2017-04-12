@@ -64,7 +64,7 @@
 }
 
 #gdlpid header {
-	background-color: red;
+	background-color: #ce2e38;
     color: white;
     position: absolute;
     top: 0;
@@ -120,6 +120,13 @@
 #gdlpid img.fb {
 	width: 29px;
 	height: 29px;
+}
+
+#gdlpid .thankyou {
+	background-color:#ce2e38;
+    color: white;
+	height: 100%;
+	width: 100%;
 }
 
 @media only screen and ( -webkit-min-device-pixel-ratio: 1.3 ),

@@ -47,7 +47,7 @@
 	height: 0; 
 	border-top: 45px solid transparent;
 	border-bottom: 45px solid transparent;  
-	border-left: 45px solid red;
+	border-left: 45px solid #a5252d;
 	z-index: 4;
 }
 
