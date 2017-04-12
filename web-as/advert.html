@@ -25,7 +25,12 @@
 		<div id="mainDiv">
 			
 			<script src='/unit.js'></script>
-			<div class='goodloopad' data-mobile-format='lightbox' data-format='lightbox'></div>
+			<script>
+				// auto start the player (the user opted in by visiting this page)
+				$(function() {
+					goodloop.act.openLightbox();
+				});
+			</script>
 			
 		</div>
 
