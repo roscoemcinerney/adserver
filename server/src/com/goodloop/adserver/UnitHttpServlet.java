@@ -34,6 +34,7 @@ import com.winterwell.web.fields.Checkbox;
 import com.winterwell.web.fields.JsonField;
 import com.winterwell.web.fields.SField;
 import com.goodloop.data.DB;
+import com.goodloop.data.NGO;
 import com.goodloop.data.Publisher;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.winterwell.datalog.DataLog;
@@ -73,7 +74,7 @@ public class UnitHttpServlet extends HttpServlet {
 	}
 	
 	public UnitHttpServlet() {
-		unitjs = new UpToDateTextFile(new File("adunit/original.unit.js"));
+		unitjs = new UpToDateTextFile(new File("adunit/build/all.js"));
 	}
 	
 	@Override
@@ -127,9 +128,10 @@ public class UnitHttpServlet extends HttpServlet {
 			}			
 		}
 		
-		String json = Dep.get(Gson.class).toJson(adunit);
+		final Gson gson = Dep.get(Gson.class);
+		String json = gson.toJson(adunit);
 //		String charityJson = mc.getJson();		
-		String charityMap = "\ngoodloop.unit="+json+";";
+		String pubMap = "\ngoodloop.publisher="+json+";";
 		
 		PickAdvert pa = new PickAdvert(state, fpub);
 		pa.run();
@@ -142,15 +144,28 @@ public class UnitHttpServlet extends HttpServlet {
 		}
 		Log.d("unit", "Advert: "+pa.advert);
 		
+		List<NGO> charities = adunit.getCharities();
+//		{"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"},
+//		{"logo":"http://as.good-loop.com/vert/alzheimers_research.png","name":"Alzheimer\u0027s Research","url":"http://www.alzheimersresearchuk.org/","id":"alzheimers"},
+//		{"logo":"http://as.good-loop.com/vert/Battersea_Dogs_\u0026_Cats_Home_logo.png","name":"Battersea Dogs \u0026 Cats Home","url":"https://www.battersea.org.uk/","id":"battersea-dogs"},
+		String charVar = "\ngoodloop.charities="+gson.toJson(charities)+";\n";
+		
 		String advertJson = pa.getJson();
 		Log.d("unit", "Advert-json: "+advertJson);
-		String charityVar = "\ngoodloop.vert="+advertJson+";\n";
+		String advertVar = "\ngoodloop.vert="+advertJson+";\n";		
 		
 		String initjs = "if ( ! window.goodloop) window.goodloop={}; goodloop.BURL='//"
 				+config.adserverDomain+"/'; goodloop.LBURL='//"+config.datalogDomain+"'; ";
 		Log.d("unit", "config: "+config);
 		Log.d("unit", "vars: "+initjs);
-		String js = initjs+charityMap+charityVar+unitjs;
+				
+		ArrayMap variant = new ArrayMap(
+				"adsecs", 5, // TODO explore the effect of 5-15 seconds
+				"expln", "Give a donation by watching an advert"
+				);
+		String varVar = "\ngoodloop.variant="+gson.toJson(variant)+";\n";
+		
+		String js = initjs+pubMap+charVar+advertVar+varVar+unitjs;
 		
 		// CORS? Assuming you've done security elsewhere
 		WebUtils2.CORS(state, true);		

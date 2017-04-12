@@ -22,7 +22,7 @@ goodloop.html.leaderboard = () =>
 			${charity_li(goodloop.charities[2])}
 		</ul>
 	</div>
-</div>`;
+</div>`; 
 
 let charity_li = (charity) => ! charity? '' :
 `<li class='chty' data-cid='${charity.id}' title='${charity.name}'>
@@ -31,9 +31,8 @@ let charity_li = (charity) => ! charity? '' :
 </li>`;
 
 goodloop.html.mediumrectangle = goodloop.html.leaderboard;
-
 goodloop.html.stickybottom = goodloop.html.leaderboard;
-
+goodloop.html.vbnr = goodloop.html.leaderboard;
 
 
 // NB: backdrop is to catch exit clicks

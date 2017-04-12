@@ -26,6 +26,7 @@ import com.winterwell.bob.BuildTask;
 import com.winterwell.bob.tasks.EclipseClasspath;
 import com.winterwell.bob.tasks.GitTask;
 import com.winterwell.bob.tasks.JarTask;
+import com.winterwell.bob.tasks.ProcessTask;
 import com.winterwell.bob.tasks.RSyncTask;
 import com.winterwell.bob.tasks.RemoteTask;
 import com.winterwell.bob.tasks.SCPTask;
@@ -33,6 +34,7 @@ import com.winterwell.es.BuildESJavaClient;
 import com.winterwell.utils.Environment;
 import com.winterwell.utils.FailureException;
 import com.winterwell.utils.Printer;
+import com.winterwell.utils.Proc;
 import com.winterwell.utils.StrUtils;
 import com.winterwell.utils.Utils;
 import com.winterwell.utils.Warning;
@@ -58,12 +60,17 @@ import jobs.BuildWinterwellProject;
 
 
 /**
+ * 
+ * TODO refactor merge with publish-adserver.sh
+ * 
  * copy pasta of {@link PublishDataServer}
  * FIXME rsync is making sub-dirs :(
  */
 public class PublishAdserver extends BuildTask {
 
-	String server = "as.good-loop.com"; // datalog.soda.sh
+	String server = 
+//			"as.good-loop.com";
+			"testas.good-loop.com";
 	String remoteUser;
 	private String remoteWebAppDir;
 	private File localWebAppDir;
@@ -159,6 +166,11 @@ public class PublishAdserver extends BuildTask {
 		// TIMESTAMP code to avoid caching issues: epoch-seconds, mod 10000 to shorten it
 		String timestampCode = "" + ((System.currentTimeMillis()/1000) % 10000);
 
+		// shell script build
+		ProcessTask ptask = new ProcessTask("adunit/bld.sh");
+		ptask.run();
+		ptask.close();
+		
 		{	// copy all the properties files
 			doUploadProperties(timestampCode);
 		}

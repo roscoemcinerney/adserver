@@ -41,13 +41,14 @@ for server in ${TARGETSERVERS[*]}; do
 	rsync -rhP adunit/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/adunit/
 	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/config/*'
 	rsync -rhP config/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/config/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/server/*'
-	rsync -rhP server/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/server/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/src/*'
-	rsync -rhP src/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/src/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/test/*'
-	rsync -rhP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
-	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
+# no source code
+#	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/server/*'
+#	rsync -rhP server/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/server/
+#	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/src/*'
+#	rsync -rhP src/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/src/
+#	ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/test/*'
+#	rsync -rhP test/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/test/
+#	no need to rm web-as ^DW ssh winterwell@$server.soda.sh 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
 	rsync -rhP web-as/* winterwell@$server.soda.sh:/home/winterwell/as.good-loop.com/web-as/
 	echo "All files synced"
 	echo ""
