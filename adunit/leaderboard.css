@@ -99,27 +99,9 @@
 }
 
 #gdlpid.leaderboard span.play {
-	/*opacity: 0.9;
-	transition: opacity 0.1s;*/
-    position: absolute;
     right: -10px;
     top: 50%;
     margin-top: -30px;
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-    height: 56px;
-    width: 56px;
-    text-align: center;
-    border-radius: 60px;
-    background-image: url("play.png");
-    background-size: 25px 25px;
-    background-position: 18px center;
-    background-repeat: no-repeat;
-    z-index: 4;
-	cursor: pointer;
-	/* copied from bootstrap button */
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 #gdlpid.leaderboard.mobile span.play {
     right: 20px;

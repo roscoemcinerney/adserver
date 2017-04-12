@@ -28,7 +28,7 @@ import com.winterwell.web.app.JettyLauncher;
 import com.winterwell.web.data.XId;
 
 /**
- * TODO
+ * Run the Good-Loop AdServer!
  * @author daniel
  *
  */
