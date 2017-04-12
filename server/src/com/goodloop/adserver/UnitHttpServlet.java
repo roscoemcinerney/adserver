@@ -95,7 +95,7 @@ public class UnitHttpServlet extends HttpServlet {
 	
 	
 	private void doServeUnitJs(WebRequest state) throws Exception {
-		Log.d("unit", state);
+		Log.d("unit", state+" ref:"+state.getReferer());
 		AdServerConfig config = Dep.get(AdServerConfig.class);
 		ListenableFuture<Publisher> fpub = DB.getAdUnit(state);
 		Publisher adunit = fpub.get();

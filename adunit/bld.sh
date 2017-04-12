@@ -1,5 +1,6 @@
 echo "Build the Good-Loop adunit - outputs all.js, all.css, dummy.all.js + copies"
 
+cd ~/winterwell/adserver/adunit
 mkdir build
 
 # combine
