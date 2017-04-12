@@ -10,6 +10,8 @@ cat unit.css lightbox.css leaderboard.css sticky-bottom.css verticalbanner.css m
 
 # TODO shrink images
 
+# TODO use babel to convert ES6 to ES5
+
 # TODO shrink js and css
 
 # Copy for adserver

@@ -128,27 +128,27 @@ public class PublishAdserver extends BuildTask {
 			FileUtils.close(w);
 		}
 
-		// Don't upload any local properties
-		File localProps = new File(localConfigDir, "local.properties");
-		File localPropsOff = new File(localConfigDir, "local.props.off");
-		if (localProps.exists()) {
-			FileUtils.move(localProps, localPropsOff);
-		}
+//		// Don't upload any local properties
+//		File localProps = new File(localConfigDir, "local.properties");
+//		File localPropsOff = new File(localConfigDir, "local.props.off");
+//		if (localProps.exists()) {
+//			FileUtils.move(localProps, localPropsOff);
+//		}
 		
-		// rsync the directory
-		try {
-			assert localConfigDir.isDirectory() : localConfigDir;
-			Log.d("publish","Sending config dir files: "+Printer.toString(localConfigDir.list()));
-			String remoteConfig = remoteUser+"@"+server+":"+remoteWebAppDir+"/config";
-			RSyncTask task = new RSyncTask(localConfigDir.getAbsolutePath()+"/", remoteConfig, true);
-			task.run();		
-			
-		} finally {
-			// put local-props back
-			if (localPropsOff.exists()) {
-				FileUtils.move(localPropsOff, localProps);
-			}
-		}
+//		// rsync the directory
+//		try {
+//			assert localConfigDir.isDirectory() : localConfigDir;
+//			Log.d("publish","Sending config dir files: "+Printer.toString(localConfigDir.list()));
+//			String remoteConfig = remoteUser+"@"+server+":"+remoteWebAppDir+"/config";
+//			RSyncTask task = new RSyncTask(localConfigDir.getAbsolutePath()+"/", remoteConfig, true);
+//			task.run();		
+//			
+//		} finally {
+//			// put local-props back
+//			if (localPropsOff.exists()) {
+//				FileUtils.move(localPropsOff, localProps);
+//			}
+//		}
 	}
 
 	@Override
@@ -175,12 +175,10 @@ public class PublishAdserver extends BuildTask {
 			doUploadProperties(timestampCode);
 		}
 
-		// Copy up the code		
-		// TODO copy up all the jars needed
+		// Find jars and move them into tmp-lib
 		{
 			EclipseClasspath ec = new EclipseClasspath(localWebAppDir);
 			Set<File> jars = ec.getCollectedLibs();
-			System.out.println(jars); // Why no mixpanel getting copied??
 			// Create local lib dir
 			File localLib = new File(localWebAppDir,"tmp-lib");
 			localLib.mkdirs();
@@ -220,36 +218,41 @@ public class PublishAdserver extends BuildTask {
 			jarTask.run();
 			jarTask.close();
 			
-			if (true) return;
-			
-			// Do the rsync!
-			String from = localLib.getAbsolutePath();
-			String dest = rsyncDest("lib");			
-			RSyncTask task = new RSyncTask(from, dest, false).setDirToDir();
-			task.run();
-			task.close();
-			System.out.println(task.getOutput());
-		}
-		{	// web
-			// Rsync code with delete=true, so we get rid of old html templates
-			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
-			RSyncTask rsyncCode = new RSyncTask(
-					new File(localWebAppDir,"web-as").getAbsolutePath(),
-					rsyncDest("web-as"), true);
-			rsyncCode.setDirToDir();
-			rsyncCode.run();
-			String out = rsyncCode.getOutput();
-			rsyncCode.close();
+						
+//			// Do the rsync!
+//			String from = localLib.getAbsolutePath();
+//			String dest = rsyncDest("lib");			
+//			RSyncTask task = new RSyncTask(from, dest, false).setDirToDir();
+//			task.run();
+//			task.close();
+//			System.out.println(task.getOutput());
 		}
 		
-		RemoteTask reboot = new RemoteTask("winterwell@"+server, "service adservermain restart");
-		reboot.run();
+		ProcessTask pubas = new ProcessTask("publish-adserver.sh "+server);
+		ptask.run();
+		ptask.close();
+		
+//		{	// web
+//			// Rsync code with delete=true, so we get rid of old html templates
+//			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
+//			RSyncTask rsyncCode = new RSyncTask(
+//					new File(localWebAppDir,"web-as").getAbsolutePath(),
+//					rsyncDest("web-as"), true);
+//			rsyncCode.setDirToDir();
+//			rsyncCode.run();
+//			String out = rsyncCode.getOutput();
+//			rsyncCode.close();
+//		}
+		
+//		RemoteTask reboot = new RemoteTask("winterwell@"+server, "service adservermain restart");
+//		reboot.run();
 	}
+	
 
-	private String rsyncDest(String dir) {
-//		if ( ! dir.endsWith("/")) dir += "/";
-		return remoteUser+"@"+server+ ":" + new File(remoteWebAppDir, dir).getAbsolutePath();
-	}
+//	private String rsyncDest(String dir) {
+////		if ( ! dir.endsWith("/")) dir += "/";
+//		return remoteUser+"@"+server+ ":" + new File(remoteWebAppDir, dir).getAbsolutePath();
+//	}
 
 
 }
