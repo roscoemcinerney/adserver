@@ -1,6 +1,73 @@
 # !/bin/bash
+## Checking to see if your machine has the dependencies
+GOTNPM=$(which npm)
+GOTBABEL=$(which babel)
+GOTBABILI=$(which babili)
+GOTJPEGOPTIM=$(which jpegoptim)
+GOTOPTIPNG=$(which optipng)
+
+if [ "$GOTNPM" = "" ]; then
+	echo "You must first install NPM before you can use this tool"
+	exit 0
+fi
+
+if [ "$GOTBABEL" = "" ]; then
+	echo -e "You must install babel globally before you can use this tool\nInstall with 'sudo npm install -g babel-cli'"
+	exit 0
+fi
+
+if [ "$GOTBABILI" = "" ]; then
+	echo -e "You must install babili globally before you can use this tool\nInstall with 'sudo npm install -g babili'"
+	exit 0
+fi
+
+if [ "$GOTJPEGOPTIM" = "" ]; then
+	echo -e "You must install 'jpegoptim' on this computer with an apt-get command before you can use this script"
+	exit 0
+fi
+
+if [ "$GOTOPTIPNG" = "" ]; then
+	echo -e "You must install 'optipng' on this computer with an apt-get command before you can use this script"
+	exit 0
+fi
+
+
+
+mkdir build
+
+## Babeling the JS files
+echo "Babeling and Minifying the JS files"
+babel adunit/zepto.min.js adunit/js.cookie.js adunit/datalog.js adunit/unit.js adunit/unit.html adunit/unit.act.js --out-file build/babeled-all.js --source-maps
+babel adunit/dummy-init.js build/babeled-all.js --out-file build/babeled-dummy.all.js --source-maps
+
+## Babili (Uglify/min) the JS
+babili build/babeled-all.js | tee build/all.js
+babili build/babeled-dummy.all.js | tee build/dummy.all.js
+echo "Done Concactenating and Minifying the Javascript"
+echo ''
+
+
+# Concatinating CSS
+echo "combining CSS files"
+cat adunit/unit.css adunit/lightbox.css adunit/leaderboard.css adunit/sticky-bottom.css adunit/verticalbanner.css adunit/medium-rectangle.css > build/all.css
+echo "done combining CSS files"
+echo ''
+echo "copying CSS for the adserver"
+cp build/all.css web-as/all.css
+echo ''
+echo "copying CSS for local tests"
+cp build/all.css ../all.css
+echo ''
+
+
+echo "Shinking/Optimising the Images"
+jpegoptim adunit/*.jpg
+optipng adunit/*.png
+echo "done Shrinking images"
+echo ''
 
 ## Cleaning the target's old JARs
+echo "cleaning out $1 's old JAR files"
 ssh winterwell@$1 'service adservermain stop'
 ssh winterwell@$1 'rm -rf /home/winterwell/as.good-loop.com/lib/*.jar'
 echo "Jar files on $server cleared, putting in new jars..."
@@ -18,11 +85,15 @@ ssh winterwell@$1 'rm -rf /home/winterwell/as.good-loop.com/test/*'
 rsync -rhP test/* winterwell@$1:/home/winterwell/as.good-loop.com/test/
 ssh winterwell@$1 'rm -rf /home/winterwell/as.good-loop.com/web-as/*'
 rsync -rhP web-as/* winterwell@$1:/home/winterwell/as.good-loop.com/web-as/
+echo "Cleaning out old JS files..."
+ssh winterwell@$1 'rm -rf /home/winterwell/as.good-loop.com/build/*.js'
+echo "Synching new JS files..."
+rsync -rhP build winterwell@$1:/home/winterwell/as.good-loop.com/
 echo "All files synced"
 echo ""
 echo "Starting the Adserver process"
 ssh winterwell@$1 'service adservermain start'
-echo "$server has been updated"
+echo -e "$1 has been updated"
 echo ''
 echo ''
 echo "Pushing process has completed"
