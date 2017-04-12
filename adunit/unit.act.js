@@ -40,6 +40,12 @@ goodloop.act.openLightbox = function() {
 goodloop.act.openLightbox2 = function() {
 	if (goodloop.state.lightbox) return;
 	goodloop.state.lightbox = true;
+	if (goodloop.state.endpage) {
+		// it was over-written -- remove the old.
+		// NB: this can happen if you watch the advert but don't pick a charity.
+		$('#gdlpid .videobox').remove();
+		goodloop.state.endpage = false;
+	}
 	// make it?
 	goodloop.$vbox = $('#gdlpid .videobox');
 	if (goodloop.$vbox.length === 0) {
@@ -110,6 +116,9 @@ goodloop.act.startVideo = function() {
 
 goodloop.act.showEndPage = function() {
 	$('#gdlpid .vcontainer').html(goodloop.html.endpage());
+	goodloop.state.endpage = true;
+	// TODO if they haven't picked a charity?? 
+	// Ideally, offer them the choice in endpage.
 };
 
 goodloop.act.vmsg = function(m) {
