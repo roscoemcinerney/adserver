@@ -67,6 +67,7 @@ public class AdServerMain {
 			jl = new JettyLauncher(new File("web-as"), settings.port);
 			jl.setup();
 			jl.addServlet("/unit.js", new UnitHttpServlet());
+			jl.addServlet("/advert", new AdvertServlet());
 			jl.addServlet("/manifest", new ManifestServlet());
 			Log.i("web", "...Launching Jetty web server on port "+jl.getPort());
 			jl.run();
