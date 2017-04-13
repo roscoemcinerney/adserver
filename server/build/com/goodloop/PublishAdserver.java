@@ -224,6 +224,7 @@ public class PublishAdserver extends BuildTask {
 		pubas.run();
 		System.out.println(pubas.getError());
 		pubas.close();
+		Log.d(pubas.getCommand(), pubas.getOutput());
 		
 	}
 	

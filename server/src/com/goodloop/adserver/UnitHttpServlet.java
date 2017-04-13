@@ -102,12 +102,11 @@ public class UnitHttpServlet extends HttpServlet {
 		if (adunit==null) {
 			// make a new publisher
 			adunit = new Publisher();			
-			String ref = state.getReferer();
-			adunit.domain = WebUtils2.getDomain(ref);
+			adunit.domain = Publisher.siteFromState(state);
 			adunit.validate();
 			ESHttpClient es = Dep.get(ESHttpClient.class);
 			es.debug = true;
-			String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
+			String id = Publisher.idFromDomain(Publisher.siteFromState(state));
 			adunit.id = id;			
 			IndexRequestBuilder pi = es.prepareIndex(config.publisherIndex, config.publisherType, id);
 			Gson gson = Dep.get(Gson.class);
@@ -122,8 +121,8 @@ public class UnitHttpServlet extends HttpServlet {
 		if ( ! adunit.active) {
 			if (state.getReferer() == null || ! state.getReferer().contains("goodloop=")) {
 				// off
-				Log.d("unit.off", "Not active "+state.getReferer()+" "+adunit.id);
-				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site - Please contact Good-Loop to activate it.", state.getResponse());
+				Log.d("unit.off", "Not active "+state.getReferer()+" "+adunit.id+" "+state);
+				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site ("+adunit.id+") - Please contact Good-Loop to activate it.", state.getResponse());
 				return;
 			}			
 		}

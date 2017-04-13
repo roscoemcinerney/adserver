@@ -128,10 +128,9 @@ public class DB {
 	static GLBaseConfig config;
 	
 	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
-		ESHttpClient es = Dep.get(ESHttpClient.class);		
-		String url = Utils.or(state.get("site"), state.getReferer());		
-		String id = Publisher.idFromDomain(WebUtils2.getDomain(url));
-		Log.d("adunit", "publisher id: "+id+" from url: "+url+" state: "+state+" ref: "+state.getReferer());
+		ESHttpClient es = Dep.get(ESHttpClient.class);				
+		String id = Publisher.siteFromState(state);
+		Log.d("adunit", "publisher id: "+id+" from state: "+state+" ref: "+state.getReferer());
 		GetRequestBuilder gr = new GetRequestBuilder(es);
 		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
 		gr.setSourceOnly(true);
