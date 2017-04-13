@@ -33,38 +33,43 @@ fi
 
 
 
-mkdir build
+mkdir adunit/build
 
-## Babeling the JS files
-echo "Babeling and Minifying the JS files"
-babel adunit/zepto.min.js adunit/js.cookie.js adunit/datalog.js adunit/unit.js adunit/unit.html adunit/unit.act.js --out-file build/babeled-all.js --source-maps
-babel adunit/dummy-init.js build/babeled-all.js --out-file build/babeled-dummy.all.js --source-maps
+# ## Babeling the JS files
+# echo "Babeling and Minifying the JS files"
+# babel adunit/zepto.min.js adunit/js.cookie.js adunit/datalog.js adunit/unit.js adunit/unit.html adunit/unit.act.js --out-file build/babeled-all.js --source-maps
+# babel adunit/dummy-init.js build/babeled-all.js --out-file build/babeled-dummy.all.js --source-maps
 
-## Babili (Uglify/min) the JS
-babili build/babeled-all.js | tee build/all.js
-babili build/babeled-dummy.all.js | tee build/dummy.all.js
-echo "Done Concactenating and Minifying the Javascript"
-echo ''
+# ## Babili (Uglify/min) the JS
+# babili build/babeled-all.js | tee build/all.js
+# babili build/babeled-dummy.all.js | tee build/dummy.all.js
+# echo "Done Concactenating and Minifying the Javascript"
+# echo ''
+
+# Concaticnating JS
+echo "combining JS files"
+cat adunit/zepto.min.js adunit/js.cookie.js adunit/datalog.js adunit/unit.html adunit/unit.act.js adunit/unit.js > adunit/build/all.js
+echo "done combining JS files"
 
 
 # Concatinating CSS
 echo "combining CSS files"
-cat adunit/unit.css adunit/lightbox.css adunit/leaderboard.css adunit/sticky-bottom.css adunit/verticalbanner.css adunit/medium-rectangle.css > build/all.css
+cat adunit/unit.css adunit/lightbox.css adunit/leaderboard.css adunit/sticky-bottom.css adunit/verticalbanner.css adunit/medium-rectangle.css > adunit/build/all.css
 echo "done combining CSS files"
 echo ''
 echo "copying CSS for the adserver"
-cp build/all.css web-as/all.css
+cp adunit/build/all.css web-as/all.css
 echo ''
-echo "copying CSS for local tests"
-cp build/all.css ../all.css
-echo ''
+# echo "copying CSS for local tests"
+# cp build/all.css ../all.css
+# echo ''
 
 
-echo "Shinking/Optimising the Images"
-jpegoptim adunit/*.jpg
-optipng adunit/*.png
-echo "done Shrinking images"
-echo ''
+# echo "Shinking/Optimising the Images"
+# jpegoptim adunit/*.jpg
+# optipng adunit/*.png
+# echo "done Shrinking images"
+# echo ''
 
 ## Cleaning the target's old JARs
 echo "cleaning out $1 's old JAR files"
