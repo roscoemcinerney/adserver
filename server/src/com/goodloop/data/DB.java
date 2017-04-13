@@ -26,6 +26,7 @@ import com.winterwell.es.client.admin.PutMappingRequestBuilder;
 import com.winterwell.gson.Gson;
 import com.winterwell.utils.Dep;
 import com.winterwell.utils.StrUtils;
+import com.winterwell.utils.Utils;
 import com.winterwell.utils.containers.ArrayMap;
 import com.winterwell.utils.io.ArgsParser;
 import com.winterwell.utils.io.DBUtils.DBOptions;
@@ -128,7 +129,9 @@ public class DB {
 	
 	public static ListenableFuture<Publisher> getAdUnit(WebRequest state) {
 		ESHttpClient es = Dep.get(ESHttpClient.class);		
-		String id = Publisher.idFromDomain(WebUtils2.getDomain(state.getReferer()));
+		String url = Utils.or(state.get("site"), state.getReferer());		
+		String id = Publisher.idFromDomain(WebUtils2.getDomain(url));
+		Log.d("adunit", "publisher id: "+id+" from url: "+url+" state: "+state+" ref: "+state.getReferer());
 		GetRequestBuilder gr = new GetRequestBuilder(es);
 		gr.setIndex(config.publisherIndex).setType(config.publisherType).setId(id);
 		gr.setSourceOnly(true);
