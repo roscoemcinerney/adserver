@@ -123,7 +123,7 @@ function pickFormat($div) {
 function render() {
 	// style
 	var css = `@import '${goodloop.BURL}all.css';`;
-	if ($sf) {
+	if ($sf && false) {
 		// for some reason adding to head fails :(
 		document.write('<style type="text/css">'+css+'</style>');
 	} else {
