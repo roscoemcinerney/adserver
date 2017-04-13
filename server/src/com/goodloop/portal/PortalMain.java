@@ -10,7 +10,7 @@ import com.winterwell.utils.time.TUnit;
 import com.winterwell.web.app.JettyLauncher;
 
 /**
- * TODO
+ * The Good-Loop AdServer PORTAL where you manage publishers & advertisers.
  * @author daniel
  *
  */
