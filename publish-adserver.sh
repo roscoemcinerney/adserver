@@ -8,27 +8,27 @@ GOTOPTIPNG=$(which optipng)
 
 if [ "$GOTNPM" = "" ]; then
 	echo "You must first install NPM before you can use this tool"
-	exit 0
+	exit 1
 fi
 
 if [ "$GOTBABEL" = "" ]; then
 	echo -e "You must install babel globally before you can use this tool\nInstall with 'sudo npm install -g babel-cli'"
-	exit 0
+	exit 1
 fi
 
 if [ "$GOTBABILI" = "" ]; then
 	echo -e "You must install babili globally before you can use this tool\nInstall with 'sudo npm install -g babili'"
-	exit 0
+	exit 1
 fi
 
 if [ "$GOTJPEGOPTIM" = "" ]; then
 	echo -e "You must install 'jpegoptim' on this computer with an apt-get command before you can use this script"
-	exit 0
+	exit 1
 fi
 
 if [ "$GOTOPTIPNG" = "" ]; then
 	echo -e "You must install 'optipng' on this computer with an apt-get command before you can use this script"
-	exit 0
+	exit 1
 fi
 
 
