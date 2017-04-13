@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="server/test"/>
 	<classpathentry kind="src" path="server/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/winterwell.bob"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/winterwell.datalog"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/winterwell.depot"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/winterwell.utils"/>
@@ -14,5 +13,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/flexi-gson"/>
 	<classpathentry kind="lib" path="/middleware/lombok/lombok.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/elasticsearch"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/winterwell.bob"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

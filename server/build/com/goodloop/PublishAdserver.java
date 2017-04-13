@@ -217,42 +217,15 @@ public class PublishAdserver extends BuildTask {
 			JarTask jarTask = new JarTask(new File(localLib, "adserver.jar"), new File(localWebAppDir, "bin"));
 			jarTask.run();
 			jarTask.close();
-			
-						
-//			// Do the rsync!
-//			String from = localLib.getAbsolutePath();
-//			String dest = rsyncDest("lib");			
-//			RSyncTask task = new RSyncTask(from, dest, false).setDirToDir();
-//			task.run();
-//			task.close();
-//			System.out.println(task.getOutput());
 		}
 		
-		ProcessTask pubas = new ProcessTask("publish-adserver.sh "+server);
-		ptask.run();
-		ptask.close();
+		// Bash script which does the rsync work
+		ProcessTask pubas = new ProcessTask("./publish-adserver.sh "+server);
+		pubas.run();
+		System.out.println(pubas.getError());
+		pubas.close();
 		
-//		{	// web
-//			// Rsync code with delete=true, so we get rid of old html templates
-//			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
-//			RSyncTask rsyncCode = new RSyncTask(
-//					new File(localWebAppDir,"web-as").getAbsolutePath(),
-//					rsyncDest("web-as"), true);
-//			rsyncCode.setDirToDir();
-//			rsyncCode.run();
-//			String out = rsyncCode.getOutput();
-//			rsyncCode.close();
-//		}
-		
-//		RemoteTask reboot = new RemoteTask("winterwell@"+server, "service adservermain restart");
-//		reboot.run();
 	}
 	
-
-//	private String rsyncDest(String dir) {
-////		if ( ! dir.endsWith("/")) dir += "/";
-//		return remoteUser+"@"+server+ ":" + new File(remoteWebAppDir, dir).getAbsolutePath();
-//	}
-
 
 }
