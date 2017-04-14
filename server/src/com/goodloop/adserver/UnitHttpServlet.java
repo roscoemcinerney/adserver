@@ -122,8 +122,8 @@ public class UnitHttpServlet extends HttpServlet {
 		if ( ! adunit.active) {
 			if (state.getReferer() == null || ! state.getReferer().contains("goodloop=")) {
 				// off
-				Log.d("unit.off", "Not active "+state.getReferer()+" "+adunit.id);
-				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site - Please contact Good-Loop to activate it.", state.getResponse());
+				Log.d("unit.off", "Not active ref:"+state.getReferer()+" id:"+adunit.id+" host:"+adunit.host+" domain:"+adunit.domain);
+				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site ("+adunit.domain+") - Please contact Good-Loop to activate it.", state.getResponse());
 				return;
 			}			
 		}
