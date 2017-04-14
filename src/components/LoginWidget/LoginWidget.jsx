@@ -57,6 +57,10 @@ const EmailSignin = ({verb}) => {
 	);
 
 	const doItFn = () => {
+		if ( ! person) {
+			Login.error = {text: "Please fill in email and password"};
+			return;
+		}
 		let e = person.email;
 		let p = person.password;
 		ActionMan.emailLogin(e, p);
