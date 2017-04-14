@@ -14,7 +14,7 @@ import C from '../../C';
 	- Use them in the appropriate section of the form
 */
 
-
+/*
 const SocialSignin = ({verb, socialLogin}) => {
 	return (
 		<div className="social-signin">
@@ -38,10 +38,11 @@ const SocialSignin = ({verb, socialLogin}) => {
 			</small></p>
 		</div>
 	);
-};
+};*/
 
 
-const EmailSignin = ({ verb, person, password, doItFn, handleChange}) => {
+const EmailSignin = ({verb}) => {
+	let person = DataStore.appstate.data.User.loggingIn;
 	const passwordField = verb === 'reset' ? ('') : (
 		<div className="form-group">
 			<label htmlFor="password">Password</label>
@@ -51,11 +52,15 @@ const EmailSignin = ({ verb, person, password, doItFn, handleChange}) => {
 				type="password"
 				name="password"
 				placeholder="Password"
-				value={password}
-				onChange={(event) => handleChange('password', event.target.value)}
 			/>
 		</div>
 	);
+
+	const doItFn = () => {
+		let e = person.email;
+		let p = person.password;
+		ActionMan.emailLogin(e, p);
+	};	
 
 	const buttonText = {
 		login: 'Log in',
@@ -64,6 +69,7 @@ const EmailSignin = ({ verb, person, password, doItFn, handleChange}) => {
 	}[verb];
 
 	// login/register
+	let path = [C.TYPES.User, 'loggingIn'];
 	return (
 		<form
 			id="loginByEmail"
@@ -73,18 +79,13 @@ const EmailSignin = ({ verb, person, password, doItFn, handleChange}) => {
 			}}
 		>
 			<div className="form-group">
-				<label htmlFor="person">Email</label>
-				<input
-					id="person_input"
-					className="form-control"
-					type="email"
-					name="person"
-					placeholder="Email"
-					value={person}
-					onChange={(event) => handleChange('person', event.target.value)}
-				/>
+				<label>Email</label>
+				<Misc.PropControl type='email' path={path} item={person} prop='email' />
 			</div>
-			{ passwordField }
+			<div className="form-group">
+				<label>Password</label>
+				<Misc.PropControl type='password' path={path} item={person} prop='password' />
+			</div>
 			<div className="form-group">
 				<button type="submit" className="btn btn-default form-control" >
 					{ buttonText }
@@ -133,13 +134,10 @@ const LoginWidget = ({showDialog}) => {
 		register: 'Register',
 		reset: 'Reset Password'
 	}[verb];
-
-	const doItFn = {
-		login: ActionMan.doEmailLogin,
-		register: ActionMan.doEmailRegister,
-		reset: null,
-	}[verb];
-
+	
+				/*<div className="col-sm-6">
+							<SocialSignin verb={verb} services={null} />
+						</div>*/
 	return (
 		<Modal show={showDialog} className="login-modal" onHide={() => DataStore.setShow(C.show.LoginWidget, false)}>
 			<Modal.Header>
@@ -149,17 +147,14 @@ const LoginWidget = ({showDialog}) => {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<div className="container">
-				<div className="row">
-					<div className="col-sm-6 col-center">
-						<EmailSignin
-							verb={verb}
-						/>
-						<div className="col-sm-6">
-							<SocialSignin verb={verb} services={null} />
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-sm-12">
+							<EmailSignin
+								verb={verb}
+							/>
 						</div>
 					</div>
-				</div>
 				</div>
 			</Modal.Body>
 			<Modal.Footer>

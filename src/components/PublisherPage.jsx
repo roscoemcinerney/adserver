@@ -88,15 +88,14 @@ const CharityForm = ({publisher, i, charity}) => {
 	assert(publisher);
 	if ( ! charity) charity = {};
 	let path = [C.TYPES.Publisher, publisher.id, 'charity'+i];
-	let logo = charity.logo? <img className='logo' src={charity.logo} /> : null;
 	return (
 		<div className='well'>
 			<h4>Charity {i}</h4>
 			ID: <Misc.PropControl item={charity} path={path} prop='id' /> <br/>
 			name: <Misc.PropControl item={charity} path={path} prop='name' /> <br/>
-			url: <Misc.PropControl item={charity} path={path} prop='url' /> <br/>
-			Logo: <Misc.PropControl item={charity} path={path} prop='logo' /> />
-			{logo}
+			url: <Misc.PropControl type='url' item={charity} path={path} prop='url' /> <br/>			
+			Logo: <Misc.PropControl type='img' item={charity} path={path} prop='logo' /> <br/>			
+			BG Photo: <Misc.PropControl type='img' item={charity} path={path} prop='bgphoto' />
 		</div>
 	);
 };

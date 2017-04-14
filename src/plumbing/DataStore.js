@@ -55,8 +55,11 @@ class Store {
 					typemap = {};
 					itemstate.data[type] = typemap;
 				}
-				assert(item.id, item);
-				typemap[item.id] = item;
+				if (item.id) {
+					typemap[item.id] = item;
+				} else {
+					console.warn("No id?!", item, "from", res);
+				}
 			} catch(err) {
 				// swallow and carry on
 				console.error(err);
@@ -82,13 +85,15 @@ DataStore.update({
 		Charity: {},
 		Advert: {},
 		Advertiser: {},
-		Person: {}
+		Person: {},
+		User: {}
 	},
 	focus: {
 		Publisher: null,
 		Advertiser: null,
 		Charity: null,
 		Person: null,
+		User: null,
 	},
 	show: {
 	}

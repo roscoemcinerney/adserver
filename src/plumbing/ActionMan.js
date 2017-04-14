@@ -47,6 +47,13 @@ ActionMan.socialLogin = (service) => {
 	assMatch(service, String);
 	Login.auth(service);
 };
+ActionMan.emailLogin = (email, password) => {
+	assMatch(email, String, password, String);
+	Login.login(email, password)
+	.then(function(res) {
+		console.warn("login", res);
+	});
+};
 
 ActionMan.savePublisher = (pubId) => {
 	assMatch(pubId, String);

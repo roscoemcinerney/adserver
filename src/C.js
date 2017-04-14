@@ -9,7 +9,7 @@ export default C;
  */
 C.newId = 'new';
 
-C.TYPES = new Enum("Publisher Charity Advert Advertiser");
+C.TYPES = new Enum("Publisher Charity Advert Advertiser User");
 
 /** dialogs you can show/hide.*/
 C.show = new Enum('LoginWidget');

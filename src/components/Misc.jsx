@@ -51,7 +51,7 @@ Misc.Time = ({time}) => {
 	}
 };
 
-	/** eg a Twitter logo */
+/** eg a Twitter logo */
 Misc.Logo = ({service, size, transparent}) => {
 	assert(service);
 	let klass = "img-rounded logo";
@@ -68,6 +68,7 @@ Misc.Logo = ({service, size, transparent}) => {
 }; // ./Logo
 
 Misc.PropControl = ({prop,path,item, type}) => {
+	if ( ! item) item = {};
 	const value = item[prop]===undefined? '' : item[prop];
 	if (type==='Checkbox') {
 		return <Checkbox checked={item[prop]} onChange={e => ActionMan.setDataValue(_.concat(path, prop), e.target.checked)} />;
@@ -81,9 +82,16 @@ Misc.PropControl = ({prop,path,item, type}) => {
 	if (type==='textarea') {
 		return <FormControl componentClass="textarea" name={prop} value={value} onChange={onChange} />;
 	}
+	if (type==='img') {
+		return (<div>
+			<FormControl type='url' name={prop} value={value} onChange={onChange} />
+			<div className='pull-right'><Misc.ImgThumbnail url={value} /></div>
+			<div className='clearfix' />
+		</div>);
+	}
 	if (type==='url') {
 		return (<div>
-			<FormControl type='url' componentClass="textarea" name={prop} value={value} onChange={onChange} />
+			<FormControl type='url' name={prop} value={value} onChange={onChange} />
 			<div className='pull-right'><Misc.SiteThumbnail url={value} /></div>
 			<div className='clearfix' />
 		</div>);
@@ -94,5 +102,6 @@ Misc.PropControl = ({prop,path,item, type}) => {
 
 Misc.SiteThumbnail = ({url}) => url? <a href={url} target='_blank'><iframe style={{width:'150px',height:'100px'}} src={url} /></a> : null;
 
+Misc.ImgThumbnail = ({url}) => url? <img className='logo' src={url} /> : null;
 
 export default Misc;
