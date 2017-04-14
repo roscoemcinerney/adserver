@@ -3,7 +3,9 @@ package com.goodloop.data;
 import java.util.Arrays;
 import java.util.List;
 
+import com.winterwell.utils.Utils;
 import com.winterwell.utils.web.WebUtils2;
+import com.winterwell.web.app.WebRequest;
 
 public class Publisher extends Thing {
 	
@@ -49,6 +51,12 @@ public class Publisher extends Thing {
 
 
 	public static String idFromDomain(String domain) {
+		return domain;
+	}
+
+	public static String siteFromState(WebRequest state) {
+		String url = Utils.or(state.get("site"), state.getReferer());		
+		String domain = WebUtils2.getDomain(url);
 		return domain;
 	}
 	
