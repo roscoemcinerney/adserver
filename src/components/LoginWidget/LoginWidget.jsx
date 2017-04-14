@@ -140,7 +140,7 @@ const LoginWidget = ({showDialog}) => {
 						</div>*/
 	return (
 		<Modal show={showDialog} className="login-modal" onHide={() => DataStore.setShow(C.show.LoginWidget, false)}>
-			<Modal.Header>
+			<Modal.Header closeButton>
 				<Modal.Title>
 					<Misc.Logo service="goodloop" size='large' transparent={false} />
 					Welcome (back) to the Good-Loop Portal
