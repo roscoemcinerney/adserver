@@ -44,8 +44,8 @@
     background-color: transparent;
     position: absolute;
     right: 58px;
-    top: 5px;
-    height: 80px;
+    top: 7px;
+    height: 76px;
     max-width: 150px;
 }
 #gdlpid.leaderboard.mobile img.adlogo {
@@ -113,9 +113,9 @@
 	position:absolute;
 	top:50%;
 	transform: translateY(-50%);
-	right:5px;
+	right:12px;
 	max-height:90px;
-	width:115px;
+	width:100px;
 	z-index: 3;
 }
 #gdlpid.leaderboard .charities img.cphoto {

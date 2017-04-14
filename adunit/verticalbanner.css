@@ -6,7 +6,7 @@
 
 #gdlpid.vbnr header {
     left:0;
-    height: 100px;
+    height: 124px;
 	width:100%;
 }
 
@@ -24,29 +24,39 @@
     font-weight: normal;
     left: 5px;
     right: 5px;
-	bottom: -120px;
-    line-height: 20px;
-    height: 20px;
+	bottom: -99px;
+    line-height: 15px;
+    height: 15px;
 }
 
 #gdlpid.vbnr img.adlogo {
     background-color: transparent;
-    position: absolute;
-    margin: auto 0;
-    top: 50px;
-    height: 60px;
+    position: relative;
+    margin: auto;
+    top: 38px;
+    height: 45px;
     max-width:90%;
+}
+
+#gdlpid.vbnr span.play {
+    top: 88px;
+	left: 42px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50px;
+    background-size: 22px 22px;
+    background-position: 11px center;
 }
 
 #gdlpid.vbnr span.rarrow {
 	position: absolute;
-	top:100px;
-	left: 50%;
+	top:124px;
+	left:0;
 	width: 0; 
 	height: 0; 
-	border-top: 45px solid transparent;
-	border-bottom: 45px solid transparent;  
-	border-left: 45px solid #ce2e38;
+	border-left:60px solid transparent;
+	border-right:60px solid transparent;  
+	border-top: 20px solid #ce2e38;
 	z-index: 4;
 }
 
@@ -54,10 +64,10 @@
 
 #gdlpid.vbnr .charities {
     position: absolute;
-    top: 0;
+    top: 124px;
     right: 0;
-    width: 170px;
-    height: 100%;
+    width:100%;
+    bottom:0;
 }
 #gdlpid.vbnr .charities li {
 	position: absolute;
@@ -70,10 +80,11 @@
 
 #gdlpid.vbnr .unit img.clogo {
 	position:absolute;
-	top:0px;
-	right:5px;
-	max-height:90px;
-	width:115px;
+	top:22px;
+	left:50%;
+	transform: translateX(-50%);
+	height:60px;
+	max-width:110px;
 	z-index: 3;
 }
 #gdlpid.vbnr .charities img.cphoto {
@@ -83,15 +94,4 @@
 	width:100%;
 	height:100%;
 	z-index: 2;
-}
-
-#gdlpid.vbnr span.play {
-    right: -10px;
-    top: 50%;
-    margin-top: -30px;
-    height: 56px;
-    width: 56px;
-    border-radius: 60px;
-    background-size: 25px 25px;
-    background-position: 18px center;
 }
