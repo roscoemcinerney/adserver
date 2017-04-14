@@ -8,6 +8,10 @@ import DataStore from '../../plumbing/DataStore';
 import ActionMan from '../../plumbing/ActionMan';
 import Misc from '../Misc';
 import C from '../../C';
+
+// FIXME!!!
+Login.endpoint = 'http://local.soda.sh/hooru.json';
+
 /**
 	TODO:
 	- doEmailLogin(email, password) and doSocialLogin(service) are available as props now
@@ -42,19 +46,7 @@ const SocialSignin = ({verb, socialLogin}) => {
 
 
 const EmailSignin = ({verb}) => {
-	let person = DataStore.appstate.data.User.loggingIn;
-	const passwordField = verb === 'reset' ? ('') : (
-		<div className="form-group">
-			<label htmlFor="password">Password</label>
-			<input
-				id="password_input"
-				className="form-control"
-				type="password"
-				name="password"
-				placeholder="Password"
-			/>
-		</div>
-	);
+	let person = DataStore.appstate.data.User.loggingIn;	
 
 	const doItFn = () => {
 		if ( ! person) {
