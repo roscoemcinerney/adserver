@@ -9,10 +9,6 @@
 	width: 100%;
 	height: 150px;
 }
-#gdlpid.mediumrectangle.mobile {
-    width: 100%;
-    border-width: 0;
-}
 
 #gdlpid.mediumrectangle header .logo {
 	position: absolute;
@@ -28,23 +24,19 @@
     position: absolute;
     font-weight: normal;
     left: 5px;
-    right: 210px;
+    right: 5px;
     line-height: 26px;
     height: 26px;
-    bottom: 8px;
-}
-#gdlpid.mediumrectangle.mobile header .logo, #gdlpid.mediumrectangle.mobile header h2 {
-    left: 5px;
-    right: 210px;
+    top: 60px;
 }
 
 #gdlpid.mediumrectangle img.adlogo {
     background-color: transparent;
     position: absolute;
-    right: 65px;
-    top: 5px;
-    height: 80px;
-    max-width: 150px;
+    left: 15px;
+    top: 85px;
+    height: 70px;
+    max-width: 130px;
 }
 
 #gdlpid.mediumrectangle span.rarrow {
@@ -55,7 +47,7 @@
 	height: 0; 
 	border-left:150px solid transparent;
 	border-right:150px solid transparent;  
-	border-top: 45px solid #ce2e38;
+	border-top: 35px solid #ce2e38;
 	z-index: 4;
 }
 
@@ -69,12 +61,13 @@
 }
 
 #gdlpid.mediumrectangle .unit img.clogo {
-	position:absolute;
+	/*position:absolute;
 	top:0px;
-	right:5px;
+	right:5px;*/
 	max-height:90px;
 	width:115px;
 	z-index: 3;
+	vertical-align: middle;
 }
 #gdlpid.mediumrectangle .charities img.cphoto {
 	position:absolute;
@@ -86,7 +79,20 @@
 }
 
 #gdlpid.mediumrectangle span.play {
-    right: -10px;
-    top: 50%;
-    margin-top: -30px;
+    right: 25px;
+    top: 90px;
+    /*margin-top: -30px;*/
+}
+#gdlpid.mediumrectangle .charities li {	
+	width:30%;
+	margin:0;
+	position:absolute;
+	top:5px;	
+}
+#gdlpid.mediumrectangle .charities li:nth-child(2) {
+	left:30%;
+}
+
+#gdlpid.mediumrectangle .charities li:nth-child(3) {
+	left:200px;
 }

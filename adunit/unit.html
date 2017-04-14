@@ -11,7 +11,7 @@ goodloop.html.leaderboard = () =>
 	<div class='unit' onclick="goodloop.act.openLightbox();">
 		<header>        
 			<img class='logo' alt='ADS FOR GOOD' src='${goodloop.BURL}afg-white.png' />
-			<h2>${goodloop.variant.expln}</h2>
+			<h2>${goodloop.html.expln()}</h2>
 			<img class="adlogo" src='${goodloop.vert.logo || "//localas.good-loop.com/acme.png"}' alt='${goodloop.vert.name}' title='Watch their short advert and ${goodloop.vert.name} will fund your donation'>
 			<span class="play"></span>
 		</header>
@@ -23,6 +23,14 @@ goodloop.html.leaderboard = () =>
 		</ul>
 	</div>
 </div>`; 
+
+goodloop.html.expln = () => {
+	return {
+		mediumrectangle: "Donate by watching an advert",
+		vbnr: "Donate a few seconds"
+	}[goodloop.env.format]
+	|| "Give a donation by watching an advert";
+}
 
 let charity_li = (charity) => ! charity? '' :
 `<li class='chty' data-cid='${charity.id}' title='${charity.name}'>

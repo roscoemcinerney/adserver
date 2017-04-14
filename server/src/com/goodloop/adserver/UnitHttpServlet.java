@@ -74,7 +74,10 @@ public class UnitHttpServlet extends HttpServlet {
 	}
 	
 	public UnitHttpServlet() {
-		unitjs = new UpToDateTextFile(new File("adunit/build/all.js"));
+		unitjs =new UpToDateTextFile(new File(
+//				"adunit/build/all.js"
+				"adunit/bleurgh.js"
+				));
 	}
 	
 	@Override
@@ -121,13 +124,8 @@ public class UnitHttpServlet extends HttpServlet {
 		if ( ! adunit.active) {
 			if (state.getReferer() == null || ! state.getReferer().contains("goodloop=")) {
 				// off
-<<<<<<< HEAD
 				Log.d("unit.off", "Not active ref:"+state.getReferer()+" id:"+adunit.id+" host:"+adunit.host+" domain:"+adunit.domain);
 				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site ("+adunit.domain+") - Please contact Good-Loop to activate it.", state.getResponse());
-=======
-				Log.d("unit.off", "Not active "+state.getReferer()+" "+adunit.id+" "+state);
-				WebUtils2.sendError(401, "Good-Loop adunit isn't active for this site ("+adunit.id+") - Please contact Good-Loop to activate it.", state.getResponse());
->>>>>>> 44e3a7513f0424468acccc4042d9488f50d105a4
 				return;
 			}			
 		}
@@ -164,8 +162,7 @@ public class UnitHttpServlet extends HttpServlet {
 		Log.d("unit", "vars: "+initjs);
 				
 		ArrayMap variant = new ArrayMap(
-				"adsecs", 5, // TODO explore the effect of 5-15 seconds
-				"expln", "Give a donation by watching an advert"
+				"adsecs", 5 // TODO explore the effect of 5-15 seconds
 				);
 		String varVar = "\ngoodloop.variant="+gson.toJson(variant)+";\n";
 		

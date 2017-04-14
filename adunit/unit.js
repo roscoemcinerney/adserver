@@ -59,22 +59,23 @@ datalog.track();
 function renderUnit(id, $div) {
 	console.log(this, $div, $div.width(), 'x', $div.height());
 	// pick format
-	var format = pickFormat($div);		
-	// expand?
-	if ($sf) {		
-		var wh = {
-			mediumrectangle: [300, 250],
-			leaderboard: [728, 90],
-			vbnr: [120, 240],
-			stickybottom: [728, 50] // NB: stickybottom width = 100%
-		}[format];
-		var ew = wh[0] - goodloop.env.geom.self.w;
-		var eh = wh[1] - goodloop.env.geom.self.h;
-		if (ew>0 || eh>0) {
-			$sf.ext.expand(Math.max(0, ew), Math.max(0, eh), true);
-			goodloop.state.expanded = true;
-		}
-	}
+	var format = pickFormat($div);	
+	goodloop.env.format = format;	
+	// // expand?
+	// if ($sf) {		
+	// 	var wh = {
+	// 		mediumrectangle: [300, 250],
+	// 		leaderboard: [728, 90],
+	// 		vbnr: [120, 240],
+	// 		stickybottom: [728, 50] // NB: stickybottom width = 100%
+	// 	}[format];
+	// 	var ew = wh[0] - goodloop.env.geom.self.w;
+	// 	var eh = wh[1] - goodloop.env.geom.self.h;
+	// 	if (ew>0 || eh>0) {
+	// 		$sf.ext.expand(Math.max(0, ew), Math.max(0, eh), true);
+	// 		goodloop.state.expanded = true;
+	// 	}
+	// }
 	// done?
 	var done = goodloop.state.done;
 	if (done) {
@@ -105,10 +106,11 @@ function pickFormat($div) {
 			w += parseInt(goodloop.env.geom.exp.w);
 		}
 	}
-	if (w >= 728) {
+	// NB: -4 to allow that minor clipping is better than a smaller ad.
+	if (w >= 728 - 4) {
 		return 'leaderboard';
 	}
-	if (w >= 300) {
+	if (w >= 300 - 4) {
 		return 'mediumrectangle';
 	}
 	// limited space
