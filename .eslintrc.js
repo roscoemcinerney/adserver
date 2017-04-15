@@ -46,6 +46,8 @@ module.exports = {
 		/* broken - seems to cause errors in linting */
 		"no-multi-assign": "off",
 		/* off because the warnings are more noise than signal i.e. we might switch them on sometime*/
+		"no-var": "warn",
+		"vars-on-top": "warn",
 		"react/jsx-no-target-blank": "warn",
 		"comma-spacing": "off",
 		"consistent-return": "warn",
