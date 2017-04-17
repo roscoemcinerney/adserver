@@ -10,7 +10,7 @@ import Misc from '../Misc';
 import C from '../../C';
 
 // FIXME!!!
-Login.endpoint = 'http://local.soda.sh/hooru.json';
+Login.ENDPOINT = 'http://local.soda.sh/hooru.json';
 
 /**
 	TODO:
@@ -139,7 +139,7 @@ const LoginWidget = ({showDialog}) => {
 			<Modal.Header closeButton>
 				<Modal.Title>
 					<Misc.Logo service="goodloop" size='large' transparent={false} />
-					Welcome (back) to the Good-Loop Portal
+					Welcome {verb==='login'? '(back)' : ''} to the Good-Loop Portal
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
@@ -158,11 +158,11 @@ const LoginWidget = ({showDialog}) => {
 				verb === 'register' ?
 					<div>
 						Already have an account?
-						&nbsp;<a href='#' onClick={() => ActionMan.setDataValue(['widget','LoginWidget','verb'], 'login')} >Login</a>
+						&nbsp;<a href='#' onClick={() => ActionMan.setValue(['widget','LoginWidget','verb'], 'login')} >Login</a>
 					</div> :
 					<div>
 						Don&#39;t yet have an account?
-						&nbsp;<a href='#' onClick={() => ActionMan.setDataValue(['widget','LoginWidget','verb'], 'register')} >Register</a>
+						&nbsp;<a href='#' onClick={() => ActionMan.setValue(['widget','LoginWidget','verb'], 'register')} >Register</a>
 					</div>
 			}
 			</Modal.Footer>

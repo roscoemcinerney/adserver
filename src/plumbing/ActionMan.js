@@ -15,28 +15,22 @@ ActionMan.setFocus = (prop, id) => {
 	DataStore.update({focus: newFocus});
 };
 
+/**
+ * @deprecated Convenience: Set a DataStore state.data value.
+ * @see ActionMan.setValue() instead
+ */
 ActionMan.setDataValue = (path, valueOrEvent) => {
-	let value = valueOrEvent.target? valueOrEvent.target.value : valueOrEvent;	
-	assert(_.isArray(path), path);
 	assert(C.TYPES.has(path[0]), path);
-	// console.log('ActionMan.setValue', path, value);
-
-	let newState = {};
-	let tip = newState;	
-	for(let pi=0; pi < path.length; pi++) {
-		let pkey = path[pi];
-		if (pi === path.length-1) {
-			tip[pkey] = value;
-			break;
-		}
-		// When to make an array? Let's leave that for the server to worry about.
-		// Javascript is lenient on array/object for key->value access.
-		let newTip = {};
-		tip[pkey] = newTip;
-		tip = newTip;
-	}
-
-	DataStore.update({data: newState});
+	path = ["data"].concat(path);
+	ActionMan.setValue(path, valueOrEvent);
+};
+/**
+ * Set a DataStore state value (might be anything)
+ */
+ActionMan.setValue = (path, valueOrEvent) => {
+	let value = valueOrEvent.target? valueOrEvent.target.value : valueOrEvent;
+	assert(_.isArray(path), path);	
+	DataStore.setValue(path, value);
 };
 
 ActionMan.showLogin = () => {
@@ -52,8 +46,14 @@ ActionMan.emailLogin = (email, password) => {
 	Login.login(email, password)
 	.then(function(res) {
 		console.warn("login", res);
+		// poke React
+		DataStore.update({});	
 	});
 };
+// Trigger react updates on login change
+Login.change(function() {
+	DataStore.update({misc: {userId: Login.getId()}});
+});
 
 ActionMan.savePublisher = (pubId) => {
 	assMatch(pubId, String);
