@@ -118,7 +118,9 @@
 }
 
 /** LIGHT BOX + TQ */
-
+#gdlpid .sharead {
+	display: none;
+}
 #gdlpid img.tw {
 	width: 35px;
 	height: 29px;
@@ -126,6 +128,15 @@
 #gdlpid img.fb {
 	width: 29px;
 	height: 29px;
+}
+
+
+#gdlpid .thankyou .gl_link {
+	position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-style: italic;
+    font-size: 80%;
 }
 
 #gdlpid .thankyou {
