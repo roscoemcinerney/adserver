@@ -6,6 +6,7 @@ $(function(){
 // Installed on the page already?
 if (goodloop.installed) return;
 goodloop.installed = true;
+console.warn("goodloop",goodloop);
 
 /* DETECTION & ANY POLYFILL */
 // no ads for this page?
@@ -28,6 +29,7 @@ if (typeof($sf) !== 'undefined') {
 			goodloop.act.openLightbox2();
 		}
 	};	
+	goodloop.$sf = $sf;
 	$sf.ext.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
 	goodloop.env.geom = $sf.ext.geom();
 } else {
