@@ -66,14 +66,10 @@
 }
 
 #gdlpid.mediumrectangle .unit img.clogo {
-	position:absolute;
-	top:50%;
 	right:15px;
-	transform: translateY(-50%);
 	max-height:90px;
 	width:90px;
 	z-index: 3;
-	vertical-align: middle;
 }
 #gdlpid.mediumrectangle .charities img.cphoto {
 	position:absolute;

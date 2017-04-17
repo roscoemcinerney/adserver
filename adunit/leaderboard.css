@@ -110,10 +110,11 @@
 }
 
 #gdlpid.leaderboard .unit img.clogo {
-	position:absolute;
+	/*position:absolute;
 	top:50%;
 	transform: translateY(-50%);
-	right:12px;
+	right:12px;*/
+	margin-left:20px;
 	max-height:90px;
 	width:100px;
 	z-index: 3;

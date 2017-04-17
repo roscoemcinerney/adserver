@@ -87,6 +87,12 @@
     z-index: 3;
     background-color: #382ece;
 }
+#gdlpid img.clogo {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}
 
 #gdlpid span.play {
 	/*opacity: 0.9;
