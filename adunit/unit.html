@@ -97,10 +97,18 @@ goodloop.html.social = function() {
 /** goes inside div.unit, replacing the advert */
 goodloop.html.tq = () => `
     <div class="thankyou">
+		<div>
+			<div class='tq'>Thank You!</div>
+			<div>For watching this Good-Loop ad.</div>
+		</div>
         <div class='dntn'>
 			<a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
 			<span>funded your donation to</span>
-			<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
+			<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>.
+			<div class='amount'>
+				The amount donated is a full 50% of the advert value. 
+				These adverts also support this website.
+			</div>
 		</div>
 		<a href="http://good-loop.com" class="gl_link">Find out more about opt-in ads by <span class='gl'>Good-Loop</span>.</a>
 		<div>${goodloop.html.social()}</div>
