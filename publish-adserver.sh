@@ -51,6 +51,14 @@ echo "combining JS files"
 cat adunit/zepto.min.js adunit/js.cookie.js adunit/datalog.js adunit/unit.html adunit/unit.act.js adunit/unit.js > adunit/build/all.js
 echo "done combining JS files"
 
+## THE FOLLOWING FEW LINES ARE PART OF A TEST
+# echo "Transpiling the 'all.js' file for ES5 compatibility"
+# mv adunit/build/all.js adunit/build/original.all.js
+# babel adunit/build/original.all.js --out-file adunit/build/all.js
+# echo "Done Transpiling the 'all.js' file"
+# echo ''
+### END OF TEST SECTION
+
 
 # Concatinating CSS
 echo "combining CSS files"

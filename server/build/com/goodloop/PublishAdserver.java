@@ -167,9 +167,9 @@ public class PublishAdserver extends BuildTask {
 		String timestampCode = "" + ((System.currentTimeMillis()/1000) % 10000);
 
 		// shell script build
-		ProcessTask ptask = new ProcessTask("adunit/bld.sh");
-		ptask.run();
-		ptask.close();
+//		ProcessTask ptask = new ProcessTask("adunit/bld.sh");
+//		ptask.run();
+//		ptask.close();
 		
 		{	// copy all the properties files
 			doUploadProperties(timestampCode);
@@ -220,11 +220,11 @@ public class PublishAdserver extends BuildTask {
 		}
 		
 		// Bash script which does the rsync work
-		ProcessTask pubas = new ProcessTask("./publish-adserver.sh "+server);
-		pubas.run();
-		System.out.println(pubas.getError());
-		pubas.close();
-		Log.d(pubas.getCommand(), pubas.getOutput());
+//		ProcessTask pubas = new ProcessTask("./publish-adserver.sh "+server);
+//		pubas.run();
+//		System.out.println(pubas.getError());
+//		pubas.close();
+//		Log.d(pubas.getCommand(), pubas.getOutput());
 		
 	}
 	
