@@ -57,6 +57,7 @@ const EditAdvertForm = ({advert}) => {
 		ID <input value={pub.id} readOnly /> <br/>
 		On? <Misc.PropControl prop='active' type='Checkbox' path={path} item={pub} /> <br/>
 		Name <Misc.PropControl item={pub} path={path} prop='name' /> <br/>
+		Logo <Misc.PropControl type='img' item={pub} path={path} prop='logo' /> <br/>
 		Landing page url <Misc.PropControl type='url' item={pub} path={path} prop='url' /> <br/>
 		Max Bid <Misc.PropControl type='MonetaryAmount' prop='maxBid' path={path} item={pub} /> <br/>
 		Campaign <Misc.PropControl item={pub} path={path} prop='campaign' /> <br/>

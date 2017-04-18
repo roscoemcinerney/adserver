@@ -22,6 +22,7 @@ public class Advert extends Thing {
 		return "Advert [keywords=" + keywords + ", maxBid=" + maxBid + ", active=" + active + ", name=" + name
 				+ ", url=" + url + ", id=" + id + "]";
 	}
+	public String logo;
 	public String campaign;
 	public String video;
 	public String mobileVideo;
