@@ -155,9 +155,10 @@
 #gdlpid .endpage .dntn {
 	top:25%;
 	left:50%;
-	right:0;
+	right:20px;
+	width: initial;
 }
-#gdlpid .endpage .amount{
+#gdlpid .endpage .amount {
 	font-size:12px;
 }
 
