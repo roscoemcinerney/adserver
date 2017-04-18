@@ -11,7 +11,7 @@
 #gdlpid * {
     margin: 0;
     padding: 0;
-    display: block;
+    display: block;	
 }
 #gdlpid li { list-style: none; }
 #gdlpid h1,h2,h3,h4 {
@@ -22,6 +22,7 @@
 }
 #gdlpid a {	
     text-decoration: none;
+	cursor: pointer;
 }
 #gdlpid button {
     overflow: visible;
@@ -130,13 +131,72 @@
 	height: 29px;
 }
 
+#gdlpid .tq {
+	position: absolute;
+}
+#gdlpid.mediumrectangle .tq, #gdlpid.leaderboard .tq {
+	top: 5px;
+	left: 15px;
+	width: 50%;
+}
+#gdlpid .tqh {
+	font-size: 40px;
+	padding-top: 5px;	
+}
+#gdlpid.vbnr .tq {
+	left:5px;
+	right:5px;
+}
+#gdlpid.vbnr .dntn {
+	left:5px;
+	right:5px;
+	top:65px;
+	width:110px;
+	text-align: center;
+}
+#gdlpid.vbnr .tqh {
+	font-size: 20px;
+}
+#gdlpid.vbnr .amount {
+	display:none;
+}
+#gdlpid .dntn {
+	position: absolute;
+	width:50%;
+	right:10px;
+	top:10px;
+}
+#gdlpid.mediumrectangle .dntn {
+	top:50px;
+}
+#gdlpid .dntn img.tqlogo {
+	/*display: inline;*/
+	width: 75px;
+	max-height: 85px;
+	padding-bottom: 10px;
+}
+#gdlpid.leaderboard .dntn img.tqlogo {
+	float:left;
+	padding-right: 10px;
+}
+#gdlpid.vbnr .dntn img.tqlogo {
+	width: 60px;
+	margin: auto;
+}
 
+#gdlpid .dntn .amount {
+	font-size: 11px;
+	padding-top: 5px;
+}
 #gdlpid .thankyou .gl_link {
 	position: absolute;
     bottom: 5px;
     right: 5px;
     font-style: italic;
     font-size: 80%;
+}
+#gdlpid.vbnr .thankyou .gl_link {
+	left:5px;
 }
 
 #gdlpid .thankyou {

@@ -4,14 +4,14 @@ This adds exit tracking to the normal pixel. It should be used with the normal p
 if ( ! window.goodloop) goodloop = {};
 if ( ! goodloop.LBURL) goodloop.LBURL = '//lg.good-loop.com';
 
-var goodloop.domain = window.location.hostname;
+goodloop.domain = window.location.hostname;
 
 setTimeout(function() {
 	var as = document.getElementsByTagName('a');
 	for(var i=0; i<as.length; i++) {
 		var a = as[i];
 		var url = a.href;				
-		// don't trackj internal clicks
+		// don't track internal clicks
 		var ui = url.indexOf(goodloop.domain);		
 		if (ui !=-1 && ui < 20) continue;
 		var old = a.onclick;		
@@ -26,13 +26,12 @@ setTimeout(function() {
 			return true;
 		};
 	}
-}, 250);
+}, 250); // Allow a fraction of a second for the page to load. Any click before then was a bot anyway.
 
 
-// datalog
-{
-	/** convenience for ajax with cookies */
-	const apost = function(url, data) {
+(function() {
+	/** convenience for ajax with cookies, assumes jquery/zepto */
+	var apost = function(url, data) {
 		return $.ajax({
 			url: url,
 			data: data,
@@ -52,24 +51,49 @@ setTimeout(function() {
 		urlPart = encodeURIComponent(urlPart);
 		urlPart = urlPart.replace("'","%27");
 		return urlPart;
-	}
+	};
 
-	const log = function(dataspace, eventTag, eventParams) {
+	/**
+	 * @deprecated Better to put the img tag directly in the page's html if you can.
+	 */
+	var track = function(){
+		$('body').append('<img src="'+goodloop.LBURL+'/pxl" style="z-index:-1;position:absolute;top:0px;left:0px;width:1;height:1;opacity:0.1;"/>')
+	};
+
+	var log = function(dataspace, eventTag, eventParams, addTrackingInfo) {
 		console.log("datalog", dataspace, eventTag, eventParams);
-		// add standard tracking - done automatically server-side
+		// ip, url --> we could get by cross-referencing the tracking pixel 
+		// Since we're only sending small data packets -- use an image??
+		// Hm... Post seems to work, lets use that.
+		// var url = LBURL+'/lg.gif?dataspace='+escape(dataspace)+"&tag="+encURI(eventTag)+"&params="+encURI(JSON.stringify(eventParams));
+		// var img = $('<img src="'+url+'" />');
+		// $('body').append(img);
+		// DfP site value?
+		var site = null;
+		try {
+			site = unescape(window.location.search.match(/[\?&]site=([^&]+)/)[1]);
+		} catch(err) {
+			// no site param
+		}
 		var data = {
 			d: dataspace,
 			t: eventTag,
-			p: JSON.stringify(eventParams)
+			p: JSON.stringify(eventParams),
+			r: document.referrer, // If in a SafeFrame, this will be the page url
+			s: site // If in a well-configured DfP ad, this will be the page url
 		};
+		// dont do standard tracking?
+		if (addTrackingInfo === false) {
+			data.track = false;
+		}
 		return apost(goodloop.LBURL+'/lg', data);
-	}
+	};
 
 	/**
-	 * 
+	 * "export" 
 	 */
 	window.datalog = {
 		log:log,
 		track:track
-	}
-}
+	};
+})();

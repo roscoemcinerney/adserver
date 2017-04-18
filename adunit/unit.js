@@ -81,12 +81,14 @@ function renderUnit(id, $div) {
 	// done?
 	var done = goodloop.state.done;
 	if (done) {
-		var tqhtml = goodloop.html[format+"_tq"]();
+		// one TQ html for all slots -- modified by css
+		var tqhtml = goodloop.html.tq(format);
 		$div.html(tqhtml);
 		return;	
 	}
 	// show offer
 	var $unit = $(goodloop.html[format]());
+	$unit.click(goodloop.act.openLightbox);
 	$unit.addClass(format);
 	$div.append($unit);
 }

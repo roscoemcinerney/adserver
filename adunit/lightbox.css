@@ -125,6 +125,7 @@
     top: 0;
     left: 0;
     width: 100%;
+	height:100%;
     z-index: 3;
     align-items: center;
     justify-content: center;
@@ -145,30 +146,21 @@
 
 #gdlpid .videobox .vcontainer .endpage {
     color: black;
-    justify-content: center;
-    -ms-flex-direction: column;
-    flex-direction: column;
+	padding: 25px;
+	height:100%;
 }
-#gdlpid .videobox .vcontainer .endpage p {
-    background: transparent;
-    padding: 1em;
-    text-align: center;
+#gdlpid .videobox .vcontainer .endpage.thankyou {
+	background: transparent;
 }
-#gdlpid .videobox .vcontainer .endpage p.share, #gdlpid .videobox .vcontainer .endpage p.visit {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-justify-content: center;
-    justify-content: center;
-    -ms-align-items: center;
-    align-items: center;
+#gdlpid .endpage .dntn {
+	top:25%;
+	left:50%;
+	right:0;
 }
-#gdlpid .videobox .vcontainer .endpage p.share > *, #gdlpid .videobox .vcontainer .endpage p.visit > * {
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    margin: 0 1em;
+#gdlpid .endpage .amount{
+	font-size:12px;
 }
+
 
 @media (max-width: 600px) {
     #gdlpid .videobox {

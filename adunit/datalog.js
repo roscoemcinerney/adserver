@@ -37,14 +37,22 @@
 		// var url = LBURL+'/lg.gif?dataspace='+escape(dataspace)+"&tag="+encURI(eventTag)+"&params="+encURI(JSON.stringify(eventParams));
 		// var img = $('<img src="'+url+'" />');
 		// $('body').append(img);
+		// DfP site value?
+		var site = null;
+		try {
+			site = unescape(window.location.search.match(/[\?&]site=([^&]+)/)[1]);
+		} catch(err) {
+			// no site param
+		}
 		var data = {
 			d: dataspace,
 			t: eventTag,
 			p: JSON.stringify(eventParams),
-			r: document.referrer // If in a SafeFrame, this will be the page url
+			r: document.referrer, // If in a SafeFrame, this will be the page url
+			s: site // If in a well-configured DfP ad, this will be the page url
 		};
-		// dont do standard tracking
-		if ( addTrackingInfo === false) {
+		// dont do standard tracking?
+		if (addTrackingInfo === false) {
 			data.track = false;
 		}
 		return apost(goodloop.LBURL+'/lg', data);

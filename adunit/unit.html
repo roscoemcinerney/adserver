@@ -63,55 +63,46 @@ goodloop.html.videobox = () => `
 	</div>
 </div>`;
 
-goodloop.html.msgdonated = () => `<a href='${goodloop.vert.url}' class="company_name">${goodloop.vert.name}</a> 
+goodloop.html.msgdonated = () => `<a href='${goodloop.vert.url}' target='_blank' class="company_name">${goodloop.vert.name}</a> 
 	has funded your donation to ${goodloop.state.charity.name}`;
 
 /** replaces the contents of videobox .vcontainer*/
-goodloop.html.endpage = () => `
-<div class="endpage">
-	<p><a href='${goodloop.vert.url}'><img class="adlogo" src='${goodloop.vert.logo}' alt='${goodloop.vert.name}'></a> 
-		has funded your donation to 
-		<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>
-	</p>
-	<p><small>The amount donated is a full 50% of the advert value. The amount varies - about 10p is average. These adverts also support the website.</small></p>
-	<p>Double your donation by sharing</p>
-	<p class="share">
-		${goodloop.html.social()}
-	</p>
-	<p class="ty">Thank you for watching this <a href="http://good-loop.com" class="gl">Good-Loop</a> ad!</p>
-</div>`;
+goodloop.html.endpage = () => goodloop.html.tq('endpage');
 
 goodloop.html.social = function() {
 	var adurl = 'https://as.good-loop.com/advert.html?id='+escape(goodloop.vert.id);
 	var msg = 'I donated '+goodloop.variant.adsecs+' seconds to '+(goodloop.state.charity.name || 'charity')+' by watching this advert';
 	return `<div class='sharead'>
-	<a class="fb" href="https://facebook.com/sharer/sharer.php?caption=Ads+For+Good&u=${escape(adurl)}&description=${escape(msg)}">
-		<img src='${goodloop.BURL}facebook.png' class='fb' alt='Facebook'>
-	</a> 
-	<a class="tw" href="https://twitter.com/intent/tweet?text=${escape(msg+' '+adurl+' via @good__loop')}">
-		<img src='${goodloop.BURL}twitter.png' class='tw' alt='Twitter'>
-	</a>
+		<p>Double your donation by sharing</p>
+		<a class="fb" href="https://facebook.com/sharer/sharer.php?caption=Ads+For+Good&u=${escape(adurl)}&description=${escape(msg)}">
+			<img src='${goodloop.BURL}facebook.png' class='fb' alt='Facebook'>
+		</a> 
+		<a class="tw" href="https://twitter.com/intent/tweet?text=${escape(msg+' '+adurl+' via @good__loop')}">
+			<img src='${goodloop.BURL}twitter.png' class='tw' alt='Twitter'>
+		</a>
 	</div>`;
 };
 
 /** goes inside div.unit, replacing the advert */
-goodloop.html.tq = () => `
-    <div class="thankyou">
-		<div>
-			<div class='tq'>Thank You!</div>
-			<div>For watching this Good-Loop ad.</div>
+goodloop.html.tq = (format) => `
+    <div class="thankyou ${format}">
+		<div class='tq'>
+			<div class='tqh'>Thank You!</div>
+			<div>for watching this ${format==='vbnr'? 'advert' : 'Good-Loop ad'}.</div>
 		</div>
         <div class='dntn'>
-			<a href="${goodloop.vert.url}" class="company_name">${goodloop.vert.name}</a>
-			<span>funded your donation to</span>
-			<a href='${goodloop.state.charity.url || "http://good-loop.com"}'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>.
+			<a href="${goodloop.vert.url}" target='_blank'><img class='tqlogo' src='${goodloop.vert.logo}'></a>
+			<div>
+				<span>funded your donation to</span>
+				<a href='${goodloop.state.charity.url || "http://good-loop.com"}' target='_blank'>${goodloop.state.charity.name || 'the Good-Loop fund.'}</a>.
+			</div>
 			<div class='amount'>
-				The amount donated is a full 50% of the advert value. 
+				The amount donated is a full 50% of the advert value${format==='endpage'? ' (which varies - about 10p is average)' : ''}. 
 				These adverts also support this website.
 			</div>
 		</div>
-		<a href="http://good-loop.com" class="gl_link">Find out more about opt-in ads by <span class='gl'>Good-Loop</span>.</a>
-		<div>${goodloop.html.social()}</div>
+		${goodloop.html.social()}
+		<a href="http://good-loop.com" target='_blank' class="gl_link">${format==='vbnr'? 'More info on opt-in ads by' : 'Find out more about opt-in ads by'} <span class='gl'>Good-Loop</span>.</a>
     </div>`;
 
 }
