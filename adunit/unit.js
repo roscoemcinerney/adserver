@@ -96,7 +96,7 @@ function renderUnit(id, $div) {
 	// show offer
 	var $unit = $(goodloop.html[format]());	
 	$unit.click(goodloop.act.openLightbox);
-	$('.close', $unit).click(goodloop.act.closeUnit);
+	$('.closeunit', $unit).click(goodloop.act.closeUnit);
 	$unit.addClass(format);
 	$div.append($unit);
 }
