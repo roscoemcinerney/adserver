@@ -46,14 +46,6 @@
     border: 0;
 }
 
-/* Ad sizes */
-#gdlpid .mobile {
-    width: calc(100vw - 70px);
-    height: 50px;
-    border: 1px solid #808080;
-    overflow: hidden;
-}
-
 /* GENERAL */
 
 #gdlpid {
@@ -196,12 +188,12 @@
        only screen and ( min-resolution: 124.8dpi ),
        only screen and ( min-resolution: 1.3dppx ) {
 
-        #gdlpid .charities li {
+        /*#gdlpid .charities li {
             background-size: 90px 90px;
         }
 
         #gdlpid.mobile .charities li {
             background-size: 45px 45px;
-        }
+        }*/
 }
 
