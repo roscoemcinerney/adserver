@@ -22,6 +22,10 @@ goodloop.env.isMobile = !!(userAgent.match('/mobile|Android|webOS|iPhone|iPad|iP
 
  /* ??detect CSS animation support?? c.f. gdlpafg.js */
 // Detect and hook in IAB SafeFrame handler
+// Legacy sf variable (Copied from example code. Does this ever happen??)
+if (typeof($sf) === 'undefined' && window.sfAPI) {
+	window.$sf = {ext: sfAPI};
+}
 if (typeof($sf) !== 'undefined') {
 	goodloop.sfHandler = function(status, data) {
 		console.log("#sfHandler", status, data);
@@ -30,7 +34,10 @@ if (typeof($sf) !== 'undefined') {
 		}
 	};	
 	goodloop.$sf = $sf;
-	$sf.ext.register(goodloop.vert.w, goodloop.vert.h, goodloop.sfHandler);
+	// width & height - default to a medium-rectangle
+	var w = goodloop.vert.w || 300, h = goodloop.vert.h || 250;
+	console.log("$sf.ext.register", w, h, goodloop.sfHandler);
+	$sf.ext.register(w, h, goodloop.sfHandler);
 	goodloop.env.geom = $sf.ext.geom();
 } else {
 	window.$sf = false; // easier tests later
