@@ -2,16 +2,32 @@
     width: 100%;
     height: 50px;
     border: 1px solid #808080;
+    background-color: #ce2e38;
 }
 
 #gdlpid.stickybottom .logo {
 	height: 36%;
 }
 
-#gdlpid.stickybottom .h2 {
-	font-size: 0.6em;
+#gdlpid.stickybottom h2 {
+	font-size: 0.75em;
 }
 
 #gdlpid.stickybottom .adlogo {
 	height: 40%;
+}
+
+#gdlpid.stickybottom span.play {
+	height: 0;
+	top: 50%;
+	right: 0%;
+}
+
+#gdlpid.stickybottom .charities {
+	height: 100%;
+	min-width: 30%;
+}
+
+#gdlpid.stickybottom img.clogo {
+	max-height: 100%;
 }
