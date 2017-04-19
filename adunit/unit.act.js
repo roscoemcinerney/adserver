@@ -77,7 +77,11 @@ goodloop.act.keyup = function(event) {
 
 goodloop.act.closeLightbox = function(event) {	
 	try {
-		if (goodloop.domvideo) goodloop.domvideo.stop();
+		if (goodloop.domvideo) {
+
+			goodloop.domvideo.pause();
+			goodloop.domvideo.currentTime = 0;
+		}
 	} catch(err) {}
 	if (event) {
 		event.preventDefault();
