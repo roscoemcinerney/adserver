@@ -38,7 +38,7 @@
     left: 2%;
     top: 7%;
     height: 33%;
-    font-size: 0.6em;
+    font-size: 0.0em;
 }
 
 
@@ -51,10 +51,12 @@
     max-width: 150px;
 }
 #gdlpid.leaderboard.mobile img.adlogo {
-    right: 59px;
-    top: 5px;
     height: 38%;
     width: auto;
+    right: 50%;
+    left: 50%;
+    top: 50%;
+    bottom: 50%;
 }
 
 #gdlpid.leaderboard span.rarrow {
@@ -83,6 +85,11 @@
     width: 170px;
     height: 100%;
 }
+
+#gdlpid.leaderboard .charities .mobile {
+    width: 50%;
+}
+
 #gdlpid .charities li {
 	position: absolute;
     top: 0;
@@ -158,7 +165,7 @@
         width: 135px;
     }
     #gdlpid.leaderboard.mobile header {
-        right: 50px;
+        right: 35%;
     }
     #gdlpid.leaderboard header h1, #gdlpid.leaderboard header h2 {
         font-size: 12px;
