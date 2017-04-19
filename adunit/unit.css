@@ -66,6 +66,7 @@
 /* default text colour - black or white */
 #gdlpid .unit * {
 	color: white;
+	cursor: pointer; /* the whole unit is clickable, so use the link pointer cursor */
 }
 #gdlpid .thankyou * {
 	color: white;

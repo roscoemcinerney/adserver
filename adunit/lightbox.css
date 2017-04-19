@@ -12,6 +12,7 @@
     transform-origin: 0 0;
     overflow: hidden;
 	background: white;
+	cursor: default;
 }
 
 #gdlpid .videobox img.logo {
@@ -109,6 +110,7 @@
     top:0px;
     right:0px;
     z-index: 5;
+	cursor: pointer;
 }
 /* this catches close-out clicks */
 #gdlpid .backdrop {
