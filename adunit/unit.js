@@ -128,14 +128,13 @@ function pickFormat($div) {
 	return 'vbnr';
 }
 
-
 // Make the adverts!
 // TODO do we have to release control to let the page-load finish?? Or does <script async> cover that?
 // setTimeout(function() {
 	// TODO support ad units added dynamically
 function render() {
 	// style
-	var css = `@import '${goodloop.BURL}all.css';`;
+	var css = "@import '"+goodloop.BURL+"all.css';";
 	if ($sf && false) {
 		// for some reason adding to head fails :(
 		document.write('<style type="text/css">'+css+'</style>');

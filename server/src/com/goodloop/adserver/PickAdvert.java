@@ -40,12 +40,13 @@ public class PickAdvert {
 		Publisher pub = fpub.get();
 		ESHttpClient es = Dep.get(ESHttpClient.class);
 		AdServerConfig config = Dep.get(AdServerConfig.class);
-		SearchRequestBuilder s = es.prepareSearch(config.advertIndex);
+		SearchRequestBuilder s = es.prepareSearch(config.advertIndex);		
 		List<Advert> ads = s.get().getSearchResults();
 		// TODO no results?? Make a default / pick from a remnant index
 		if (ads==null || ads.isEmpty()) return;
 		Best<Advert> bestAd = new Best<>();
 		for (Advert ad : ads) {
+			if ( ! ad.active) continue; // TODO do this in the ES query
 			double score = ad.maxBid==null? 0.01 : ad.maxBid.getValue();
 			// key words match?
 			List<String> keywords = StrUtils.split(ad.keywords);

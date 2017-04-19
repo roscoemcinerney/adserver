@@ -71,14 +71,18 @@ goodloop.act.openLightbox2 = function() {
 
 goodloop.act.keyup = function(event) {
 	if (event.which === 27) {
-		goodloop.act.closeLightbox();
+		goodloop.act.closeLightbox(event);
 	}	
 };
 
-goodloop.act.closeLightbox = function() {	
+goodloop.act.closeLightbox = function(event) {	
 	try {
 		if (goodloop.domvideo) goodloop.domvideo.stop();
 	} catch(err) {}
+	if (event) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
 	$(document).off('keyup', goodloop.act.keyup);
 	$('#gdlpid .videobox').hide();
 	$('#gdlpid .backdrop').hide();	
