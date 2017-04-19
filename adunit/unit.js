@@ -94,8 +94,9 @@ function renderUnit(id, $div) {
 		return;	
 	}
 	// show offer
-	var $unit = $(goodloop.html[format]());
+	var $unit = $(goodloop.html[format]());	
 	$unit.click(goodloop.act.openLightbox);
+	$('.close', $unit).click(goodloop.act.closeUnit);
 	$unit.addClass(format);
 	$div.append($unit);
 }

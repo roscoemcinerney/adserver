@@ -75,6 +75,16 @@ goodloop.act.keyup = function(event) {
 	}	
 };
 
+/** the dismiss button on stickybottom */
+goodloop.act.closeUnit = function(event) {
+	if (event) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
+	goodloop.domunit.hide();
+	goodloop.act.log('close', {});
+};
+
 goodloop.act.closeLightbox = function(event) {	
 	try {
 		if (goodloop.domvideo) {
@@ -96,6 +106,10 @@ goodloop.act.closeLightbox = function(event) {
 		$sf.ext.collapse();
 		goodloop.state.expanded = false;
 		// FIXME we may have to re-expand!!
+	}
+	// close the unit if mobile
+	if (goodloop.env.format ==='stickybottom') {
+		goodloop.act.closeUnit();
 	}
 };
 
@@ -208,7 +222,7 @@ goodloop.act.donate = function() {
 		view: 'complete'
 	});
 	goodloop.state.donated = true;
-	// replace the adunits with a thank you
+	// replace the adunits with a thank you	
 	$('#gdlpid .unit').replaceWith(goodloop.html.tq());
 	var msg = goodloop.html.msgdonated();
 	goodloop.act.vmsg(msg);
