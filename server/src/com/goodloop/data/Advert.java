@@ -33,5 +33,10 @@ public class Advert extends Thing {
 	 */
 	public MonetaryAmount maxBid;
 	public boolean active;
+	/**
+	 * normally set only when serving unit.js, as our video lightbox ads are all "any size"
+	 */
+	public Integer width;
+	public Integer height;
 	
 }

@@ -31,6 +31,7 @@ import com.winterwell.web.app.FileServlet;
 import com.winterwell.web.app.WebRequest;
 import com.winterwell.web.fields.AField;
 import com.winterwell.web.fields.Checkbox;
+import com.winterwell.web.fields.IntField;
 import com.winterwell.web.fields.JsonField;
 import com.winterwell.web.fields.SField;
 import com.goodloop.data.DB;
@@ -65,6 +66,9 @@ import com.winterwell.web.ajax.JsonResponse;
  */
 public class UnitHttpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final IntField WIDTH = new IntField("width").setRounding(true);
+	private static final IntField HEIGHT = new IntField("height").setRounding(true);
 	
 	private UpToDateTextFile unitjs;
 
@@ -145,6 +149,12 @@ public class UnitHttpServlet extends HttpServlet {
 			return;
 		}
 		Log.d("unit", "Advert: "+pa.advert);
+		Integer width = state.get(WIDTH);
+		Integer height = state.get(HEIGHT);
+		if (Utils.truthy(width)) {
+			pa.advert.width = width;
+			pa.advert.height = height;
+		}
 		
 		List<NGO> charities = adunit.getCharities();
 //		{"logo":"https://logo.clearbit.com/shelter.org.uk","name":"Shelter","url":"http://shelter.org.uk","id":"shelter", "photo":"image_shelter.jpg"},
