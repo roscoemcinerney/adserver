@@ -5,4 +5,33 @@
     position: fixed;
     bottom: 0;
 	left:0;
+    background-color: #ce2e38;
+}
+
+#gdlpid.stickybottom .logo {
+	height: 36%;
+}
+
+#gdlpid.stickybottom h2 {
+	font-size: 0.75em;
+}
+
+#gdlpid.stickybottom .adlogo {
+	height: 40%;
+}
+
+#gdlpid.stickybottom span.play {
+	display: none;
+	height: 44%;
+	top: 50%;
+	right: 0%;
+}
+
+#gdlpid.stickybottom .charities {
+	height: 100%;
+	min-width: 30%;
+}
+
+#gdlpid.stickybottom img.clogo {
+	max-height: 100%;
 }
