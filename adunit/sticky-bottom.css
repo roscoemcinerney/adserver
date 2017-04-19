@@ -18,7 +18,8 @@
 }
 
 #gdlpid.stickybottom span.play {
-	height: 0;
+	display: none;
+	height: 44%;
 	top: 50%;
 	right: 0%;
 }
