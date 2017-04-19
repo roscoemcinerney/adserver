@@ -62,7 +62,7 @@ import jobs.BuildWinterwellProject;
  */
 public class PublishPortal extends BuildTask {
 
-	String server = "as.good-loop.com"; // datalog.soda.sh
+	String server = "testas.good-loop.com"; // datalog.soda.sh
 	String remoteUser;
 	private String remoteWebAppDir;
 	private File localWebAppDir;
@@ -205,34 +205,36 @@ public class PublishPortal extends BuildTask {
 			JarTask jarTask = new JarTask(new File(localLib, "portal.jar"), new File(localWebAppDir, "bin"));
 			jarTask.run();
 			jarTask.close();
-			
+		}
+	}
+}
 //			if (true) return;
 			
 			// Do the rsync!
-			String from = localLib.getAbsolutePath();
-			String dest = rsyncDest("lib");			
-			RSyncTask task = new RSyncTask(from, dest, true).setDirToDir();
-			task.run();
-			task.close();
-			System.out.println(task.getOutput());
-		}
-		{	// web
-			// Rsync code with delete=true, so we get rid of old html templates
-			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
-			RSyncTask rsyncCode = new RSyncTask(
-					new File(localWebAppDir,"web-portal").getAbsolutePath(),
-					rsyncDest("web-portal"), true);
-			rsyncCode.setDirToDir();
-			rsyncCode.run();
-			String out = rsyncCode.getOutput();
-			rsyncCode.close();
-		}
-	}
-
-	private String rsyncDest(String dir) {
-//		if ( ! dir.endsWith("/")) dir += "/";
-		return remoteUser+"@"+server+ ":" + new File(remoteWebAppDir, dir).getAbsolutePath();
-	}
-
-
-}
+//			String from = localLib.getAbsolutePath();
+//			String dest = rsyncDest("lib");			
+//			RSyncTask task = new RSyncTask(from, dest, true).setDirToDir();
+//			task.run();
+//			task.close();
+//			System.out.println(task.getOutput());
+//		}
+//		{	// web
+//			// Rsync code with delete=true, so we get rid of old html templates
+//			// ??This is a bit wasteful, but I'm afraid of what delete might do in the more general /web/static directory ^Dan
+//			RSyncTask rsyncCode = new RSyncTask(
+//					new File(localWebAppDir,"web-portal").getAbsolutePath(),
+//					rsyncDest("web-portal"), true);
+//			rsyncCode.setDirToDir();
+//			rsyncCode.run();
+//			String out = rsyncCode.getOutput();
+//			rsyncCode.close();
+//		}
+//	}
+//
+//	private String rsyncDest(String dir) {
+////		if ( ! dir.endsWith("/")) dir += "/";
+//		return remoteUser+"@"+server+ ":" + new File(remoteWebAppDir, dir).getAbsolutePath();
+//	}
+//
+//
+//}
