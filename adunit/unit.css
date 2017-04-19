@@ -143,23 +143,6 @@
 	font-size: 40px;
 	padding-top: 5px;	
 }
-#gdlpid.vbnr .tq {
-	left:5px;
-	right:5px;
-}
-#gdlpid.vbnr .dntn {
-	left:5px;
-	right:5px;
-	top:65px;
-	width:110px;
-	text-align: center;
-}
-#gdlpid.vbnr .tqh {
-	font-size: 20px;
-}
-#gdlpid.vbnr .amount {
-	display:none;
-}
 #gdlpid .dntn {
 	position: absolute;
 	width:50%;
