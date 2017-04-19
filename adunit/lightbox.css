@@ -164,6 +164,12 @@
 	font-size:12px;
 }
 
+#gdlpid.mbl .videobox {
+	width: 100vw;
+	left:0;
+	right:0;
+	margin-left:0;
+}
 
 @media (max-width: 600px) {
     #gdlpid .videobox {

@@ -98,6 +98,7 @@ function renderUnit(id, $div) {
 	$unit.click(goodloop.act.openLightbox);
 	$('.closeunit', $unit).click(goodloop.act.closeUnit);
 	$unit.addClass(format);
+	if (goodloop.env.isMobile) $unit.addClass("mbl");
 	$div.append($unit);
 }
 
