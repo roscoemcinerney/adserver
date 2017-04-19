@@ -81,7 +81,7 @@ goodloop.act.closeUnit = function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 	}
-	goodloop.domunit.hide();
+	$('#gdlpid.stickybottom').hide();
 	goodloop.act.log('close', {});
 };
 
