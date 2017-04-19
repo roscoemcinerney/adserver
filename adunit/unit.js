@@ -104,11 +104,12 @@ function pickFormat($div) {
 	var format = $div.data(goodloop.env.isMobile? 'mobile-format' : 'format');
 	// TODO set by publisher info? To allow eg the blogger to say "I dont like stickys" without reinstalling the tag.
 	if (format) {
+		// replace "-", so medium-rectangle = mediumrectangle
 		var f = format.toLowerCase().replace(/\W/, '');
 		if (f==='verticalbanner') return 'vbnr'; // TODO shrink them all
 		return f;
 	}
-	if (goodloop.env.isMobile && ! $sf) return 'stickybottom';	
+	if (goodloop.env.isMobile && ! $sf) return 'stickybottom';
 	// space?
 	var w = $div.width();
 	if ($sf) {
