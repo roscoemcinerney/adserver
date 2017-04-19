@@ -116,7 +116,9 @@ function pickFormat($div) {
 	if ($sf) {
 		w = parseInt(goodloop.env.geom.self.w);
 		if ($sf.ext.supports("exp-push")) {
-			w += parseInt(goodloop.env.geom.exp.w);
+			if (parseInt(goodloop.env.geom.exp.w) > 0) { // NB: junk -> NaN, which is not > 0
+                w += parseInt(goodloop.env.geom.exp.w);
+            }
 		}
 	}
 	// NB: -4 to allow that minor clipping is better than a smaller ad.
