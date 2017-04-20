@@ -1,4 +1,4 @@
-#gdlpid.stickybottom {
+#gdlpid.stickyfooter {
     width: 100%;
 /* What height?
 Google define [1]:
@@ -19,19 +19,19 @@ But I'm not sure how influential the MMA really is.
 	z-index: 10000;
 }
 
-#gdlpid.stickybottom header {
+#gdlpid.stickyfooter header {
     width: 70%;
     height: 100%;
 }
 
-#gdlpid.stickybottom header .logo {
+#gdlpid.stickyfooter header .logo {
 	position: absolute;
     height: 45%;
 	left: 15px;
     top: 10%;
     vertical-align: middle;
 }
-#gdlpid.stickybottom header h2 {
+#gdlpid.stickyfooter header h2 {
     background: transparent;
     color: white;
     font-size: 20px;
@@ -44,7 +44,7 @@ But I'm not sure how influential the MMA really is.
     bottom: 8px;
 }
 
-#gdlpid.stickybottom img.adlogo {
+#gdlpid.stickyfooter img.adlogo {
     background-color: transparent;
     position: absolute;
     right: 70px;
@@ -53,14 +53,14 @@ But I'm not sure how influential the MMA really is.
     max-width: 150px;
 }
 
-#gdlpid.stickybottom .closeunit {
+#gdlpid.stickyfooter .closeunit {
 	position:absolute;
 	right:0;	
 	z-index:20;
 	padding:5px;
 	font-size:30px;
 }
-#gdlpid.stickybottom span.rarrow {
+#gdlpid.stickyfooter span.rarrow {
 	position: absolute;
 	top:0px;
 	left:70%;
@@ -72,18 +72,18 @@ But I'm not sure how influential the MMA really is.
 	z-index: 4;
 }
 
-#gdlpid.stickybottom .unit img.clogo {
+#gdlpid.stickyfooter .unit img.clogo {
 	margin-left:20px;
 	max-height:100%;
 	width:100px;
 	z-index: 3;
 }
-#gdlpid.stickybottom .charities {
+#gdlpid.stickyfooter .charities {
 	width:30%;
 	height:100%;
 }
 
-#gdlpid.stickybottom .charities img.cphoto {
+#gdlpid.stickyfooter .charities img.cphoto {
 	position:absolute;
 	top:0px;
 	right:0px;
@@ -92,7 +92,7 @@ But I'm not sure how influential the MMA really is.
 	z-index: 2;
 }
 
-#gdlpid.stickybottom span.play {
+#gdlpid.stickyfooter span.play {
     right: -10px;
     top: 50%;
     margin-top: -30px;

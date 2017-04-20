@@ -76,7 +76,7 @@ function renderUnit(id, $div) {
 	// 		mediumrectangle: [300, 250],
 	// 		leaderboard: [728, 90],
 	// 		vbnr: [120, 240],
-	// 		stickybottom: [728, 50] // NB: stickybottom width = 100%
+	// 		stickyfooter: [728, 50] // NB: stickyfooter width = 100%
 	// 	}[format];
 	// 	var ew = wh[0] - goodloop.env.geom.self.w;
 	// 	var eh = wh[1] - goodloop.env.geom.self.h;
@@ -111,7 +111,7 @@ function pickFormat($div) {
 		if (f==='verticalbanner') return 'vbnr'; // TODO shrink them all
 		return f;
 	}
-	if (goodloop.env.isMobile && ! $sf) return 'stickybottom';
+	if (goodloop.env.isMobile && ! $sf) return 'stickyfooter';
 	// space?
 	var w = $div.width();
 	if ($sf) {

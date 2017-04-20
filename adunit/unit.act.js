@@ -75,13 +75,13 @@ goodloop.act.keyup = function(event) {
 	}	
 };
 
-/** the dismiss button on stickybottom */
+/** the dismiss button on stickyfooter */
 goodloop.act.closeUnit = function(event) {
 	if (event) {
 		event.preventDefault();
 		event.stopPropagation();
 	}
-	$('#gdlpid.stickybottom').hide();
+	$('#gdlpid.stickyfooter').hide();
 	goodloop.act.log('close', {});
 };
 
@@ -108,7 +108,7 @@ goodloop.act.closeLightbox = function(event) {
 		// FIXME we may have to re-expand!!
 	}
 	// close the unit if mobile
-	if (goodloop.env.format ==='stickybottom') {
+	if (goodloop.env.format ==='stickyfooter') {
 		goodloop.act.closeUnit();
 	}
 };

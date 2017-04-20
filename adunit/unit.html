@@ -21,7 +21,7 @@ goodloop.html.leaderboard = () =>
 			${charity_li(goodloop.charities[1])}
 			${charity_li(goodloop.charities[2])}
 		</ul>
-		${goodloop.env.format==='stickybottom'? '<button class="closeunit" title="close this advert">&times;</button>' : ''}
+		${goodloop.env.format==='stickyfooter'? '<button class="closeunit" title="close this advert">&times;</button>' : ''}
 	</div>
 </div>`; 
 
@@ -40,7 +40,7 @@ let charity_li = (charity) => ! charity? '' :
 </li>`;
 
 goodloop.html.mediumrectangle = goodloop.html.leaderboard;
-goodloop.html.stickybottom = goodloop.html.leaderboard;
+goodloop.html.stickyfooter = goodloop.html.leaderboard;
 goodloop.html.vbnr = goodloop.html.leaderboard;
 
 
