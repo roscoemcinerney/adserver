@@ -67,7 +67,7 @@
 }
 
 #gdlpid header {
-	background-color: #ce2e38;
+	background-color: #666;
     position: absolute;
     top: 0;
     left: 0;
@@ -78,7 +78,7 @@
     position: absolute;
     right: 0;
     z-index: 3;
-    background-color: #382ece;
+    /*background-color: #382ece;*/
 }
 #gdlpid img.clogo {
 	position:absolute;
@@ -167,7 +167,7 @@
 }
 
 #gdlpid .thankyou {
-	background-color:#ce2e38;
+	background-color:#666;
     color: white;
 	height: 100%;
 	width: 100%;

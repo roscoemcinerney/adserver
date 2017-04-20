@@ -34,7 +34,7 @@ goodloop.html.expln = () => {
 }
 
 let charity_li = (charity) => ! charity? '' :
-`<li class='chty' data-cid='${charity.id}' title='${charity.name}'>
+`<li class='chty' data-cid='${charity.id}' title='${charity.name}' style='background:${charity.color || "#382ece"};'>
 	<img class='clogo' src='${charity.logo}'/>
 	${charity.photo? `<img class='cphoto' src='${charity.photo}'/>` : ''}
 </li>`;

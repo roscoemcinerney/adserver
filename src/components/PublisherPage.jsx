@@ -94,7 +94,8 @@ const CharityForm = ({publisher, i, charity}) => {
 			ID: <Misc.PropControl item={charity} path={path} prop='id' /> <br/>
 			name: <Misc.PropControl item={charity} path={path} prop='name' /> <br/>
 			url: <Misc.PropControl type='url' item={charity} path={path} prop='url' /> <br/>			
-			Logo: <Misc.PropControl type='img' item={charity} path={path} prop='logo' /> <br/>			
+			White Logo: <Misc.PropControl type='img' item={charity} path={path} prop='logo_white' bg={charity.color || '#3333aa'} /> <br/>
+			Colour: <Misc.PropControl type='color' item={charity} path={path} prop='color' /> <br/>
 			BG Photo: <Misc.PropControl type='img' item={charity} path={path} prop='bgphoto' />
 		</div>
 	);

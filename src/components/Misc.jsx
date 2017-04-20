@@ -67,7 +67,7 @@ Misc.Logo = ({service, size, transparent}) => {
 	);
 }; // ./Logo
 
-Misc.PropControl = ({prop,path,item, type}) => {
+Misc.PropControl = ({prop,path,item, type, bg}) => {
 	if ( ! item) item = {};
 	const value = item[prop]===undefined? '' : item[prop];
 	if (type==='Checkbox') {
@@ -85,7 +85,7 @@ Misc.PropControl = ({prop,path,item, type}) => {
 	if (type==='img') {
 		return (<div>
 			<FormControl type='url' name={prop} value={value} onChange={onChange} />
-			<div className='pull-right'><Misc.ImgThumbnail url={value} /></div>
+			<div className='pull-right' style={{background: bg, padding:bg?'20px':'0'}}><Misc.ImgThumbnail url={value} /></div>
 			<div className='clearfix' />
 		</div>);
 	}
